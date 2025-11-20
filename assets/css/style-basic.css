@@ -14,8 +14,8 @@ html {
 @font-face {
   font-family: "broya";
   src:
-    url( "../../assets/fonts/broya.woff2" ) format( 'woff2' ),
-    url( "../../assets/fonts/broya.ttf" ) format( 'truetype' );
+    url( "../../assets/fonts/broya/broya.woff2" ) format( 'woff2' ),
+    url( "../../assets/fonts/broya/broya.ttf" ) format( 'truetype' );
   font-weight: normal;
   font-style: normal;
 }
@@ -23,8 +23,8 @@ html {
 @font-face {
   font-family: "broyabd";
   src:
-    url( "../../assets/fonts/broyabd.woff2" ) format( 'woff2' ),
-    url( "../../assets/fonts/broyabd.ttf" ) format( 'truetype' );
+    url( "../../assets/fonts/broya/broyabd.woff2" ) format( 'woff2' ),
+    url( "../../assets/fonts/broya/broyabd.ttf" ) format( 'truetype' );
   font-weight: bold;
   font-style: normal;
 }
