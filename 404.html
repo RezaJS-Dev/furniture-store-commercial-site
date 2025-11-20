@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Error</title>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style-basic.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style-main.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, var(--background-body) 100%);
+            color: white;
+            text-align: center;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.95;
+
+            &::after {
+                content: "";
+                position: fixed;
+                background-image: url(./assets/images/404.png);
+                background-position: 0% 0%;
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                width: 800px;
+                height: 370px;
+                z-index: -1;
+                filter: hue-rotate(-95deg) opacity(0.4) sepia(1);
+                animation: bounce 8s infinite;
+            }
+
+            h1 {
+                margin: 20px 0;
+                @media screen and (width < 544px) {
+                    margin: auto 20px;
+                }
+            }
+            
+            h3 {
+                
+                @media screen and (width < 544px) {
+                    margin: 24px 20px;
+                }
+            }
+        }
+        .error-content {
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+        }
+        .error-code {
+            font-family: Poppins;
+            font-size: 220px;
+            font-weight: bold;
+            margin: 0;
+            /* animation: bounce 2s infinite; */
+            text-shadow: 4px 5px 4px #111142;
+            color: #deb785;
+            filter: invert(1) drop-shadow(2px 8px 16px #000);
+            transform-style: preserve-3d;
+            @media screen and (width < 544px) {
+                font-size: 180px;
+            }
+            
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .navigation {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-size: 22px;
+            font-family: Yekan;
+        }
+        .nav-link:hover {
+            background-color: var(--background-body);
+            color: var(--background-panel);
+        }
+        .search-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            p {
+                margin: 30px 20px;
+                font-size: 22px;
+                font-family: Yekan;
+            }
+
+            form {
+                display: flex;
+                height: 40px;
+                width: 90%;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        input[type='text'] {
+            background-color: rgba(39, 79, 107, 0.08);
+            color: #274f6b;
+            font-size: 16px;
+            font-family: "Poppins", 'YEKAN';
+            font-weight: 500;
+            text-align: center;
+            padding: 8px 10px;
+            width: 70%;
+            outline: none;
+            border: solid 1px rgba(0, 0, 0, 0.12);
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+    
+            &::placeholder {
+                color: rgba(39, 79, 107, 75%);
+                vertical-align: middle;
+                font-family: "Poppins", 'YEKAN' !important;
+                text-align: right;
+            }
+        }
+        button {
+            background-color: #274f6b;
+            color: rgb(240 243 245);
+            font-size: 16px;
+            font-family: 'YEKAN';
+            line-height: 1.6;
+            padding: 8px 10px;
+            width: 30%;
+            height: 40px;
+            outline: none;
+            border: none;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+            cursor: pointer;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-content">
+        <h1 class="error-code">404</h1>
+        <h1>متاسفانه صفحه مورد نظر شما وجود ندارد!</h1>
+        <h3>برای ادامه گشت و گذار در سایت فروشگاه ما می توانید از دکمه های زیر کمک بگیرید.</h3>
+        <div class="navigation">
+            <a href="/index.html" class="nav-link">🏠 صفحه اول سایت</a>
+            <a href="/store.html" class="nav-link">↩ رفتن به فروشگاه</a>
+        </div>
+        <div class="search-section">
+            <p>همچنین در صورت تمایل از طریق کادر زیر به جستجو در سایت بپردازید</p>
+            <form>
+                <input type="text" id="searchInput" placeholder="جستجو...">
+                <button type="submit">جستجو</button>
+            </form>
+        </div>
+
+        <script>
+            const searchInput = document.getElementById('searchInput');
+            searchInput.parentElement.addEventListener('submit', (e) => {
+              e.preventDefault();
+              function normalizePersianText(text) {
+                if (!text) return '';
+                let normalized = text;
+                // Replace Arabic Yeh (ي and ى) with Persian Yeh (ی)
+                normalized = normalized.replace(/[\u064A\u0649]/g, '\u06CC'); // ي ى -> ی
+                // Replace Arabic Kaf (ك) with Persian Kaf (ک)
+                normalized = normalized.replace(/\u0643/g, '\u06A9'); // ك -> ک
+                // Remove diacritics (optional)
+                normalized = normalized.replace(/[\u064B-\u065F\u0670]/g, '');
+                // Normalize spaces
+                normalized = normalized.replace(/[\u00A0\u200C\u200E\u200F]/g, ' ');
+                normalized = normalized.replace(/\s+/g, ' ').trim();
+                return normalized;
+              }
+              const userInput = searchInput.value;
+              const normalizedInput = normalizePersianText(userInput);
+              localStorage.setItem('searchData', JSON.stringify(normalizedInput));
+              window.location.href = window.location.origin + "/store.html";
+            });
+        </script>
+    </div>
+</body>
+</html>

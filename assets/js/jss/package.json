@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "jss": "^10.10.0",
+    "jss-preset-default": "^10.10.0"
+  }
+}

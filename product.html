@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Product</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css"/>
+  <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.muicss.com/mui-0.10.3/css/mui-rtl.min.css" />
+  <link rel="stylesheet" type="text/css" href="./assets/css/style-basic.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style-main.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style-product.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style-footer.css">
+
+  <style>
+  </style>
+
+</head>
+<body>
+    <nav-bar id="navbar1"
+             style="
+               --nav-bar-font: Estedad;
+               --nav-bar-font-size: 18px;
+               --nav-bar-background-color: transparent;
+               --nav-bar-menu-background-color: #e1e1e1;
+               --nav-bar-links-color: #274f6b;
+               --nav-bar-links-hover: #ef30c6;" 
+             menu-button-label = '[{"text": "فروشگاه"}]'
+             logo = '[{ "src": "./assets/images/logo.png", "href": "/index.html" }]'
+             side-menu-logo = '[{ "src": "./assets/images/logo.png", "href": "/index.html" }]'
+             side-menu-list = '[
+               {
+                 "text": "مبلمان راحتی",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon1.png", 
+                 "accordion": "", 
+                 "dropdown": ""
+               },
+               {
+                 "text": "مبلمان اداری",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon2.png", 
+                 "accordion": "", 
+                 "dropdown": ""
+               },
+               {
+                 "text": "انواع میز",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon5.png", 
+                 "accordion": "yes", 
+                 "dropdown": [
+                   { "text": "میز ناهارخوری", "href": "javascript:void(0)" },
+                   { "text": "میز آشپزخانه", "href": "javascript:void(0)" },
+                   { "text": "میز پذیرایی", "href": "javascript:void(0)" },
+                   { "text": "میز تحریر", "href": "javascript:void(0)" }
+                 ]
+               },
+               {
+                 "text": "سرویس خواب",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon3.png", 
+                 "accordion": "", 
+                 "dropdown": ""
+               },
+               {
+                 "text": "فرش و موكت",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon4.png", 
+                 "accordion": "", 
+                 "dropdown": ""
+               },
+               {
+                 "text": "دیگر نمونه کارها",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/otherPages.png",
+                 "accordion": "",
+                 "dropdown": ""
+               },
+               {
+                 "text": "رزومه من",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/myResume.png",
+                 "accordion": "",
+                 "dropdown": ""
+               }
+             ]'
+             social-links = '[
+               { "instagram": "javascript:void(0)" },
+               { "email": "somewhere@gmail.com" },
+               { "telegram": "javascript:void(0)" },
+               { "whatsapp": "989036243626" },
+               { "phone": "02112345678" }
+             ]'
+             items = '[
+               { "text": "تماس با ما", "href": "/contactus.html" }
+             ]'
+    ></nav-bar>
+
+    <section class="bread-crumb-container">
+      <div class="mui-container">
+        <div class="mui-panel bread-crumb">
+          <span>شما اینجا هستید: </span>
+          <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
+              <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                  <a itemprop="item" href="index.html">
+                      <span itemprop="name"><i class="las la-home"></i></span>
+                  </a>
+                  <meta itemprop="position" content="1">
+              </li>
+              <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                  <a itemprop="item" href="store.html">
+                      <span itemprop="name">فروشگاه</span>
+                  </a>
+                  <meta itemprop="position" content="2">
+              </li>
+              <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                  <a itemprop="item" href="store.html">
+                      <span itemprop="name">سرویس مبلمان</span>
+                  </a>
+                  <meta itemprop="position" content="3">
+              </li>
+              <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                  <a itemprop="item" href="product.html">
+                      <span itemprop="name">کالا</span>
+                  </a>
+                  <meta itemprop="position" content="4">
+              </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <main class="">
+      <article class="mui-container">
+        <div class="product-wrapper">
+
+          <div class="product-content">
+            <section class="right-part ">
+              <div class="product-img-container">
+                <!-- Zoom Image API -->
+                <script src="https://unpkg.com/js-image-zoom@0.7.0/js-image-zoom.js" type="application/javascript"></script>
+                <div id="img-container">
+                  <img src="assets/images/stock.jpg" onclick="openModal();currentSlide(this.dataset.albumId)"/>
+
+                  <!-- for screen width below 992px -->
+                  <button class="previous" onclick="plusSlides(-1)">&#10094;</button>
+                  <button class="next" onclick="plusSlides(1)">&#10095;</button>
+                  <div class="favorites-btn" tabindex="-1">
+                    <label class="favorite-checkbox" tabindex="-1">
+                      <input tabindex="-1" type="checkbox" id="favBtn">
+                    </label>
+                  </div>
+                  <div class="favorites-tooltip rounded-4" tabindex="-1">
+                    <span tabindex="-1">افزودن به علاقه‌مندی</span>
+                  </div>
+                  <!-- tag is injected here -->
+                  <!-- <span class="tag new-product">جدید</span> -->
+                </div>
+
+                <!-- carousel of images -->
+                <div class="carousel-container" id="image-items-container">
+                  <button class="carousel-btn prev-btn">&#10094;</button>
+                  <div class="carousel-items" id="mainImageContainer">
+                    <!-- Using filters to simulate other photos -->
+                    <div class="product-image-thumb active">
+                      <img src="assets/images/stock.jpg" style="filter: unset;" class="imageSlides"/>
+                    </div>
+                    <div class="product-image-thumb">
+                      <img src="assets/images/stock.jpg" style="transform: scaleX(-1);" class="imageSlides"/>
+                    </div>
+                    <div class="product-image-thumb">
+                      <img src="assets/images/p/pc001.jpg" style="filter: hue-rotate(45deg);" class="imageSlides"/>
+                    </div>
+                    <div class="product-image-thumb">
+                      <img src="assets/images/p/pc002.jpg" style="filter: hue-rotate(90deg);" class="imageSlides"/>
+                    </div>
+                    <div class="product-image-thumb">
+                      <img src="assets/images/p/pc003.jpg" style="filter: hue-rotate(135deg);" class="imageSlides"/>
+                    </div>
+                    <div class="product-image-thumb">
+                      <img src="assets/images/p/pc004.jpg" style="filter: hue-rotate(180deg);" class="imageSlides"/>
+                    </div>
+                    <div class="product-image-thumb">
+                      <img src="assets/images/p/pc005.jpg" style="filter: hue-rotate(225deg);" class="imageSlides"/>
+                    </div>
+                  </div>
+                  <button class="carousel-btn next-btn">&#10095;</button>
+                </div>
+                 
+              </div>
+            </section>
+            <section class="left-part">
+              <div>نام کالا:
+                <span id="product-name">
+                  <!-- مبل راحتی کلاسيک -->
+                </span>
+              </div>
+              <div>شناسه کالا:
+                <span id="product-id">
+                  <!-- ps# -->
+                </span>
+              </div>
+              <div class="price" id="product-price">قیمت کالا:
+                <!-- Price -->
+              </div>
+              <div>خلاصه توضیحات:
+                <span id="product-description">
+                  <!-- خلاصه توضيحات محصول... -->
+                </span>
+              </div>
+              <div>اشتراک گذاری:
+                <div class="social-share">
+                  <!-- Links are injected here-->
+                </div>
+              </div>
+            </section>
+
+            <section class="bottom-part ">
+              <ul class="mui-tabs__bar mui-tabs__bar--justified">
+                <li class="mui--is-active">
+                  <a data-mui-toggle="tab" data-mui-controls="pane-justified-1">توضیحات تکمیلی</a>
+                </li>
+                <li>
+                  <a data-mui-toggle="tab" data-mui-controls="pane-justified-2">نظرات</a>
+                </li>
+                <li>
+                  <a data-mui-toggle="tab" data-mui-controls="pane-justified-3">خرید</a>
+                </li>
+              </ul>
+              <div class="mui-tabs__pane mui--is-active" id="pane-justified-1">
+                <p id="product-details">
+                  با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.
+                </p>
+              </div>
+
+              <div class="mui-tabs__pane" id="pane-justified-2">
+                <div class="reviews-container">
+                    <!-- هدر بخش نقد و بررسی -->
+                    <div class="reviews-header">
+                        <h2 class="reviews-title">نقد و بررسی مشتریان</h2>
+                        <div class="overall-rating">
+                            <div class="rating-score" id="averageRating">4.5</div>
+                            <div class="stars" id="overallStars">
+                                <!-- ستاره‌ها با JavaScript پر می‌شوند -->
+                            </div>
+                            <div class="total-reviews">بر اساس <span id="totalReviews">12</span> نظر و بازخوردها</div>
+                        </div>
+                    </div>
+                  
+                    <!-- آمار امتیازات -->
+                    <div class="reviews-stats">
+                        <div class="stat-bar">
+                            <div class="stat-item">
+                                <span class="stat-label">5 ستاره</span>
+                                <div class="stat-progress">
+                                    <div class="stat-fill" id="stat-star-5" style="width: 70%"></div>
+                                </div>
+                                <span class="stat-count" id="quantity-star-5">(8)</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">4 ستاره</span>
+                                <div class="stat-progress">
+                                    <div class="stat-fill" id="stat-star-4" style="width: 25%"></div>
+                                </div>
+                                <span class="stat-count" id="quantity-star-4">(3)</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">3 ستاره</span>
+                                <div class="stat-progress">
+                                    <div class="stat-fill" id="stat-star-3" style="width: 0%"></div>
+                                </div>
+                                <span class="stat-count" id="quantity-star-3">(0)</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">2 ستاره</span>
+                                <div class="stat-progress">
+                                    <div class="stat-fill" id="stat-star-2" style="width: 5%"></div>
+                                </div>
+                                <span class="stat-count" id="quantity-star-2">(1)</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">1 ستاره</span>
+                                <div class="stat-progress">
+                                    <div class="stat-fill" id="stat-star-1" style="width: 0%"></div>
+                                </div>
+                                <span class="stat-count" id="quantity-star-1">(0)</span>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <!-- لیست نظرات -->
+                    <div class="reviews-list" id="reviewsList">
+                        <!-- نظرات با JavaScript اضافه می‌شوند -->
+                    </div>
+                  
+                    <!-- فرم افزودن نظر جدید -->
+                    <div class="add-review-form">
+                        <h3 class="form-title">نظر خود را بنویسید</h3>
+                        <form id="reviewForm">
+                            <div class="form-group">
+                                <label for="userName">نام شما</label>
+                                <input type="text" id="userName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>امتیاز شما</label>
+                                <div class="rating-input">
+                                    <div class="rating-stars" id="ratingStars">
+                                        <span class="star" data-rating="1">☆</span>
+                                        <span class="star" data-rating="2">☆</span>
+                                        <span class="star" data-rating="3">☆</span>
+                                        <span class="star" data-rating="4">☆</span>
+                                        <span class="star" data-rating="5">☆</span>
+                                    </div>
+                                    <input type="hidden" id="userRating" value="0" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="reviewText">نظر شما</label>
+                                <textarea id="reviewText" name="userReview" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">ثبت نظر</button>
+                        </form>
+                    </div>
+                </div>
+              </div>
+
+              <div class="mui-tabs__pane" id="pane-justified-3">
+                <form action="">
+                  <!-- Product Sell Options -->
+                </form>
+              </div>
+            </section>
+          </div>
+
+        </div>
+      </article>
+    </main>
+
+    <div id="imagesModal" class="modal">
+      <span class="modalClose" onclick="closeModal()">&times;</span>
+      <div class="modal-content">
+        <div class="slides-wrapper">
+          <!-- inject imageSlides Here -->
+        </div>
+        <div class="dots-wrapper" id="modal-image-container">
+          <button class="carousel-btn prev-btn">&#10094;</button>
+          <div class="carousel-items">
+            <!-- inject dots Here -->
+          </div>
+          <button class="carousel-btn next-btn">&#10095;</button>
+        </div>
+        <a class="modalPrev" onclick="plusModalSlides(-1)">&#10094;</a>
+        <a class="modalNext" onclick="plusModalSlides(1)">&#10095;</a>
+      </div>
+    </div>
+
+    <div class="content-wrapper pre-footer">
+      <div class="pre-footer-before"></div>
+      <img src="assets/images/footer.png" alt="footer-sofa">
+    </div>
+
+    <footer id="footer-changeable">
+      <div class="mui-container">
+        <div class="mui-row footer-content">
+          <div class="mui-col-md-5 mui-col-xs-12">
+            <h2>اطلاعات تماس</h2>
+            <ul>
+              <li>
+                <i class="las la-map-marker"></i>
+                <span class="rtl-unicode">
+                  تهران - خیابان انقلاب - خیابان پارس
+                </span>
+              </li>
+              <li>
+                <i class="las la-phone"></i>
+                <a href="tel:02112345678">
+                  <span class="rtl-unicode">
+                    021 - 12345678
+                  </span>
+                </a>
+              </li>
+              <li>
+                <i class="las la-envelope"></i>
+                <a href="mailto:somewhere@mail.com">
+                  <span>
+                    somewhere@mail.com
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="mui-col-md-3 mui-col-xs-6">
+            <h2>دسترسی سریع</h2>
+            <ul>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="/index.html">
+                  <span>خانه</span>
+                </a>
+              </li>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="/store.html">
+                  <span>فروشگاه</span>
+                </a>
+              </li>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="/404.html">
+                  <span>خطای ۴۰۴</span>
+                </a>
+              </li>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="">
+                  <span>دیگر نمونه کارها</span>
+                </a>
+              </li>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="">
+                  <span>درباه من</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="mui-col-md-4 mui-col-xs-6">
+            <div class="mui-col-md-12 mui-col-xs-12">
+              <a href="">
+                <img src="assets\images\namad1.png" alt="namad">
+              </a>
+              <a href="">
+                <img src="assets\images\namad2.png" alt="namad">
+              </a>
+            </div>
+            <div class="mui-col-md-12 mui-col-xs-12">
+              <div class="social">
+                <a href="">
+                  <i id="instagram" class="lab la-instagram specific-hover"></i>
+                </a>
+                <a href="">
+                  <i id="telegram" class="lab la-telegram specific-hover"></i>
+                </a>
+                <a href="https://wa.me/989036243626?text=سلام!">
+                  <i id="whatsapp" class="lab la-whatsapp specific-hover"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <span>تمامی حقوق این سایت محفوظ بوده و هرگونه استفاده از این سایت پیگرد قانونی دارد</span>
+        </div>
+      </div>
+    </footer>
+
+    <div class="post-footer"></div>
+
+
+
+    <script src="https://cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+    <script src="./assets/js/navbar.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/loginSimulatorModule.js"></script>
+    <script src="https://unpkg.com/jss@10.10.0/dist/jss.js" defer></script>
+    <script src="https://unpkg.com/jss-preset-default@10.10.0/dist/jss-preset-default.js" defer></script>
+    <script src="./assets/js/navbar-cart.js" defer></script>
+    <script src="./assets/js/product.js" defer></script>
+
+    
+    <script>
+      
+    </script> 
+
+
+
+</body>
+</html>

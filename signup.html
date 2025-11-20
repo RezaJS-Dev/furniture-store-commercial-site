@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sign Up</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css"/>
+  <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.muicss.com/mui-0.10.3/css/mui-rtl.min.css" />
+  <link rel="stylesheet" type="text/css" href="./assets/css/style-basic.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style-main.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style-signup.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style-footer.css">
+
+  <style>
+  </style>
+
+</head>
+<body>
+    <nav-bar id="navbar1"
+             style="
+               --nav-bar-font: Estedad;
+               --nav-bar-font-size: 18px;
+               --nav-bar-background-color: transparent;
+               --nav-bar-menu-background-color: #e1e1e1;
+               --nav-bar-links-color: #274f6b;
+               --nav-bar-links-hover: #ef30c6;" 
+             menu-button-label = '[{"text": "فروشگاه"}]'
+             logo = '[{ "src": "./assets/images/logo.png", "href": "/index.html" }]'
+             side-menu-logo = '[{ "src": "./assets/images/logo.png", "href": "/index.html" }]'
+             side-menu-list = '[
+               {
+                 "text": "مبلمان راحتی",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon1.png", 
+                 "accordion": "", 
+                 "dropdown": ""
+               },
+               {
+                 "text": "مبلمان اداری",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon2.png", 
+                 "accordion": "", 
+                 "dropdown": ""
+               },
+               {
+                 "text": "انواع میز",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon5.png", 
+                 "accordion": "yes", 
+                 "dropdown": [
+                   { "text": "میز ناهارخوری", "href": "javascript:void(0)" },
+                   { "text": "میز آشپزخانه", "href": "javascript:void(0)" },
+                   { "text": "میز پذیرایی", "href": "javascript:void(0)" },
+                   { "text": "میز تحریر", "href": "javascript:void(0)" }
+                 ]
+               },
+               {
+                 "text": "سرویس خواب",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon3.png", 
+                 "accordion": "", 
+                 "dropdown": ""
+               },
+               {
+                 "text": "فرش و موكت",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon4.png", 
+                 "accordion": "", 
+                 "dropdown": ""
+               },
+               {
+                 "text": "دیگر نمونه کارها",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/otherPages.png",
+                 "accordion": "",
+                 "dropdown": ""
+               },
+               {
+                 "text": "رزومه من",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/myResume.png",
+                 "accordion": "",
+                 "dropdown": ""
+               }
+             ]'
+             social-links = '[
+               { "instagram": "javascript:void(0)" },
+               { "email": "somewhere@gmail.com" },
+               { "telegram": "javascript:void(0)" },
+               { "whatsapp": "989036243626" },
+               { "phone": "02112345678" }
+             ]'
+             items = '[
+               { "text": "تماس با ما", "href": "/contactus.html" }
+             ]'
+    ></nav-bar>
+
+    <section class="bread-crumb-container">
+      <div class="mui-container">
+        <div class="mui-panel bread-crumb">
+          <span>شما اینجا هستید: </span>
+          <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
+              <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                  <a itemprop="item" href="index.html">
+                      <span itemprop="name"><i class="las la-home"></i></span>
+                  </a>
+                  <meta itemprop="position" content="1">
+              </li>
+              <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                  <a itemprop="item" href="signup.html">
+                      <span itemprop="name">ثبت نام</span>
+                  </a>
+                  <meta itemprop="position" content="2">
+              </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <main class="">
+      <article  class="mui-container">
+        <div class="signup-form-wrapper">
+          
+          <div class="signup-form mui-row" >
+
+            <section class="right-part mui--divider-left mui-col-md-6">
+              <span id="signup-title">عضویت در سایت</span>
+              <div id="user-leading" data-leader="login">
+                <span id="leading-title">قبلا ثبت نام كرده اید؟</span>
+                <a href="" id="signup">
+                  <span id="leading-btn">وارد شوید</span>
+                </a>
+              </div>
+              <form action="" method="" name="register" class="">
+                <div>
+                  <input type="text" 
+                         placeholder="نام و نام خانوادگی ★" 
+                         name="name"  
+                         title=" ℹ️ نام و نام خانوادگی خود را به فارسی یا انگلیسی وارد کنید." 
+                         required
+                  >
+                  <i class="las la-address-card"></i>
+                </div>
+                <div>
+                  <input type="text" 
+                         placeholder="★ آدرس ایمیل یا شماره تلفن همراه" 
+                         name="email"
+                         title="لطفاً یک ایمیل یا شماره همراه معتبر وارد کنید ℹ️ " 
+                         required
+                  >
+                  <i class="las la-mail-bulk"></i>
+                </div>
+                <div>
+                  <input type="text" 
+                         placeholder="★ رمز عبور" 
+                         name="password" 
+                         title='            رمز عبور باید دستکم ٨ حرف و ℹ️ &NewLine; ترکیبی از حروف بزرگ، کوچک، اعداد و&NewLine;  یا نمادهایی مانند (! ؟ $ % ^ &) باشد  '
+                         data-password-font="set"
+                         required
+                  >
+                  <i class="las la-lock"></i>
+                  <i class="las la-eye"></i>
+                </div>
+                <div>
+                  <input type="text" 
+                         placeholder="★ تكرار رمز عبور" 
+                         name="check-password" 
+                         title="لطفاً رمز عبور را دوباره وارد کنید ℹ️ "
+                         data-password-font="set"
+                         required
+                  >
+                  <i class="las la-check-square"></i>
+                </div>
+                <div>
+                  <button type="submit"  name="sign-up">
+                    عضویت
+                    <div class="loader"></div>
+                  </button>
+                </div>
+              </form>
+              <form action="" name="login" class="display-none">
+                <div>
+                  <input type="text" 
+                         placeholder="★ آدرس ایمیل یا شماره تلفن همراه" 
+                         name="email" 
+                         title='نام كاربری ℹ️'
+                         id="" 
+                  >
+                  <i class="las la-mail-bulk"></i>
+                </div>
+                <div>
+                  <input type="text" 
+                         placeholder="★ رمز عبور" 
+                         name="loginPassword" 
+                         title='رمز عبور ℹ️'
+                         data-password-font="set"
+                  >
+                  <i class="las la-lock"></i>
+                  <i class="las la-eye"></i>
+                </div>
+                <div>
+                  <button type="submit" name="sign-in">
+                    ورود
+                  </button>
+                </div>
+                <div class="form-check">
+                  <label class="remember-me">
+                      <input class="form-checkbox" name="rememberme" type="checkbox">
+                      <span>مرا به خاطر داشته باش</span>
+                  </label>
+                  <a href="">رمز عبور را فراموش کرده اید؟</a>
+                </div>
+              </form>
+            </section>
+            <section class="left-part mui-col-md-6">
+              <ul class="user-notice">
+               <span>
+                 سلام کاربر عزیز؛
+               </span>
+               <li>
+                 لطفا از مرورگرهای مطمئن و بروز مانند گوگل کروم و فایرفاکس استفاده کنید.
+               </li>
+               <li>
+                 لطفا کلمه عبور خود را در فواصل زمانی کوتاه تغییر دهید.
+               </li>  
+               <li>
+                 ما هرگز اطلاعات محرمانه شما را از طریق ایمیل درخواست نمی کنیم. در صورت رخداد این مورد، سریعا اطلاع دهید.
+               </li>
+               <li>
+                 لطفا به آدرس صفحه توجه داشته باشید که بر روی دامنه اصلی سایت ما باشد. در غیر این صورت اکیدا توصیه می‌شود از وارد کردن اطلاعات ورود خودداری فرمایید.
+               </li>
+              </ul>
+              <div>
+                <img src="assets\images\signup-vector.png" alt="">
+              </div>
+            </section>
+            
+          </div>
+          
+        </div>
+      </article>
+    </main>
+
+    <div class="content-wrapper pre-footer">
+      <div class="pre-footer-before"></div>
+      <img src="assets/images/footer.png" alt="footer-sofa">
+    </div>
+
+    <footer id="footer-changeable">
+      <div class="mui-container">
+        <div class="mui-row footer-content">
+          <div class="mui-col-md-5 mui-col-xs-12">
+            <h2>اطلاعات تماس</h2>
+            <ul>
+              <li>
+                <i class="las la-map-marker"></i>
+                <span class="rtl-unicode">
+                  تهران - خیابان انقلاب - خیابان پارس
+                </span>
+              </li>
+              <li>
+                <i class="las la-phone"></i>
+                <a href="tel:02112345678">
+                  <span class="rtl-unicode">
+                    021 - 12345678
+                  </span>
+                </a>
+              </li>
+              <li>
+                <i class="las la-envelope"></i>
+                <a href="mailto:somewhere@mail.com">
+                  <span>
+                    somewhere@mail.com
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="mui-col-md-3 mui-col-xs-6">
+            <h2>دسترسی سریع</h2>
+            <ul>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="/index.html">
+                  <span>خانه</span>
+                </a>
+              </li>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="/store.html">
+                  <span>فروشگاه</span>
+                </a>
+              </li>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="/404.html">
+                  <span>خطای ۴۰۴</span>
+                </a>
+              </li>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="">
+                  <span>دیگر نمونه کارها</span>
+                </a>
+              </li>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="">
+                  <span>درباه من</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="mui-col-md-4 mui-col-xs-6">
+            <div class="mui-col-md-12 mui-col-xs-12">
+              <a href="">
+                <img src="assets\images\namad1.png" alt="namad">
+              </a>
+              <a href="">
+                <img src="assets\images\namad2.png" alt="namad">
+              </a>
+            </div>
+            <div class="mui-col-md-12 mui-col-xs-12">
+              <div class="social">
+                <a href="">
+                  <i id="instagram" class="lab la-instagram specific-hover"></i>
+                </a>
+                <a href="">
+                  <i id="telegram" class="lab la-telegram specific-hover"></i>
+                </a>
+                <a href="https://wa.me/989036243626?text=سلام!">
+                  <i id="whatsapp" class="lab la-whatsapp specific-hover"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <span>تمامی حقوق این سایت محفوظ بوده و هرگونه استفاده از این سایت پیگرد قانونی دارد</span>
+        </div>
+      </div>
+    </footer>
+
+    <div class="post-footer"></div>
+
+
+
+    <script src="https://cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+    <script src="./assets/js/navbar.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/loginSimulatorModule.js"></script>
+    <script src="./assets/js/signup.js" defer></script>
+    <script src="https://unpkg.com/jss@10.10.0/dist/jss.js" defer></script>
+    <script src="https://unpkg.com/jss-preset-default@10.10.0/dist/jss-preset-default.js" defer></script>
+    <script src="./assets/js/navbar-cart.js" defer></script>
+    
+    <script>
+      
+    </script> 
+
+
+
+</body>
+</html>

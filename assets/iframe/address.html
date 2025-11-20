@@ -1,0 +1,2149 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نقشه با مکان نمای ثابت و نمایش استاتیک - سرویس نشان</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/shabnam-font/3.0.0/font-face.min.css');
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Shabnam', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #2c3e50;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            padding-bottom: 0;
+            flex: 1;
+        }
+
+        .leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+            display: block !important;
+        }
+
+        .leaflet-control-layers-expanded {
+            padding: initial;
+
+            .leaflet-control-layers-list {
+                position: absolute;
+                width: max-content;
+                background-color: #ffffff;
+                padding: 10px;
+                right: -2px;
+                top: 46px;
+                border: 2px solid rgba(0, 0, 0, 0.2);
+                border-radius: 4px;
+            }
+        }
+        
+        .content {
+            display: flex;
+            flex-direction: row;
+            padding: 0;
+            height: calc(100vh - 228px);
+        }
+        
+        .panel {
+            display: flex;
+            flex-direction: column;
+            margin-top: 16px;
+
+            @media screen and (height < 550px) {
+                display: none;
+            }
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 550px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .center-marker {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            width: 30px;
+            height: 42px;
+            z-index: 1000;
+            pointer-events: none;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translate(-50%, -100%) scale(1); }
+            50% { transform: translate(-50%, -100%) scale(1.1); }
+            100% { transform: translate(-50%, -100%) scale(1); }
+        }
+        
+        .center-marker i {
+            font-size: 40px;
+            color: #e74c3c;
+            filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.7));
+        }
+
+        .search-box-wrapper {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            z-index: 1001;
+            width: 400px;
+            max-width: 66%;
+
+            @media screen and (width < 680px) {
+                width: 400px;
+                max-width: 66%;
+            }
+        }
+        
+        .search-box {
+            display: flex;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        #addressInput {
+            flex: 1;
+            padding: 10px 15px 10px 15px;
+            border: 2px solid rgba(0, 0, 0, 0.25);
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+            font-family: 'Shabnam', sans-serif;
+            background: #ffffff;
+            width: 100%;
+            height: 48px;
+        }
+        
+        #addressInput:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        #searchButton {
+            position: absolute;
+            left: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #274f6b;
+            color: white;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        
+        #searchButton:hover {
+            background: #2980b9;
+        }
+        
+        .result-box {
+            background: #ffffff;
+            border-radius: 6px;
+            padding: 10px 14px;
+            border: 1px solid #e0e0e0;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+
+            > div {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 8px;
+
+                &:first-child {
+                    height: 42px;
+                }
+
+                > p {
+                    text-align: center;
+                    text-wrap-mode: nowrap;
+                    font-size: 14px;
+                    width: 140px;
+                }
+            }
+        }
+        
+        #address-approximate {
+            line-height: 1.7;
+            text-align: justify;
+            flex-grow: 1;
+            font-size: 12.5px;
+            color: #7f8c8d;
+
+            &.darker {
+                color: #4b5455;
+                text-align: right;
+            }
+        }
+        
+        .coordinates {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        
+        .loading {
+            display: none;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            vertical-align: middle;
+            position: absolute;
+            left: 50%;
+            z-index: 10001;
+            bottom: 60%;
+            transform: translate(-50%, 43%);
+        }
+        
+        .loading .spinner {
+            width: 30px;
+            height: 30px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #e74c3c;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        .loading p {
+            margin-top: 10px;
+            color: #3498db;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 900px) {
+            .content {
+                flex-direction: column;
+
+                @media screen and (height < 550px) {
+                    height: calc(100vh - 110px);
+                }
+            }
+            
+            .panel, .map-container {
+                width: 100%;
+            }
+            
+            .map-container {
+                height: 100%;
+                order: -1;
+            }
+            
+            #map {
+                border-left: none;
+                border-bottom: 1px solid #eee;
+            }
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 0 0 12px 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .search-result-item {
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+            font-family: 'Shabnam', sans-serif;
+        }
+        
+        .search-result-item:hover {
+            background-color: #e3f2fd;
+        }
+        
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .static-map-info {
+            position: absolute;
+            bottom: 4px;
+            left: 4px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+
+            .help-icon {
+                font-size: 16px;
+                vertical-align: middle;
+            }
+
+            .hover-show {
+                visibility: hidden;
+                opacity: 0;
+                position: absolute;
+                bottom: 33px;
+                left: 0;
+                min-width: 270px;
+                width: max-content;
+                max-width: 80vw;
+                transition: all 0.1s ease;
+            }
+            
+            .instructions {
+                background: #e8f4fc;
+                border-radius: 6px;
+                padding: 10px;
+                margin-top: 20px;
+                font-size: clamp(2vw, 0.62rem, 16px);
+                border: 1px solid #b3e6fc;
+            }
+            
+            .instructions h4 {
+                color: #0288d1;
+                margin-bottom: 12px;
+                font-weight: 600;
+            }
+            
+            .instructions ul {
+                padding-right: 20px;
+                line-height: 1.7;
+                color: #0277bd;
+            }
+            
+            .instructions li {
+                margin-bottom: 8px;
+            }
+        }
+
+        .static-map-info:hover {
+            .hover-show {
+                visibility: visible;
+                opacity: 1;
+                transition: all 0.5s ease;
+            }
+        }
+        
+        .locate-user-btn {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            z-index: 1000;
+            background: transparent;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+            transition: all 0.3s;
+            font-size: 22px;
+            color: #274f6b;
+            transform-origin: center;
+        }
+        
+        .locate-user-btn:hover {
+            background: #ffffff;
+            width: 44px;
+            height: 44px;
+            font-size: 28px;
+            transform: scale(1.08);
+        }
+        
+        .user-location-marker {
+            filter: hue-rotate(120deg);
+        }
+        
+        .accuracy-circle {
+            fill: none;
+            stroke: #3498db;
+            stroke-width: 2;
+            stroke-dasharray: 5, 5;
+            opacity: 0.7;
+        }
+        
+        .location-error {
+            position: absolute;
+            top: 65px;
+            right: 50%;
+            transform: translate(50%, 0px);
+            width: max-content;
+            max-width: 85%;
+            z-index: 1000;
+            background: #ffeaea;
+            color: #e74c3c;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            display: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .user-act {
+            border-top: solid 2px rgba(0, 0, 0, 0.2);
+            padding: 14px;
+            margin-top: 14px;
+            width: 100%;
+            background-color: #ffffff;
+            width: 100%;
+
+            > div {
+                display: flex;
+                justify-content: space-around;
+    
+                button {
+                    background-color: #274f6b;
+                    color: rgb(240 243 245);
+                    font-size: 16px;
+                    line-height: 1.6;
+                    padding: 8px 10px;
+                    width: calc(50% - 24px);
+                    min-width: 170px;
+                    outline: none;
+                    border: 3px solid #274f6b;
+                    border-radius: 4px;
+                    -webkit-border-radius: 4px;
+                    -moz-border-radius: 4px;
+                    -ms-border-radius: 4px;
+                    -o-border-radius: 4px;
+                    cursor: pointer;
+                    position: relative;
+                    align-self: center;
+                    appearance: none;
+    
+                    &.light {
+                        color: #274f6b;
+                        background-color: rgb(240 243 245);
+                        border: 2px solid #274f6b;
+                    }
+                }
+            }
+        }
+
+        #button-auto-p,
+        #button-manual-p {
+            display: none;
+        }
+
+        .information-auto {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 4px;
+            overflow: hidden;
+            /* display: flex; */
+            display: none;
+            flex-direction: column;
+            padding: 16px;
+            padding-bottom: 0;
+            overflow-y: auto;
+            flex: 1;
+             
+            .content {
+                width: 100%;
+                height: 150px;
+                border-radius: 4px;
+
+                .neshan-map-container {
+                    width: 100%;
+                    height: 550px;
+                    position: relative;
+                    overflow: hidden;
+
+                    .static-map-info {
+                        position: absolute;
+                        bottom: 4px;
+                        left: 4px;
+                    }
+                
+                    #staticMapContainer {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        position: relative;
+                        background: #f0f0f0;
+                    }
+
+                    #staticMap {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+
+            .auto-address-form {
+
+                form {
+                    padding: 6px 0px;
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 14px;
+
+                    > section {
+                        
+                        > div.readonly-input {
+                            display: flex;
+                            justify-content: space-between;
+                            gap: 20px;
+
+                            > div {
+                                width: 50%;
+                                position: relative;
+    
+                                input[readonly="true"] {
+                                    background-color: rgba(39, 79, 107, 0.08);
+                                    color: #274f6b;
+                                    font-size: 14px;
+                                    line-height: 1.6;
+                                    text-align: center;
+                                    padding: 8px 10px;
+                                    width: 100%;
+                                    outline: none;
+                                    border: solid 1px rgba(0, 0, 0, 0.12);
+                                    border-radius: 4px;
+                                    -webkit-border-radius: 4px;
+                                    -ms-border-radius: 4px;
+                                    -o-border-radius: 4px;
+                                }
+                            }
+
+                        }
+
+                        > div:last-child {
+
+                            span {
+                                margin-top: 10px;
+                                display: block;
+                                font-size: 14px;
+                                
+                                > button {
+                                    display: inline-block;
+                                    background-color: transparent;
+                                    color: #3c9aeb;
+                                    appearance: none;
+                                    border: none;
+                                    outline: none;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+
+                    }
+
+                    > span {
+                        display: block;
+                        font-size: 14px;
+
+                    }
+
+                    > div {
+                        position: relative;
+                        overflow: hidden;
+                        height: 62px;
+
+                        > span.label-text {
+                            position: absolute;
+                            right: 10px;
+                            top: 7px;
+                            color: rgb(137 148 156);
+                            pointer-events: none;
+
+                            &::after {
+                                content: " ★ ";
+                                color: #ce0000;
+                                font-size: 12px;
+                            }
+                        }
+
+                        input[type="text"]:focus {
+                            border-color: #1f527c;
+                            background-color: #ffffff;
+                            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+                        }
+
+                        input[type='text'] {
+                            background-color: rgba(232, 240, 254, 1.0);
+                            color: #274f6b;
+                            font-size: max(2vw, 13px);
+                            line-height: 1.6;
+                            text-align: center;
+                            padding: 8px 40px;
+                            padding-right: 65px;
+                            width: 100%;
+                            height: 40px;
+                            outline: none;
+                            border: solid 1px rgba(0, 0, 0, 0.12);
+                            border-radius: 4px;
+                            -webkit-border-radius: 4px;
+                            -ms-border-radius: 4px;
+                            -o-border-radius: 4px;
+                            transition: border-color 0.3s;
+                            
+                            &.invalid ~ i {
+                                color: #ff0000 !important;
+                                filter: drop-shadow(-1px 4px 7px #ff0000);
+                                -webkit-filter: drop-shadow(-1px 4px 7px #ff0000);
+                            }
+
+                            &.invalid ~ p {
+                                visibility: visible;
+                            }
+
+                            &.valid ~ p {
+                                visibility: hidden;
+                            }
+                        }
+
+                        i {
+                            position: absolute;
+                            left: 10px;
+                            top: 10px;
+                            font-size: 20px;
+                            color: var(--background-panel);
+                            opacity: 0.6;
+                            user-select: none;
+                        }
+
+    
+                        > p {
+                            visibility: hidden;
+                            font-size: 12px;
+                            font-weight: 400;
+                            color: #af021c;
+                            margin-top: 4px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .information-manual {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 4px;
+            overflow: hidden;
+            /* display: flex; */
+            display: none;
+            flex-direction: column;
+            padding: 16px;
+            padding-bottom: 0;
+            overflow-y: auto;
+            flex: 1;
+             
+        
+            .manual-address-form {
+
+                form {
+                    padding: 12px 0px;
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 16px;
+
+                    > span {
+                        display: block;
+                        font-size: 14px;
+                    }
+
+                    > div {
+                        position: relative;
+                        overflow: visible;
+                        height: 62px;
+
+                        > span.label-text {
+                            position: absolute;
+                            right: 10px;
+                            top: 7px;
+                            color: rgb(137 148 156);
+                            pointer-events: none;
+
+                            &::after {
+                                content: " ★ ";
+                                color: #ce0000;
+                                font-size: 12px;
+                            }
+                        }
+
+                        input[type="text"]:focus {
+                            border-color: #1f527c;
+                            background-color: #ffffff;
+                            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+                        }
+
+                        input[type='text'] {
+                            background-color: rgba(232, 240, 254, 1.0);
+                            color: #274f6b;
+                            font-size: 14px;
+                            line-height: 1.6;
+                            text-align: center;
+                            padding: 8px 40px;
+                            padding-right: 80px;
+                            width: 100%;
+                            height: 40px;
+                            outline: none;
+                            border: solid 1px rgba(0, 0, 0, 0.12);
+                            border-radius: 4px;
+                            -webkit-border-radius: 4px;
+                            -ms-border-radius: 4px;
+                            -o-border-radius: 4px;
+                            transition: border-color 0.3s;
+    
+                            &.invalid ~ i {
+                                color: #ff0000 !important;
+                                filter: drop-shadow(-1px 4px 7px #ff0000);
+                                -webkit-filter: drop-shadow(-1px 4px 7px #ff0000);
+                            }
+
+                            &.invalid ~ p {
+                                visibility: visible;
+                            }
+
+                            &.valid ~ p {
+                                visibility: hidden;
+                            }
+                        }
+
+                        i {
+                            position: absolute;
+                            left: 10px;
+                            top: 10px;
+                            font-size: 20px;
+                            color: var(--background-panel);
+                            opacity: 0.6;
+                            user-select: none;
+                        }
+
+                        > p {
+                            visibility: hidden;
+                            font-size: 12px;
+                            font-weight: 400;
+                            color: #af021c;
+                            margin-top: 6px;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .address-type {
+            position: relative;
+            overflow: visible;
+            height: 62px;
+
+            .address-label {
+                display: block;
+                font-size: 14px;
+                height: 19px;
+            }
+
+            .type-btn-group {
+                display: flex;
+                width: 100%;
+                margin-top: 1px;
+                border: 1px solid rgba(0, 0, 0, 0.12);
+                justify-content: center;
+                align-items: center;
+                height: 42px;
+                border-radius: 4px;
+                -webkit-border-radius: 4px;
+                -ms-border-radius: 4px;
+                -o-border-radius: 4px;
+
+                
+                > input {
+                    pointer-events: none;
+                    visibility: hidden;
+                    appearance: none;
+                    
+                    
+                    &:checked + label {
+                        background-color: rgba(232, 240, 254, 1.0);
+                        color: #274f6b;
+
+                        > input.other-type[type='text'] {
+                            pointer-events: all;
+                            z-index: 1;
+                        }
+                    }
+
+                    &:not(:checked) + label {
+                        cursor: pointer;
+
+                        > input.other-type[type='text'] {
+                            pointer-events: none;
+                            z-index: -1;
+                        }
+                    }
+                }
+                
+                > label {
+                    display: flex;
+                    min-height: 100%;
+                    width: 33.33%;
+                    align-items: center;
+                    justify-content: center;
+                    color: #274f6b;
+
+                    &:not(:last-child) {
+                        border-left: 1px solid rgba(0, 0, 0, 0.12);
+                    }
+
+                    &:last-child {
+                        position: relative;
+                    }
+
+                    > input[class="other-type"][type='text'] {
+                        position: absolute;
+                        inset: 0;
+                        width: -webkit-fill-available;
+                        height: 40px;
+                        border-radius: 0;
+                        background: no-repeat;
+                        background-color: transparent;
+                        margin: 0px;
+                        pointer-events: none;
+                        border: none;
+                        outline: none;
+                        display: block;
+                        appearance: none;
+                        line-height: 1.6;
+                        z-index: -1;
+                        color: #274f6b;
+                        text-align: center;
+                        font-size: 16px;
+                        padding: 0;
+
+                        &:focus {
+                            border-color: transparent;
+                            background-color: transparent;
+                            box-shadow: none;
+                        }
+                    } 
+                }
+            }
+        }
+
+        /* state and city selection */
+
+        .dropdown-menu {
+            position: absolute;
+            top: 38px;
+            left: 0;
+            width: 100%;
+            background: #dddddd;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-height: 250px;
+            overflow-y: auto;
+            z-index: 100;
+            margin-top: 5px;
+            display: none;
+            scrollbar-width: thin;
+        }
+        
+        .dropdown-menu ul {
+            list-style: none;
+        }
+        
+        .dropdown-menu li {
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-bottom: 1px solid #edf2f7;
+        }
+        
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-menu li:hover {
+            background-color: #ebf8ff;
+            color: #3182ce;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Interactive map -->
+
+    <div class="container" id="interactiveMap">
+        <div class="content">
+            <div class="map-container">
+                <div id="map"></div>
+                <div class="center-marker">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                    </div> 
+                </div>
+                <div class="static-map-info">
+                    <i class="fas fa-circle-question help-icon"></i>
+                    نقشه تعاملی - موقعیت را در مرکز قرار دهید
+                    <div class="hover-show">
+                        <div class="instructions">
+                            <h4>راهنما:</h4>
+                            <ul>
+                                <li>نقشه را حرکت دهید تا موقعیت مورد نظر در مرکز قرار گیرد</li>
+                                <li>برای جستجوی آدرس، در کادر بالا آدرس مورد نظر را وارد کنید</li>
+                                <li>برای تأیید موقعیت، روی دکمه "تایید موقعیت" کلیک کنید</li>
+                                <li>برای بازگشت به نقشه تعاملی، روی دکمه "بازگشت به نقشه" کلیک کنید</li>
+                                <li>می‌توانید استایل نقشه را از بین گزینه‌های بالا انتخاب کنید</li>
+                                <li>برای پیدا کردن موقعیت خود، روی دکمه <i class="fas fa-location-arrow"></i> در نقشه کلیک کنید</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-box-wrapper">
+                    <div class="search-box">
+                        <input type="text" id="addressInput" placeholder="جستجوی آدرس...">
+                        <button id="searchButton">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div class="search-results" id="searchResults"></div>
+                    </div>
+                </div>
+                <button class="locate-user-btn" id="locateUserBtn" title="موقعیت یابی من">
+                    <i class="fas fa-location-arrow"></i>
+                </button>
+                <div class="location-error" id="locationError"></div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="result-box">
+                <div id="copyAddress">
+                    <p>آدرس محدوده مورد نظر:</p>
+                    <div id="address-approximate" class="darker">هنوز موقعیتی انتخاب نشده است.</div>
+                </div>
+                <div id="copyCoordinates"> 
+                    <p>مختصات نقطه مورد نظر:</p>
+                    <div class="coordinates">
+                      <span>
+                        عرض جغرافیایی: <span id="latitude"></span>
+                      </span>
+                      <span>
+                        طول جغرافیایی: <span id="longitude"></span>
+                      </span>
+                    </div>
+                </div>
+            </div>
+                
+        </div>
+        
+    </div>
+
+    <!-- Auto Form & Static Map Container -->
+
+    <div class="information-auto" id="informationAuto">
+        <div class="content">
+            <div class="neshan-map-container">
+                <div id="staticMapContainer">
+                    <img id="staticMap" alt="نقشه استاتیک موقعیت انتخاب شده">
+                </div>
+                <div class="static-map-info">
+                    <i class="fas fa-circle-info help-icon"></i>
+                    نقشه استاتیک موقعیت انتخاب شده - سرویس نشان
+                </div>
+            </div>
+        </div>
+        <div class="auto-address-form">
+            <form action="" name="auto-address-form">
+                <span>آدرس براساس موقعیت مکانی انتخاب شده</span>
+                <section>
+                    <div class="readonly-input">
+                        <div>
+                            <!-- استان -->
+                            <input type="hidden" required name="state" autocomplete="off" id="stateAutoValueHidden">
+                            <input type="text" name="state" readonly="true" id="stateAutoValue">
+                        </div>
+                        <div>
+                            <!-- شهر -->
+                            <input type="hidden" required name="city" autocomplete="off" id="cityAutoValueHidden">
+                            <input type="text" name="city" readonly="true" id="cityAutoValue">
+                        </div>
+                    </div>
+                    <div>
+                        <span>اگر آدرس نادرست است، می‌توانید از 
+                            <button class="manualAddress">
+                                ثبت دستی آدرس 
+                            </button>
+                             استفاده کنید.
+                        </span>
+                    </div>
+                </section>
+                
+                <div>
+                    <span class="label-text">آدرس</span>
+                    <input type="text" placeholder="" id="fullAddressAutoValue" name="exact" title=" ℹ️ آدرس دقیق محله، خیابان، کوچه" required="" class="" >
+                    <i class="fas fa-city"></i>
+                    <p class="text-error"> </p>
+                </div>
+                <div>
+                    <span class="label-text">پلاک</span>
+                    <input type="text" placeholder="" id="plaqueAutoValue" name="plaque" title=" ℹ️ پلاک" required="" class="" >
+                    <i class="fas fa-building"></i>
+                    <p class="text-error"> </p>
+                </div>
+                <div>
+                    <span class="label-text">واحد</span>
+                    <input type="text" placeholder="" id="doorAutoValue" name="door" title=" ℹ️ واحد" required="" class="" >
+                    <i class="fas fa-door-closed"></i>
+                    <p class="text-error"> </p>
+                </div>
+                <div>
+                    <span class="label-text">کدپستی</span>
+                    <input type="text" placeholder="باید ۱۰ رقمی باشد" id="postalAutoValue" name="postal" title=" ℹ️ کد پستی" required="" class="" >
+                    <i class="fas fa-envelope"></i>
+                    <p class="text-error"> </p>
+                </div>
+                <div class="address-type">
+                    <label class="address-label">عنوان آدرس:</label>
+                    <div class="type-btn-group">
+                        <input type="radio" class="btn-check" name="autobtnradio" id="autoBtnRadioHome" checked="" value="خانه">
+                        <label class="" for="autoBtnRadioHome">خانه</label>
+                        
+                        <input type="radio" class="btn-check" name="autobtnradio" id="autoBtnRadioWork" value="محل کار">
+                        <label class="" for="autoBtnRadioWork">محل کار</label>
+                        
+                        <input type="radio" class="btn-check" name="autobtnradio" id="autoBtnRadioOther" value="موارد دیگر" >
+                        <label class="" for="autoBtnRadioOther">
+                            <span class="label-inner-text">
+                                موارد دیگر
+                            </span>
+                            <input class="other-type" type="text" placeholder="موارد دیگر">
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- manual Address Form -->
+
+    <div class="information-manual" id="informationManual">
+        
+        <div class="manual-address-form">
+            <form action="" name="manual-address-form">
+                <div class="relative relative-state">
+                    <input type="hidden" required name="state" autocomplete="off">
+                    <span class="label-text">استان</span>
+                    <input type="text" id="stateManualValue" placeholder="" name="state" title=" ℹ️ استان" class="state-input"  autocomplete="off">
+                    <i class="fas fa-caret-down"></i>
+                    <div class="dropdown-menu state-dropdown">
+                        <ul></ul>
+                    </div>
+                    <p class="text-error"> </p>
+                </div>
+                <div class="relative relative-city">
+                    <input type="hidden" required name="city" autocomplete="off">
+                    <span class="label-text">شهر</span>
+                    <input type="text" id="cityManualValue" placeholder="" name="city" title=" ℹ️ شهر" class="city-input" autocomplete="off" disabled>
+                    <i class="fas fa-caret-down"></i>
+                    <div class="dropdown-menu city-dropdown">
+                        <ul></ul>
+                    </div>
+                    <p class="text-error"> </p>
+                </div>
+                <div>
+                    <span class="label-text">آدرس</span>
+                    <input type="text" id="fullAddressManualValue" placeholder="محله، خیابان، کوچه" name="exact" title=" ℹ️ آدرس دقیق شهر، محله، خیابان، کوچه" required="" class="" >
+                    <i class="fas fa-city"></i>
+                    <p class="text-error"> </p>
+                </div>
+                <div>
+                    <span class="label-text">پلاک</span>
+                    <input type="text" id="plaqueManualValue" placeholder="" name="plaque" title=" ℹ️ پلاک" required="" class="" >
+                    <i class="fas fa-building"></i>
+                    <p class="text-error"> </p>
+                </div>
+                <div>
+                    <span class="label-text">واحد</span>
+                    <input type="text" id="doorManualValue" placeholder="" name="door" title=" ℹ️ واحد" required="" class="" >
+                    <i class="fas fa-door-closed"></i>
+                    <p class="text-error"> </p>
+                </div>
+                <div>
+                    <span class="label-text">کدپستی</span>
+                    <input type="text" id="postalManualValue" placeholder="باید ۱۰ رقمی باشد" name="postal" title=" ℹ️ کد پستی" required="" class="" >
+                    <i class="fas fa-envelope"></i>
+                    <p class="text-error"> </p>
+                </div>
+                <div class="address-type">
+                    <label class="address-label">عنوان آدرس:</label>
+                    <div class="type-btn-group">
+                        <input type="radio" class="btn-check" name="manualbtnradio" id="manualBtnRadioHome" checked="" value="خانه">
+                        <label class="" for="manualBtnRadioHome">خانه</label>
+                        
+                        <input type="radio" class="btn-check" name="manualbtnradio" id="manualBtnRadioWork" value="محل کار">
+                        <label class="" for="manualBtnRadioWork">محل کار</label>
+                        
+                        <input type="radio" class="btn-check" name="manualbtnradio" id="manualBtnRadioOther" value="موارد دیگر" >
+                        <label class="" for="manualBtnRadioOther">
+                            <span class="label-inner-text">
+                                موارد دیگر
+                            </span>
+                            <input class="other-type" type="text" placeholder="موارد دیگر">
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Action buttons -->
+
+    <div class="user-act">
+        <div id="button-interactive-p">
+            <button class="light manualAddress">
+                ثبت آدرس دستی
+            </button>
+            <button id="confirmLocation">
+                تائید موقعیت و ادامه
+            </button>
+        </div>
+        <div id="button-auto-p">
+            <button class="light backToInteractive" id="">
+                بازگشت به نقشه
+            </button>
+            <button id="submitAutoLocation">
+                تائید آدرس و ثبت
+            </button>
+        </div>
+        <div id="button-manual-p">
+            <button class="light backToInteractive" id="">
+                بازگشت به نقشه
+            </button>
+            <button id="submitManualLocation">
+                تائید آدرس و ثبت
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const confirmLocationBtn = document.getElementById('confirmLocation');
+            const goToManualAddressPageBtn = document.querySelectorAll('.manualAddress');
+            const interactivePageUserBtn = document.getElementById('button-interactive-p');
+            const autoAddressPageUserBTN = document.getElementById('button-auto-p');
+            const manualAddressPageUserBtn = document.getElementById('button-manual-p');
+            const addressApproxElement = document.getElementById('address-approximate');
+            const latitudeElement = document.getElementById('latitude');
+            const longitudeElement = document.getElementById('longitude');
+            const loadingElement = document.getElementById('loading');            // spinner
+            const addressInput = document.getElementById('addressInput');
+            const searchButton = document.getElementById('searchButton');
+            const searchResults = document.getElementById('searchResults');
+            const interactiveMapContainer = document.getElementById('interactiveMap');
+            const mapElement = document.getElementById('map');
+            const staticMapContainer = document.getElementById('staticMapContainer');
+            const staticMapElement = document.getElementById('staticMap');
+            const locateUserBtn = document.getElementById('locateUserBtn');  // دکمه مکان‌یابی کاربر
+            const locationError = document.getElementById('locationError');  // status error of GPS
+            // Addrress input forms
+            const informationAuto = document.getElementById('informationAuto');
+            const informationManual = document.getElementById('informationManual');
+            // Auto Address inputs
+            const stateAutoValueHidden = document.getElementById('stateAutoValueHidden');
+            const stateAutoValue = document.getElementById('stateAutoValue');
+            const cityAutoValueHidden = document.getElementById('cityAutoValueHidden');
+            const cityAutoValue = document.getElementById('cityAutoValue');
+            const fullAddressAutoValue = document.getElementById('fullAddressAutoValue');
+            const plaqueAutoValue = document.getElementById('plaqueAutoValue');
+            const doorAutoValue = document.getElementById('doorAutoValue');
+            const postalAutoValue = document.getElementById('postalAutoValue');
+            // Manual Address inputs
+            const stateManualValue = document.getElementById('stateManualValue');
+            const cityManualValue = document.getElementById('cityManualValue');
+            const fullAddressManualValue = document.getElementById('fullAddressManualValue');
+            const plaqueManualValue = document.getElementById('plaqueManualValue');
+            const doorManualValue = document.getElementById('doorManualValue');
+            const postalManualValue = document.getElementById('postalManualValue');
+            // selection of state and city for manual address form
+            const stateInput = document.querySelector('.state-input');
+            const cityInput = document.querySelector('.city-input');
+            const stateHidden = document.querySelector('.manual-address-form input[type="hidden"][name="state"]');
+            const cityHidden = document.querySelector('.manual-address-form input[type="hidden"][name="city"]');
+            const stateDropdown = document.querySelector('.state-dropdown ul');
+            const cityDropdown = document.querySelector('.city-dropdown ul');
+            // copy Address & Coordinates
+            const addressContainer = document.getElementById('copyAddress');
+            const coordinatesContainer = document.getElementById('copyCoordinates');
+            // Address type selector
+            const manualBtnRadioOther = document.getElementById('manualBtnRadioOther');
+            const autoBtnRadioOther = document.getElementById('autoBtnRadioOther');
+            const manualBtnRadioOtherLabel = document.querySelector('[for="manualBtnRadioOther"]');
+            const autoBtnRadioOtherLabel = document.querySelector('[for="manualBtnRadioOther"]');
+            // Form submitters
+            const submitAutoLocation = document.getElementById('submitAutoLocation');
+            const submitManualLocation = document.getElementById('submitManualLocation');
+            // API Key سرویس نشان
+            const NESHAN_API_KEY = 'service.1e0cb12888d440b78beca09317a4d169';
+            
+            let map;
+            // مختصات اولیه (تهران)
+            let currentLat = 35.6892;
+            let currentLon = 51.3890;
+            let currentZoom = 13;
+            let mapMoved = false;
+            let interactiveMap = null;
+            let currentMapType = 'neshan';
+            let userLocationMarker = null;
+            let accuracyCircle = null;
+            let watchId = null;
+
+            // message event listener for window animation
+            let changedAppliedOnMedia = false;
+            let editingAddress = false;
+            window.addEventListener('message', (event) => {
+                console.log(event.data)
+                changedAppliedOnMedia = event.data[0];  // Boolean
+                editingAddress = event.data[1];         // Existed Address object || false
+                if (editingAddress !== false && typeof editingAddress === "object") {
+                    currentLat = Number(event.data[1].latitude);
+                    currentLon = Number(event.data[1].longitude);
+                }
+                // مقداردهی اولیه نقشه
+                map = initMap();
+                updateCoordinates(currentLat, currentLon, false);
+            });
+
+            // ایجاد نقشه
+            const initMap = function() {      // Initialize the map
+                if (interactiveMap) {
+                    interactiveMap.remove();
+                }
+                
+                interactiveMap = L.map('map', {
+                        zoomControl: false // Disable default zoom control
+                    }).setView([currentLat, currentLon], currentZoom);
+                
+                // Create base layers
+                // تعریف لایه‌های مختلف بدون نیاز به API Key
+                const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                        maxZoom: 19
+                    }).addTo(interactiveMap); // Add a default base layer to the map
+                const carto = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                        subdomains: 'abcd',
+                        maxZoom: 20
+                    });
+                const cyclosm = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
+                        attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - OpenStreetMap bicycle oriented render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                        maxZoom: 20
+                    });
+                const hot = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a>',
+                        maxZoom: 20
+                    });
+                const topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                        attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a>',
+                        maxZoom: 17
+                    });
+                
+                // Define base layers object for the control
+                // اضافه کردن کنترل لایه‌ها
+                const baseMaps = {
+                    "پیش فرض": osm,
+                    "کارتو": carto,
+                    "شهروندی": hot,
+                    "توپوگرافی": topo,
+                    "دوچرخه‌سواری": cyclosm,
+                };
+
+                // Create the layers control and add it to the map
+                L.control.layers(baseMaps).addTo(interactiveMap);
+
+                // Options: 'topleft', 'topright', 'bottomleft', 'bottomright'
+                // L.control.layers({ position: 'topleft' });
+
+                // Add custom zoom control position
+                // L.control.zoom({
+                    // Place at bottom-right
+                    // position: 'bottomright'
+                // }).addTo(map);
+                
+                // رویداد حرکت نقشه
+                let updateTimeout;
+                interactiveMap.on('move', function() {
+                    mapMoved = true;
+                    
+                    // به تأخیر انداختن به روزرسانی موقعیت برای عملکرد بهتر
+                    clearTimeout(updateTimeout);
+                    updateTimeout = setTimeout(function() {
+                        const center = interactiveMap.getCenter();
+                        currentLat = center.lat;
+                        currentLon = center.lng;
+                        currentZoom = interactiveMap.getZoom();
+                        updateCoordinates(currentLat, currentLon, true);
+                        // console.log(map)
+                    }, 500);
+                });
+                
+                // رویداد زوم نقشه
+                interactiveMap.on('zoom', function() {
+                    currentZoom = interactiveMap.getZoom();
+                });
+                
+                return interactiveMap;
+            };
+            
+            // // مقداردهی اولیه نقشه
+            // let map = initMap();
+            
+            //  دکمه مکان‌یابی کاربر
+            locateUserBtn.addEventListener('click', locateUser);
+            
+            // تابع برای مکان‌یابی کاربر
+            function locateUser() {
+                // This feature is available only in secure contexts (HTTPS), in some or all supporting browsers.
+                if (!navigator.geolocation) {
+                    showLocationError('مرورگر شما از قابلیت مکان‌یابی پشتیبانی نمی‌کند.'); // GPS Status error
+                    return;
+                }
+                
+                showLocationError('در حال پیدا کردن موقعیت شما...', "#eaf7ff", "#3c87e7");
+                loadingElement.style.display = 'inline-flex';  // spinner
+                hideLocationError();                           // GPS Status error
+                
+                // توقف ردیابی قبلی اگر وجود دارد
+                if (watchId !== null) {
+                    navigator.geolocation.clearWatch(watchId);
+                    watchId = null;
+                }
+                
+                // حذف نشانگر موقعیت کاربر قبلی اگر وجود دارد
+                if (userLocationMarker) {
+                    map.removeLayer(userLocationMarker);
+                    userLocationMarker = null;
+                }
+                if (accuracyCircle) {
+                    map.removeLayer(accuracyCircle);
+                    accuracyCircle = null;
+                }
+                
+                // گزینه‌های موقعیت‌یابی
+                const options = {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 30000
+                };
+                
+                // دریافت موقعیت کاربر
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        const accuracy = position.coords.accuracy;
+                        
+                        // حرکت نقشه به موقعیت کاربر
+                        map.setView([lat, lon], 16);
+                        updateCoordinates(lat, lon, false);
+                        
+                        // اضافه کردن نشانگر موقعیت کاربر
+                        userLocationMarker = L.marker([lat, lon], {
+                            icon: L.divIcon({
+                                className: 'user-location-marker',
+                                html: '<i class="fas fa-user" style="font-size: 24px; color: #3498db;"></i>',
+                                iconSize: [24, 24],
+                                iconAnchor: [12, 12]
+                            })
+                        }).addTo(map);
+                        
+                        // اضافه کردن دایره دقت موقعیت
+                        accuracyCircle = L.circle([lat, lon], {
+                            radius: accuracy,
+                            className: 'accuracy-circle'
+                        }).addTo(map);
+                        
+                        showLocationError('موقعیت شما پیدا شد.', "#eaf7ff", "#3c87e7");
+                        loadingElement.style.display = 'none';
+                        
+                        // شروع ردیابی موقعیت کاربر
+                        watchId = navigator.geolocation.watchPosition(
+                            function(position) {
+                                const newLat = position.coords.latitude;
+                                const newLon = position.coords.longitude;
+                                const newAccuracy = position.coords.accuracy;
+                                
+                                // به روزرسانی موقعیت نشانگر
+                                if (userLocationMarker) {
+                                    userLocationMarker.setLatLng([newLat, newLon]);
+                                }
+                                
+                                // به روزرسانی دایره دقت
+                                if (accuracyCircle) {
+                                    accuracyCircle.setLatLng([newLat, newLon]);
+                                    accuracyCircle.setRadius(newAccuracy);
+                                }
+                                
+                                // به روزرسانی مختصات
+                                updateCoordinates(newLat, newLon, false);
+                            },
+                            function(error) {
+                                console.error('Error watching position:', error);
+                                handleLocationError(error);
+                            },
+                            options
+                        );
+                    },
+                    function(error) {
+                        // loadingElement.style.display = 'none';
+                        handleLocationError(error);
+                    },
+                    options
+                );
+            }
+            
+            // نمایش خطای موقعیت‌یابی
+            function showLocationError(message,  background = "#ffeaea", text = "#e74c3c") {
+                locationError.textContent = message; 
+                locationError.style.background = background;
+                locationError.style.color = text;
+
+                locationError.style.display = 'block';
+                
+                // مخفی کردن خطا پس از 5 ثانیه
+                setTimeout(() => {
+                    locationError.style.display = 'none';
+                    loadingElement.style.display = 'none';
+                }, 5000);
+            }
+            
+            // مخفی کردن خطای موقعیت‌یابی
+            function hideLocationError() {
+                locationError.style.display = 'none';
+            }
+            
+            // مدیریت خطاهای موقعیت‌یابی
+            function handleLocationError(error) {
+                let errorMessage = 'خطای ناشناخته در موقعیت‌یابی رخ داد.';
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        errorMessage = 'دسترسی به موقعیت مکانی رد شد. لطفاً مجوز دسترسی را در تنظیمات مرورگر فعال کنید.';
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        errorMessage = 'اطلاعات موقعیت در دسترس نیست. لطفاً اطمینان حاصل کنید که GPS دستگاه شما فعال است.';
+                        break;
+                    case error.TIMEOUT:
+                        errorMessage = 'دریافت موقعیت زمان‌بر شد. لطفاً دوباره تلاش کنید.';
+                        break;
+                }
+                showLocationError(errorMessage);
+            }
+            
+            // رویداد جستجوی آدرس
+            searchButton.addEventListener('click', performSearch);
+            
+            // جستجو با فشار دادن Enter
+            addressInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // تابع برای انجام جستجوی آدرس و دریافت مشخصات
+            function performSearch() {
+                const query = addressInput.value.trim();
+                if (query.length < 3) {
+                    showLocationError('لطفاً عبارت طولانی‌تری برای جستجو وارد کنید.');
+                    return;
+                }
+                
+                loadingElement.style.display = 'inline-flex';
+                
+                // جستجوی آدرس با استفاده از Nominatim
+                const requestOptions = {
+                    headers: {
+                        'Accept-Language': 'fa'
+                    }
+                };
+                
+                fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5`, requestOptions)
+                    .then(response => response.json())
+                    .then(data => {
+                        loadingElement.style.display = 'none';
+                        
+                        if (data && data.length > 0) {
+                            // نمایش نتایج جستجو
+                            displaySearchResults(data);
+                        } else {
+                            showLocationError('نتیجه‌ای یافت نشد.');
+                            searchResults.style.display = 'none';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        loadingElement.style.display = 'none';
+                        showLocationError('خطا در انجام جستجو.');
+                    });
+            }
+            
+            // نمایش نتایج جستجو
+            function displaySearchResults(results) {
+                searchResults.innerHTML = '';
+                
+                results.forEach(result => {
+                    const item = document.createElement('div');
+                    item.className = 'search-result-item';
+                    item.textContent = result.display_name;
+                    
+                    item.addEventListener('click', function() {
+                        const lat = parseFloat(result.lat);
+                        const lon = parseFloat(result.lon);
+                        
+                        addressInput.value = result.display_name;
+                        searchResults.style.display = 'none';
+                        
+                        // حرکت نقشه به موقعیت انتخاب شده
+                        map.setView([lat, lon], 16);
+                        updateCoordinates(lat, lon, false);
+                    });
+                    
+                    searchResults.appendChild(item);
+                });
+                
+                searchResults.style.display = 'block';
+            }
+            
+            // بستن نتایج جستجو با کلیک خارج از آن
+            document.addEventListener('click', function(e) {
+                if (!addressInput.contains(e.target) && !searchResults.contains(e.target) && e.target !== searchButton) {
+                    searchResults.style.display = 'none';
+                }
+            });
+            
+            // نشان دادن فرم آدرس دستی
+            goToManualAddressPageBtn.forEach(btn => btn.addEventListener('click', manualAddressForm));
+            
+            // تأیید موقعیت انتخاب شده 
+            confirmLocationBtn.addEventListener('click', getAddressFromNeshan);
+
+            // Get back to interactive map
+            document.querySelectorAll('.backToInteractive').forEach(btn => btn.addEventListener('click', backToInteractive));
+            
+            function backToInteractive() {
+                interactivePageUserBtn.style.display = 'flex';
+                autoAddressPageUserBTN.style.display = 'none';
+                manualAddressPageUserBtn.style.display = 'none';
+
+                informationAuto.style.display = 'none';
+                informationManual.style.display = 'none';
+                interactiveMapContainer.style.display = 'flex';
+                
+                // بازسازی نقشه تعاملی
+                map = initMap();
+                showLocationError('می‌توانید موقعیت جدیدی انتخاب کنید', "#eaf7ff", "#3c87e7");
+                
+                // توقف ردیابی موقعیت کاربر
+                if (watchId !== null) {
+                    navigator.geolocation.clearWatch(watchId);
+                    watchId = null;
+                }
+            }
+
+            // تابع نمایش فرم آدرس دستی
+            function manualAddressForm(e) {
+                e.preventDefault();
+                interactivePageUserBtn.style.display = 'none';
+                autoAddressPageUserBTN.style.display = 'none';
+                manualAddressPageUserBtn.style.display = 'flex';
+
+                interactiveMapContainer.style.display = 'none';
+                informationAuto.style.display = 'none';
+                informationManual.style.display = 'flex';
+
+                // Initialize the states dropdown
+                populateStates();
+            }
+
+            // تابع برای ایجاد نقشه استاتیک با استفاده از سرویس نشان
+            function generateStaticMap(lat, lng, zoom) {
+                // محدود کردن zoom به محدوده مجاز
+                zoom = Math.max(5, Math.min(19, zoom));
+                
+                // ایجاد URL برای درخواست نقشه استاتیک از سرویس نشان
+                const staticMapUrl = `https://api.neshan.org/v4/static?key=${NESHAN_API_KEY}&type=${currentMapType}&width=600&height=550&zoom=${zoom}&center=${lat}%2C${lng}&markerToken=452232.cc4c86GK`;
+                
+                // تنظیم src تصویر نقشه استاتیک
+                staticMapElement.src = staticMapUrl;
+                
+                // نمایش وضعیت در حال بارگذاری
+                staticMapElement.onload = function() {
+                    console.log('نقشه استاتیک با موفقیت بارگذاری شد.');
+                };
+                
+                staticMapElement.onerror = function() {
+                    console.log('خطا در بارگذاری نقشه استاتیک.');
+                };
+            }
+            
+            // تابع برای به‌روزرسانی مختصات و پیدا کردن محدوده آدرس
+            function updateCoordinates(lat, lng, isAutoUpdate) {
+                // console.log('updateCoordinates',lat,lng)
+                currentLat = lat;
+                currentLon = lng;
+                // console.log('updateCoordinates',currentLat,currentLon)
+                
+                // نمایش مختصات
+                latitudeElement.textContent = lat.toFixed(7);
+                longitudeElement.textContent = lng.toFixed(7);
+                
+                const requestOptions = {
+                    headers: {
+                        'Accept-Language': 'fa'
+                    }
+                };
+                
+                fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`, requestOptions)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data) {
+                            addressApproxElement.textContent = `${(data.address.city)?data.address.city:data.address.county}، ${(data.address.neighbourhood) ? data.address.neighbourhood : data.address.district}، ${(data.address.road)? ((data.address.road == data.address.neighbourhood)?"":data.address.road+"، "):""} ${(data.name == data.address.road) ? "" : (data.name != "") ? data.name + " " : ""} ${(data.address.village)?data.address.village:""}`;
+                        } else {
+                            addressApproxElement.textContent = 'آدرس یافت نشد.';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        addressApproxElement.textContent = 'خطا در دریافت آدرس. لطفاً دوباره تلاش کنید.';
+                    });
+            }
+        
+            // تابع برای نمایش نقشه استاتیک و دریافت آدرس از سرویس نشان
+            function getAddressFromNeshan() {
+                loadingElement.style.display = 'inline-flex';  // spinner
+
+                const center = map.getCenter();
+                currentLat = center.lat;
+                currentLon = center.lng;
+
+                // به‌روزرسانی مختصات
+                updateCoordinates(currentLat, currentLon, false);
+                
+                // درخواست به سرویس نشان برای دریافت آدرس
+                fetch(`https://api.neshan.org/v5/reverse?lat=${currentLat}&lng=${currentLon}`, {
+                    headers: {
+                        'Api-Key': NESHAN_API_KEY
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        showLocationError('خطا در دریافت آدرس از سرویس نشان');
+                        throw new Error('خطا در دریافت آدرس از سرویس نشان');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    loadingElement.style.display = 'none';  // spinner
+                    
+                    if (data && data.formatted_address) {
+                        if (data.status === "OK") {
+                            const {
+                                status,
+                                neighbourhood,
+                                municipality_zone: municipalityZone, // Alias
+                                state,
+                                city,
+                                in_traffic_zone: inTrafficZone,      // Alias
+                                in_odd_even_zone: inOddEvenZone,     // Alias
+                                route_name: routeName,               // Alias
+                                route_type: routeType,               // Alias
+                                place,
+                                place_type: placeType,               // Alias
+                                district,
+                                formatted_address: formattedAddress, // Alias 
+                                village,
+                                county
+                            } = data;
+
+                            stateAutoValueHidden.value = state.replace(/^استان/g, '').trim();
+                            cityAutoValueHidden.value = (city !== "") ? city : county;
+                            stateAutoValue.value = state;
+                            cityAutoValue.value = (city !== "") ? "شهر " + city : county;
+                            fullAddressAutoValue.value = formattedAddress + ((data.place !== "") ? " " + data.place : "");
+                        }
+                        
+                        // ایجاد نقشه استاتیک
+                        generateStaticMap(currentLat, currentLon, currentZoom);
+                        
+                        // نمایش دکمه بازگشت
+                        interactivePageUserBtn.style.display = 'none';
+                        autoAddressPageUserBTN.style.display = 'flex';
+                        manualAddressPageUserBtn.style.display = 'none';
+                        
+                        // پنهان کردن نقشه تعاملی و نمایش نقشه استاتیک
+                        interactiveMapContainer.style.display = 'none';
+                        informationManual.style.display = 'none';
+                        informationAuto.style.display = 'flex';
+                        
+                    } else {
+                        addressApproxElement.textContent = 'آدرس یافت نشد.';
+                        fullAddressAutoValue.value = 'آدرس یافت نشد.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error , 'خطایی در ارتباط با سرویس نشان رخ داده است.');
+                    loadingElement.style.display = 'none'; // spinner
+                    addressApproxElement.textContent = 'خطا در دریافت آدرس. لطفاً دوباره تلاش کنید.';
+                    showLocationError('خطا در دریافت آدرس از سرویس نشان');
+                });
+            }
+            
+            // به روزرسانی اولیه مختصات
+            // updateCoordinates(currentLat, currentLon, false);
+
+            // input elements array
+            const inputElementsArray = [
+                Array.from(informationAuto.querySelectorAll('input:not(.other-type)')), 
+                Array.from(informationManual.querySelectorAll('input:not(.other-type)'))
+            ]
+            inputElementsArray.flat().forEach(input => {
+                input.onblur = handleInputEvents;
+                input.onclick = handleInputEvents;
+            });
+
+            // Input handling function
+            function handleInputEvents(e) {
+                const pEl = e.currentTarget.parentElement.querySelector('p.text-error');
+                e.currentTarget.setCustomValidity("");
+                e.currentTarget.value = e.currentTarget.value.replaceAll(/\s{2,}/g," ");
+                requiredInput(e.currentTarget);
+                if (e.currentTarget.name !== "postal" ) {
+                    const inputValidity = isValidInput(e.currentTarget);
+                    setFieldClass(inputValidity, e.currentTarget);
+                } else {
+                    const inputRegExp = /^\d{10}$/;
+                    e.currentTarget.value = e.currentTarget.value.replace(/\D/g, '');
+                    const inputValidity = isValidInput(e.currentTarget, inputRegExp);
+                    if (e.currentTarget.value.length > 0 && inputValidity === false ) {
+                        if (pEl !== null) pEl.textContent = "کد پستی وارد شده درست نیست.";
+                    }
+                    setFieldClass(inputValidity, e.currentTarget);
+                }
+
+                function requiredInput(element) {
+                    if (element.value.length === 0) {
+                        if (pEl !== null) pEl.textContent = "اینجا را خالی نگذارید.";
+                    } else if (element.value.length >= 1 || element.validity.patternMismatch) {
+                        if (pEl !== null) pEl.textContent = "";
+                    }
+                }
+
+                function isValidInput(InputField, regexPattern = /.*/) { 
+                  const validity = InputField.value.length !== 0 && regexPattern.test(InputField.value);
+                  return validity;
+                }
+
+                function setFieldClass(validationState, InputField) { 
+                    InputField.className = validationState ? "valid" : "invalid";
+                }
+
+            }
+            
+            // استان ها و شهرستان های ایران
+            const IranStatesAndCities = {
+                "آذربایجان شرقی":["اسکو","اهر","ایلخچی","باسمنج","بستان آباد","بناب","تبریز","تسوج","جلفا","خسروشهر","سراب","سهند","شبستر","صوفیان","مراغه","مرند","ملکان","ممقان","میانه","هادیشهر","هریس","هشترود","ورزقان"],
+                "آذربایجان غربی":["ارومیه","اشنویه","بوکان","تکاب","خوی","سر دشت","سلماس","شاهین دژ","ماکو","مهاباد","میاندوآب","نقده","پلدشت","پیرانشهر","چالدران"],
+                "اردبیل":["اردبیل","خلخال","مشگین شهر","نمین","نیر","پارس آباد","گرمی"],
+                "اصفهان":["آران و بیدگل","اردستان","اصفهان","باغ بهادران","تودشک","تیران","حاجی آباد","خمینی شهر","خوانسار","درچه","دهاقان","زرین شهر","سمیرم","شهرضا","عسگران","علویجه","فلاورجان","کاشان","مبارکه","نجف آباد","نطنز","ورزنه","کوهپایه","گلپایگان"],
+                "ایلام":["آبدانان","ایلام","ایوان","دره شهر","دهلران","سرابله","مهران"],
+                "بوشهر":["اهرم","برازجان","بوشهر","جم","خورموج","دیر","عسلویه","کنگان","کاکی","گناوه"],
+                "تهران":["تهران","اسلام‌شهر","شهریار","قدس","ملارد","صالحیه","پاکدشت","قرچک","ورامین","گلستان","ری","اندیشه","رباط‌کریم","پرند","باغستان","پردیس","بومهن","باقرشهر","پیشوا","نسیم‌شهر","صباشهر","چهاردانگه","دماوند","حسن‌آباد","وحیدیه","نصیرشهر","فردوسیه","رودهن","شاهدشهر","صفادشت","فیروزکوه","لواسان","آبسرد","شریف‌آباد","کهریزک","فشم","جوادآباد","فرون‌آباد","آبعلی","کیلان","شمشک","احمدآباد","ارجمند","قیام‌دشت"],
+                "چهارمحال بختیاری":["اردل","بروجن","شهرکرد","فارسان","لردگان","چلگرد"],
+                "خراسان جنوبی":["بیرجند","سربیشه","فردوس","قائن","نهبندان"],
+                "خراسان رضوی":["تایباد","تربت جام","تربت حیدریه","خواف","درگز","سبزوار","سرخس","طبس","طرقبه","فریمان","قوچان","کاشمر","مشهد","نیشابور","چناران","گناباد"],
+                "خراسان شمالی":["آشخانه","اسفراین","بجنورد","جاجرم","شیروان"],
+                "خوزستان":["آبادان","اندیمشک","اهواز","ایذه","ایرانشهر","باغ ملک","بندر امام خمینی","بندر ماهشهر","بهبهان","حمیدیه","خرمشهر","دزفول","رامشیر","رامهرمز","سوسنگرد","شادگان","شادگان","شوش","شوشتر","لالی","مسجد سلیمان","ملاثانی","هندیجان","هویزه"],
+                "زنجان":["آب بر","ابهر","خدابنده","خرمدره","زنجان","قیدار","ماهنشان"],
+                "سمنان":["ایوانکی","بسطام","دامغان","سمنان","شاهرود","گرمسار"],
+                "سیستان و بلوچستان":["ایرانشهر","خاش","زابل","زاهدان","سراوان","سرباز","میرجاوه","چابهار"],
+                "فارس":["آباده","اردکان","ارسنجان","استهبان","اقلید","بوانات","جهرم","حاجی آباد","خرامه","خنج","داراب","زرقان","سروستان","سوریان","سپیدان","شیراز","صفاشهر","فراشبند","فسا","فیروز آباد","کازرون","لار","لامرد","مرودشت","مهر","کوار"],
+                "قزوین":["آبیک","بوئین زهرا","تاکستان","قزوین"],
+                "قم":["قم"],
+                "کرج":["اشتهارد","طالقان","کرج","ماهدشت","نظرآباد","هشتگرد"],
+                "کردستان":["بانه","بیجار","حسن آباد","سقز","سنندج","صلوات آباد","قروه","مریوان"],
+                "کرمان":["انار","بافت","بردسیر","بم","جیرفت","راور","رفسنجان","زرند","سیرجان","کرمان","کهنوج","کوهبنان"],
+                "کرمانشاه":["اسلام آباد غرب","جوانرود","سنقر","صحنه","قصر شیرین","کرمانشاه","کنگاور","هرسین","پاوه"],
+                "کهکیلویه و بویراحمد":["دهدشت","دوگنبدان","سی سخت","یاسوج","گچساران"],
+                "گلستان":["آزاد شهر","آق قلا","رامیان","علی آباد کتول","کردکوی","کلاله","گرگان","گنبد کاووس"],
+                "گیلان":["آستارا","املش","تالش","رشت","رودبار","شفت","صومعه سرا","فومن","لاهیجان","لنگرود","ماسال","ماسوله","منجیل","هشتپر"],
+                "لرستان":["ازنا","الشتر","الیگودرز","بروجرد","خرم آباد","دزفول","دورود","کوهدشت","ماهشهر","نور آباد"],
+                "مازندران":["آمل","بابل","بابلسر","بلده","بهشهر","تنکابن","جویبار","رامسر","ساری","قائم شهر","محمود آباد","نکا","نور","نوشهر","چالوس"],
+                "مرکزی":["آشتیان","اراک","تفرش","خمین","دلیجان","ساوه","شازند","محلات"],
+                "هرمزگان":["بستک","بندر جاسک","بندر خمیر","بندر لنگه","بندرعباس","حاجی آباد","دهبارز","قشم","قشم","کیش","میناب"],
+                "همدان":["اسدآباد","بهار","رزن","ملایر","نهاوند","همدان"],
+                "یزد":["ابرکوه","اردکان","اشکذر","بافق","تفت","خضرآباد","زارچ","طبس","مهریز","میبد","هرات","یزد"]
+            };
+            let selectedState = '';
+
+            // Populate states dropdown
+            function populateStates() {
+                stateDropdown.innerHTML = '';
+                const states = Object.keys(IranStatesAndCities);
+                
+                states.forEach(state => {
+                    const li = document.createElement('li');
+                    li.textContent = state;
+                    li.addEventListener('click', () => {
+                        selectState(state);
+                    });
+                    stateDropdown.appendChild(li);
+                });
+            }
+
+            // Select a state
+            function selectState(state) {
+                selectedState = state;
+                stateInput.value = state;
+                stateHidden.value = state;
+                const eventOfInput = new Event('blur');
+                stateInput.dispatchEvent(eventOfInput);
+                
+                // Enable city input and populate cities
+                cityInput.disabled = false;
+                cityInput.placeholder = "شهر خود را انتخاب کنید";
+                populateCities(state);
+                
+                // Reset city selection
+                cityInput.value = '';
+                cityHidden.value = '';
+                
+                // Hide dropdowns
+                document.querySelector('.state-dropdown').style.display = 'none';
+            }
+
+            // Populate cities for selected state
+            function populateCities(state) {
+                cityDropdown.innerHTML = '';
+                const cities = IranStatesAndCities[state];
+                
+                cities.forEach(city => {
+                    const li = document.createElement('li');
+                    li.textContent = city;
+                    li.addEventListener('click', () => {
+                        selectCity(city);
+                    });
+                    cityDropdown.appendChild(li);
+                });
+            }
+
+            // Select a city
+            function selectCity(city) {
+                cityInput.value = city;
+                cityHidden.value = city;
+                const eventOfInput = new Event('blur');
+                cityInput.dispatchEvent(eventOfInput);
+                document.querySelector('.city-dropdown').style.display = 'none';
+                manualAddressLatLon(stateInput.value + " " + city);
+            }
+
+            // Filter dropdown items based on input
+            function filterDropdown(items, query) {
+                items.forEach(item => {
+                    const text = item.textContent;
+                    if (text.includes(query)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            // Event listeners for state input
+            stateInput.addEventListener('focus', () => {
+                document.querySelector('.state-dropdown').style.display = 'block';
+                document.querySelector('.city-dropdown').style.display = 'none';
+            });
+            
+            stateInput.addEventListener('input', () => {
+                const items = stateDropdown.querySelectorAll('li');
+                filterDropdown(items, stateInput.value);
+                stateInput.value = stateInput.value;
+                stateHidden.value = stateInput.value;
+                cityInput.disabled = false;
+                populateCities(stateInput.value);
+                cityInput.value = '';
+            });
+
+            stateInput.addEventListener('blur', () => {
+                if (stateInput.value === "") {
+                    cityInput.value = "";
+                    cityInput.disabled = true;
+                }
+            });
+
+            // Event listeners for city input
+            cityInput.addEventListener('focus', () => {
+                if (!cityInput.disabled) {
+                    document.querySelector('.city-dropdown').style.display = 'block';
+                    document.querySelector('.state-dropdown').style.display = 'none';
+                }
+            });
+            
+            cityInput.addEventListener('input', () => {
+                if (!cityInput.disabled) {
+                    const items = cityDropdown.querySelectorAll('li');
+                    filterDropdown(items, cityInput.value);
+                    selectCity(cityInput.value);
+                }
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.relative-state') || (!e.target.closest('.relative') && !e.target.closest('.relative-city'))) {
+                    document.querySelector('.city-dropdown').style.display = 'none';
+                }
+                if (e.target.closest('.relative-city') || (!e.target.closest('.relative') && !e.target.closest('.relative-state'))) {
+                    document.querySelector('.state-dropdown').style.display = 'none';
+                }
+            });
+
+            /*
+                Why Both Inputs ( stateId & state-input) Are Needed :
+                    1. The visible text input (type="text"):
+                        . Provides the user interface for interaction
+                        . Allows users to type and filter options
+                        . Displays the selected value visually
+                        . Doesn't have a name attribute, so it won't be submitted with the form
+                    2. The hidden input (type="hidden"):
+                        . Stores the actual value that will be submitted with the form
+                        . Has a name attribute ("stateId" or "cityId") for form processing
+                        . Is marked as required for form validation
+                        . Holds the final selected value without affecting the UI
+            */
+
+            // Address type selector contents even listeners
+            manualBtnRadioOther.nextElementSibling.querySelector('input.other-type').addEventListener('input', handleInputValue);
+            autoBtnRadioOther.nextElementSibling.querySelector('input.other-type').addEventListener('input', handleInputValue);
+            manualBtnRadioOther.nextElementSibling.querySelector('input.other-type').addEventListener('blur', defaultInputValue);
+            autoBtnRadioOther.nextElementSibling.querySelector('input.other-type').addEventListener('blur', defaultInputValue);
+
+            function handleInputValue(event) {
+                event.currentTarget.parentElement.querySelector('span.label-inner-text').innerText = event.currentTarget.value;
+                event.currentTarget.parentElement.previousElementSibling.value = event.currentTarget.value;
+            }
+
+            function defaultInputValue(event) {
+                event.currentTarget.value = event.currentTarget.value.replaceAll(/\s{2,}/g," ");
+                if (event.currentTarget.value.length === 0) {
+                    event.currentTarget.value = "موارد دیگر";
+                    event.currentTarget.parentElement.querySelector('span.label-inner-text').innerText  = "موارد دیگر";
+                    event.currentTarget.parentElement.previousElementSibling.value = "موارد دیگر";
+                } else {
+                    event.currentTarget.parentElement.querySelector('span.label-inner-text').innerText  = event.currentTarget.value;
+                    event.currentTarget.parentElement.previousElementSibling.value = event.currentTarget.value;
+                }
+            }
+
+            // copy address from interactive map
+            addressContainer.addEventListener('click', copyHereAddress);
+            addressContainer.addEventListener('select', copyHereAddress);
+            addressContainer.addEventListener('touchstart', copyHereAddress);
+            
+            function copyHereAddress(e) {
+                // e.preventDefault();
+                navigator.clipboard.writeText(addressApproxElement.textContent);
+                showLocationError("آدرس نقطه مورد نظر کپی شد.", "#eaf7ff", "#3c87e7");
+            }
+
+            // copy coordinates from interactive map
+            coordinatesContainer.addEventListener('click', copyHereCoordinates);
+            coordinatesContainer.addEventListener('select', copyHereCoordinates);
+            coordinatesContainer.addEventListener('touchstart', copyHereCoordinates);
+            
+            function copyHereCoordinates(e) {
+                // e.preventDefault();
+                const latitude = latitudeElement.textContent ;
+                const longitude = longitudeElement.textContent;
+                navigator.clipboard.writeText(latitude + " ," + longitude);
+                showLocationError("مختصات نقطه مورد نظر کپی شد.", "#eaf7ff", "#3c87e7");
+            }
+
+            // Manual Form lat and lon capturing
+            function manualAddressLatLon(city) {
+                let manualLat = 35.6892000;
+                let manualLon = 51.3890000;
+                const query = city.trim();
+                const requestOptions = {
+                    headers: {
+                        'Accept-Language': 'fa'
+                    }
+                };
+                fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5`, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.length > 0) {
+                        if (data.boundingbox) {
+                            manualLat = parseFloat(0.5 * (data[0].boundingbox[0] + data[0].boundingbox[1])).toFixed(7);
+                            manualLon = parseFloat(0.5 * (data[0].boundingbox[2] + data[0].boundingbox[3])).toFixed(7);
+                        } else {
+                            manualLat = parseFloat(data[0].lat);
+                            manualLon = parseFloat(data[0].lon);
+                        }
+                        updateCoordinates(manualLat, manualLon, false);
+                        map = initMap();
+                    } else {
+                        manualLat = 35.6892000;
+                        manualLon = 51.3890000;
+                    }
+                });
+            }
+
+            // Form submitters onclick event
+            submitAutoLocation.onclick = autoAddressSubmit;
+            submitManualLocation.onclick = autoAddressSubmit;
+
+            // Address form submit functionality
+            function autoAddressSubmit(event) {
+                event.preventDefault();
+                let formInputs;
+                let addressTypeValue;
+                if (event.currentTarget.id === "submitAutoLocation") {
+                    formInputs = Array.from(informationAuto.querySelectorAll('input[required]'));
+                    addressTypeValue = informationAuto.querySelector('.address-type > div.type-btn-group > input:checked').value;
+                } else if (event.currentTarget.id === "submitManualLocation") {
+                    formInputs = Array.from(informationManual.querySelectorAll('input[required]'));
+                    formInputs.push(stateManualValue, cityManualValue);
+                    addressTypeValue = informationManual.querySelector('.address-type > div.type-btn-group > input:checked').value;
+                }
+                const testFormValidity = formInputs.every(input => handleInputs(input));
+                if (testFormValidity === false) {
+                    const eventOfInput = new Event('blur');
+                    formInputs.forEach(input => input.dispatchEvent(eventOfInput));
+                    return;
+                }
+                const dataToSave = formInputs.map(input => {
+                    return {
+                        name: input.name, 
+                        value: input.value
+                    };
+                });
+                const addressID = (() => {
+                    if (editingAddress !== false && typeof editingAddress === "object") {
+                        return editingAddress.date;
+                    } else {
+                        return Date.now();
+                    }
+                })();
+                const addressDefault = (() => {
+                    if (editingAddress !== false && typeof editingAddress === "object") {
+                        return editingAddress.default;
+                    } else {
+                        return "false";
+                    }
+                })();
+
+                dataToSave.push(
+                    {
+                        name: 'type',
+                        value: addressTypeValue
+                    },
+                    {
+                        name: 'date',
+                        value: addressID
+                    },
+                    {
+                        name: 'latitude',
+                        value: currentLat.toFixed(7)
+                    },
+                    {
+                        name: 'longitude',
+                        value: currentLon.toFixed(7)
+                    },
+                    {
+                        name: 'default',
+                        value: addressDefault
+                    }
+                );
+
+                if (dataToSave) {
+                    window.parent.postMessage(
+                      dataToSave, 
+                      '*'
+                    );
+                    closeModal()
+                }
+
+                function closeModal() {
+                  let test = changedAppliedOnMedia;
+                  if (test) {
+                    window.parent.document.querySelector(".address-content-wrapper").style.animation="fade-out-modal 0.305s cubic-bezier(0.45, 0.4, 0.32, 0.95)";
+                    setTimeout(() => {window.parent.mui.overlay("off")}, 300);
+                    return;
+                  }
+                  window.parent.mui.overlay("off");
+                };
+
+                function handleInputs(element) {
+                    if (element.value.length === 0) return false;
+                    let inputValidity;
+                    if (element.name !== "postal" ) {
+                        inputValidity = isValid(element);
+                    } else {
+                        const inputRegExp = /^\d{10}$/;
+                        element.value = element.value.replace(/\D/g, '');
+                        inputValidity = isValid(element, inputRegExp);
+                    }
+                    function isValid(InputField, regexPattern = /.*/) { 
+                      const validity = InputField.value.length !== 0 && regexPattern.test(InputField.value);
+                      return validity;
+                    }
+                    return inputValidity;
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

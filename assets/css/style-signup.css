@@ -1,0 +1,488 @@
+
+@font-face {
+    font-family: 'password';
+    font-display: block; 
+    src: url('../fonts/password.woff2') format('woff2'),
+         url('../fonts/password.woff') format('woff'); 
+}
+
+.bread-crumb-container {
+    position: relative;
+    z-index: 1;
+    background-color: var(--background-body);
+}
+
+.bread-crumb {
+    background: var(--background-panel);
+    margin: 80px auto 30px;
+    padding: 6px 0;
+    border-radius: 6px;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+
+    &>span {
+        padding-right: 12px;
+        color: #FFF;
+    }
+    
+    ol {
+        padding: 0 15px;
+        margin: 0;
+        color: #fff;
+        line-height: 1.4;
+        
+        li {
+            display: inline-block;
+            position: relative;
+            vertical-align: bottom;
+            
+            a {
+                color: #d2ab67;
+                vertical-align: text-bottom;
+                font-family: sans-serif;
+                font-size: 12px;
+                font-weight: 400;
+                padding: 0 2px;
+
+                i {
+                    transform: scale(1.35);
+                    -webkit-transform: scale(1.35);
+                    -moz-transform: scale(1.35);
+                    -ms-transform: scale(1.35);
+                    -o-transform: scale(1.35);
+                }
+            }
+        }
+
+        li:last-child a {
+            color: #fff;
+        }
+    }
+}
+
+.bread-crumb ol li:not(:last-child) {
+    padding-left: 20px;
+}
+
+.bread-crumb ol li:not(:last-child)::before {
+    position: absolute;
+    font-family: "Line Awesome Free";
+    font-weight: 900;
+    content: "\f104";
+    left: 3px;
+    top: 0;
+    font-size: 12pt;
+    line-height: 1;
+    width: 16px;
+    height: 16px;
+    bottom: 0;
+    margin: auto;
+}
+
+.bread-crumb > * {
+  vertical-align: middle;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    background-color: var(--background-body);
+    padding-top: 86px;
+    padding-bottom: 110px;
+  
+    &> article {
+      margin-top: 20px;
+    }  
+}
+
+.signup-form-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    &::before {
+        content: "";
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        -ms-border-radius: 100%;
+        -o-border-radius: 100%;
+        position: absolute;
+        top: -80px;
+        background-color: #f1f1f1;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .16), 0 0 2px 0 rgba(0, 0, 0, .12);
+        z-index: -1;
+    }
+
+    &::after {
+        position: absolute;
+        font-family: "Line Awesome Free";
+        font-weight: 900;
+        content: "\f234";
+        font-size: 80px;
+        user-select: none;
+        display: flex;
+        justify-content: center;
+        line-height: 112px;
+        width: 118px;
+        height: 120px;
+        border-radius: 100%;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        -ms-border-radius: 100%;
+        -o-border-radius: 100%;
+        top: -64px;
+        background-color: var(--background-panel);
+        color: #f1f1f1;
+    }
+
+    .signup-form {
+        padding: 110px 50px 70px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .16), 0 0 2px 0 rgba(0, 0, 0, .12);
+        border-radius: 6px;
+        background-color: #f1f1f1;
+        min-height: 580px;
+        margin: auto;
+
+        @media screen and (max-width: 1200px) {
+            padding: 110px 40px 70px;
+
+            @media screen and (max-width: 992px) {
+                padding: 110px 12px 70px;
+            
+                @media screen and (max-width: 544px) {
+                    padding: 110px 10px 70px;
+                }
+            }
+        }
+
+        .right-part {
+
+            > span {
+                color: #757373;
+                font-family: 'Yekan';
+                font-size: 28px;
+                padding: 20px;
+                display: block;
+            }
+
+            &>div:first-of-type {
+                padding: 20px;
+                font-size: 14px;
+                font-family: Yekan;
+                font-weight: 100;
+                background-color: #FFF;
+                margin: 0 20px;
+                text-align: center;
+                border-radius: 4px;        
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                -ms-border-radius: 4px;
+                -o-border-radius: 4px;
+
+                a {
+                    color: #EC406A;
+                    margin: 0 8px;
+                    user-select: none;
+                    position: relative;
+                    text-wrap-mode: nowrap;
+                }
+
+                a::after {
+                    left: 0;
+                    right: 0;
+                    top: 50%;
+                    margin-top: .85em;
+                    content: "";
+                    position: absolute;
+                    border-bottom: 1px dashed #a0a0a0;
+                }
+            }
+
+            form {
+                padding: 18px;
+                display: flex;
+                flex-direction: column;
+                row-gap: 14px;
+
+                div {
+                    position: relative;
+                    overflow: hidden;
+
+                    i {
+                        position: absolute;
+                        left: 10px;
+                        top: 6px;
+                        font-size: 28px;
+                        color: var(--background-panel);
+                        opacity: 0.6;
+                        user-select: none;
+                    }
+
+                    i.la-eye {
+                        font-size: 16px;
+                        top: 16px;
+                        left: 16.5px;
+                        opacity: 0.9;
+                    }
+
+                    input[type='text'] {
+                        background-color: rgba(39, 79, 107, 0.08);
+                        color: #274f6b;
+                        font-size: 14px;
+                        font-family: "Poppins", 'YEKAN';
+                        letter-spacing: 0.1rem;
+                        line-height: 1.6;
+                        text-align: center;
+                        padding: 8px 10px;
+                        width: 100%;
+                        outline: none;
+                        border: solid 1px rgba(0, 0, 0, 0.12);
+                        border-radius: 4px;
+                        -webkit-border-radius: 4px;
+                        -moz-border-radius: 4px;
+                        -ms-border-radius: 4px;
+                        -o-border-radius: 4px;
+
+                        &::placeholder {
+                            color: rgba(39, 79, 107, 75%);
+                            vertical-align: middle;
+                            font-family: "Poppins", 'YEKAN' !important;
+                            text-align: right;
+                        }
+
+                        &[name="email"],
+                        &[name="password"],
+                        &[name="password-login"],
+                        &[name="check-password"] {
+                            direction: ltr;
+                        }
+
+                        &.invalid ~ i {
+                            color: #ff0000 !important;
+                            filter: drop-shadow(-1px 4px 7px #ff0000);
+                            -webkit-filter: drop-shadow(-1px 4px 7px #ff0000);
+                        }  
+
+                        &.valid ~ i {
+                            color: #219f00 !important;
+                            filter: drop-shadow(-1px 4px 7px #2dd700);
+                            -webkit-filter: drop-shadow(-1px 4px 7px #2dd700);
+                        }  
+
+                        input:focus:invalid {    
+                          outline: none; 
+                        }
+
+                        &[name="password"] + i,
+                        &[name="password-login"] + i {
+                            cursor: pointer;
+                            transform: scaleX(-1);
+                            z-index: 1;
+                        }
+                    }
+
+                    button {
+                        background-color: #274f6b;
+                        color: rgb(240 243 245);
+                        font-size: 16px;
+                        font-family: 'YEKAN';
+                        line-height: 1.6;
+                        padding: 8px 10px;
+                        width: 100%;
+                        outline: none;
+                        border: none;
+                        border-radius: 4px;
+                        -webkit-border-radius: 4px;
+                        -moz-border-radius: 4px;
+                        -ms-border-radius: 4px;
+                        -o-border-radius: 4px;
+                        cursor: pointer;
+
+                        &[name="sign-up"] {
+                            &:disabled {
+                                background-color: #dddddd;
+                                color: rgb(190, 190, 190);
+
+                                &::after {
+                                    content: unset;
+                                }
+                            }
+
+                            .loader {
+                                visibility: hidden;
+                                scale: 0.6;
+                                position: absolute;
+                                left: 32%;
+                                top: -9%;
+                            }
+                        }
+
+                        &[name="sign-up"]::before {
+                            position: absolute;
+                            font-family: "Line Awesome Free";
+                            font-weight: 900;
+                            content: "\f502";
+                            color: #fff;
+                            opacity: 1;
+                            right: 10px;
+                            top: -3px;
+                            font-size: 28px;
+                            user-select: none;
+                        }
+
+                        &[name="sign-in"]::before {
+                            position: absolute;
+                            font-family: "Line Awesome Free";
+                            font-weight: 900;
+                            content: "\f2f6";
+                            color: #fff;
+                            opacity: 1;
+                            right: 10px;
+                            top: -1px;
+                            font-size: 28px;
+                            user-select: none;
+                        }
+
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            width: 50px;
+                            height: 100%;
+                            top: 0;
+                            right: 0;
+                            background-color: rgba(255, 255, 255, 0.2);
+                            border-top-left-radius: 85px 100px;
+                            border-bottom-left-radius: 85px 100px;
+                            transition: all .6s;
+                        }
+
+                        &:hover::after {
+                            width: 140%;
+                            transition: all .6s;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .left-part {
+            position: relative;
+            
+            .user-notice {
+                font-family: 'Yekan';
+                font-size: 14px;
+                color: var(--background-panel);
+                padding: 26px;
+                
+                span {
+                    font-weight: 600;
+                    margin-right: -22px;
+                    margin-bottom: 10px;
+                    display: block;
+                }
+                
+                li {
+                    margin: 5px 0;
+                    list-style: disc;
+                }
+                
+            }
+            
+            &>div{
+                position: absolute;
+                top: 128px;
+                left: 20%;
+                
+                @media screen and (max-width: 1200px) {
+                    top: 176px;
+                    left: 12%;
+                    @media screen and (max-width: 992px) {
+                        display: none;
+                    }
+                }
+    
+                img {
+                    width: 350px;
+                    opacity: 0.85;
+
+                    @media screen and (max-width: 1200px) {
+                        width: 300px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mui--divider-left {
+    @media screen and (max-width: 768px) {
+        border: none;
+    }
+}
+
+input[data-password-font='set'] {
+    font-family: 'password' !important;
+    letter-spacing: 0.25rem !important;
+}
+
+.form-check {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-family: 'Yekan';
+
+    a {
+        transition: color 0.25s ease;
+      
+        &:hover {
+          color: #ed4093;
+        }
+    }
+
+    .remember-me {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        span {
+            margin-right: 2px;
+        }
+    }
+}
+
+ /* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  border-radius: 50%;
+  background:
+    linear-gradient(0deg ,rgb(0 0 0/50%) 30%,#0000 0 70%,rgb(0 0 0/100%) 0) 50%/8% 100%,
+    linear-gradient(90deg,rgb(0 0 0/25%) 30%,#0000 0 70%,rgb(0 0 0/75% ) 0) 50%/100% 8%;
+  background-repeat: no-repeat;
+  animation: l23 1s infinite steps(12);
+}
+.loader::before,
+.loader::after {
+   content: "";
+   grid-area: 1/1;
+   border-radius: 50%;
+   background: inherit;
+   opacity: 0.915;
+   transform: rotate(30deg);
+}
+.loader::after {
+   opacity: 0.83;
+   transform: rotate(60deg);
+}
+@keyframes l23 {
+  100% {transform: rotate(1turn)}
+}

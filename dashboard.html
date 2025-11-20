@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css"/>
+  <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.muicss.com/mui-0.10.3/css/mui-rtl.min.css" />
+  <link rel="stylesheet" type="text/css" href="./assets/css/style-basic.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style-main.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style-dashboard.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style-footer.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  
+  <style>
+  </style>
+
+</head>
+<body>
+    <nav-bar id="navbar1"
+             style="
+               --nav-bar-font: Estedad;
+               --nav-bar-font-size: 18px;
+               --nav-bar-background-color: transparent;
+               --nav-bar-menu-background-color: #e1e1e1;
+               --nav-bar-links-color: #274f6b;
+               --nav-bar-links-hover: #ef30c6;" 
+             menu-button-label = '[{"text": "فروشگاه"}]'
+             logo = '[{ "src": "./assets/images/logo.png", "href": "/index.html" }]'
+             side-menu-logo = '[{ "src": "./assets/images/logo.png", "href": "/index.html" }]'
+             side-menu-list = '[
+               {
+                 "text": "مبلمان راحتی",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon1.png", 
+                 "accordion": "", 
+                 "dropdown": ""
+               },
+               {
+                 "text": "مبلمان اداری",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon2.png", 
+                 "accordion": "", 
+                 "dropdown": ""
+               },
+               {
+                 "text": "انواع میز",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon5.png", 
+                 "accordion": "yes", 
+                 "dropdown": [
+                   { "text": "میز ناهارخوری", "href": "javascript:void(0)" },
+                   { "text": "میز آشپزخانه", "href": "javascript:void(0)" },
+                   { "text": "میز پذیرایی", "href": "javascript:void(0)" },
+                   { "text": "میز تحریر", "href": "javascript:void(0)" }
+                 ]
+               },
+               {
+                 "text": "سرویس خواب",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon3.png", 
+                 "accordion": "", 
+                 "dropdown": ""
+               },
+               {
+                 "text": "فرش و موكت",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/icon4.png", 
+                 "accordion": "", 
+                 "dropdown": ""
+               },
+               {
+                 "text": "دیگر نمونه کارها",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/otherPages.png",
+                 "accordion": "",
+                 "dropdown": ""
+               },
+               {
+                 "text": "رزومه من",
+                 "link": "javascript:void(0)",
+                 "icon": "./assets/images/myResume.png",
+                 "accordion": "",
+                 "dropdown": ""
+               }
+             ]'
+             social-links = '[
+               { "instagram": "javascript:void(0)" },
+               { "email": "somewhere@gmail.com" },
+               { "telegram": "javascript:void(0)" },
+               { "whatsapp": "989036243626" },
+               { "phone": "02112345678" }
+             ]'
+             items = '[
+               { "text": "تماس با ما", "href": "/contactus.html" }
+             ]'
+    /></nav-bar>
+    
+    <section class="bread-crumb-container">
+      <div class="mui-container">
+        <div class="mui-panel bread-crumb">
+          <span>شما اینجا هستید: </span>
+          <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
+              <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                  <a itemprop="item" href="index.html">
+                      <span itemprop="name"><i class="las la-home"></i></span>
+                  </a>
+                  <meta itemprop="position" content="1">
+              </li>
+              <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                  <a itemprop="item" href="signup.html">
+                      <span itemprop="name">ورود كاربران</span>
+                  </a>
+                  <meta itemprop="position" content="2">
+              </li>
+              <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                  <a itemprop="item" href="dashboard.html">
+                      <span itemprop="name">پنل كاربری</span>
+                  </a>
+                  <meta itemprop="position" content="3">
+              </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <main class="">
+      <article class="mui-container">
+        <div class="dashboard-wrapper">
+          
+          <div class="mui-row">
+
+            <section class="dashboard-control-tab mui-col-md-4">
+              <div class="dashboard-control-tab-inner"> 
+                <div class="user-info">
+                    <div class="user-picture">
+                      <img src="userPicture.jpg" alt="avatar" onerror="this.src='assets/images/nosourceavatar.png'">
+                    </div>
+                    <div class="user-profile">
+                      <div class="user-name">
+                        <span></span>
+                      </div>
+                      <div class="user-id">
+                        <span></span>
+                      </div>
+                    </div>
+                </div>
+                <div class="user-control">
+                  <button id="side-bar-toggle">
+                    <i class="las la-chevron-circle-left"></i>
+                  </button>
+                  <ul class="mui--divider-top">
+                    <li class="active" data-controller-num="1" id="data-controller-num-1">
+                      <i class="las la-cog"></i>
+                      <div>
+                        <span>داشبورد</span>
+                        <p>مدیریت فعالیت ها و پروفایل شخصی</p>
+                      </div>
+                      <i class="las la-chevron-left"></i>
+                    </li>
+                    <li data-controller-num="2" id="data-controller-num-2">
+                      <i class="las la-box"></i>
+                      <div>
+                        <span>سفارش های من</span>
+                        <p>تاریخچه خریدها و پیگیری سفارش ها</p>
+                      </div>
+                      <i class="las la-chevron-left"></i>
+                    </li>
+                    <li data-controller-num="3" id="data-controller-num-3">
+                      <i class="las la-heart-img"></i>
+                      <div>
+                        <span>لیست علاقه مندی ها</span>
+                        <p>بازبینی موارد قرار گرفته در لیست</p>
+                      </div>
+                      <i class="las la-chevron-left"></i>
+                    </li>
+                    <li data-controller-num="4" id="data-controller-num-4">
+                      <i class="las la-map-marker"></i>
+                      <div>
+                        <span>آدرس های من</span>
+                        <p>مدیریت مقاصد ارسال محصولات</p>
+                      </div>
+                      <i class="las la-chevron-left"></i>
+                    </li>
+                    <li data-controller-num="5" id="data-controller-num-5">
+                      <i class="las la-comment"></i>
+                      <div>
+                        <span>نظرات من</span>
+                        <p>بازبینی نظرهای ارسالی درباره محصولات</p>
+                      </div>
+                      <i class="las la-chevron-left"></i>
+                    </li>
+                    <li data-controller-num="6" id="data-controller-num-6">
+                      <i class="las la-wallet"></i>
+                      <div>
+                        <span>كیف پول من</span>
+                        <p>مدیریت اعتبار حساب و تراكنش ها</p>
+                      </div>
+                      <i class="las la-chevron-left"></i>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="dashboard-content-tab mui-col-md-8">
+              <div class="dashboard-content-tab-inner">
+                <div class="constant-tab-content mui--divider-bottom">
+                  <span class="user-control-tab-title">داشبورد</span>
+                  <div class="left-section">
+                    <div class="user-welcom">
+                      <span class="welcom">خوش آمدید، </span>
+                      <span class="user-name-log"></span>
+                    </div>
+                    <div class="date-time">
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="variable-tab-content">
+                  <!-- داشبورد -->
+                  <div class="active" data-tab-num="1">
+                    <div class="user-activity-history">
+                      <div class="user-registration-date">
+                        <i class="las la-calendar"></i>
+                        <div>
+                          <span>تاریخ عضویت</span>
+                          <span id="registration-date"></span>
+                        </div>
+                      </div>
+                      <div class="user-last-buy">
+                        <i class="las la-cart-arrow-down"></i>
+                        <div>
+                          <span>آخرین خرید</span>
+                          <span id="last-buy"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="user-activity-summary">
+                      <div class="orders-summary">
+                        <i class="las la-box"></i>
+                        <div>
+                          <span id="orders-summary-num"></span>
+                          <span>سفارش</span>
+                        </div>
+                      </div>
+                      <div class="favorite-summary">
+                        <i class="las la-heart-img"></i>
+                        <div>
+                          <span id="favorite-summary-num"></span>
+                          <span>علاقه‌مندی</span>
+                        </div>
+                      </div>
+                      <div class="comment-summary">
+                        <i class="las la-comment"></i>
+                        <div>
+                          <span id="comment-summary-num"></span>
+                          <span>نظر</span>
+                        </div>
+                      </div>
+                      <div class="credit-summary">
+                        <i class="las la-wallet"></i>
+                        <div>
+                          <span id="credit-summary-num"></span>
+                          <span>اعتبار (تومان)</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="user-profile-edit">
+                      <form action="">
+                        <label for="change-name">
+                          <span>تغییر نام و نام خانوادگی :</span>
+                          <input name="change-name" 
+                                 id="change-name"
+                                 type="text" 
+                                 placeholder="نام و نام خانوادگی جدید"
+                                 pattern="^(?:^(?:[آ-یA-Za-z\u0600-\u06FF]{3,})+(?:\s[آ-یA-Za-z\u0600-\u06FF]*){0,4})$"
+                                 />
+                          <i class="las la-address-card"></i>
+                          <button name="new-name">ثبت ویرایش</button>
+                        </label>
+                      </form>
+                      <form action="">
+                        <label for="change-password">
+                          <span>
+                            تغییر رمز عبور :
+                          </span>
+                          <input name="change-pass" 
+                                 id="change-pass" 
+                                 type="text" 
+                                 placeholder="رمز عبور جدید"
+                                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                                 />
+                          <i class="las la-lock"></i>
+                          <button name="new-pass">ثبت ویرایش</button>
+                        </label>
+                      </form>
+                    </div>
+                  </div>
+                  <!-- سفارش های من -->
+                  <div class="display-none" data-tab-num="2">
+                    <ul class="mui-tabs__bar mui-tabs__bar--justified">
+                      <li class="mui--is-active">
+                        <a data-mui-toggle="tab" data-mui-controls="orders-pane-1">
+                          <i class="las la-check"></i>
+                          انجام شده
+                        </a>
+                      </li>
+                      <li>
+                        <a data-mui-toggle="tab" data-mui-controls="orders-pane-2">
+                          <i class="las la-industry"></i>
+                          در حال انجام
+                        </a>
+                      </li>
+                      <li>
+                        <a data-mui-toggle="tab" data-mui-controls="orders-pane-3">
+                          <i class="las la-times-circle"></i>
+                          لغو شده
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="mui-tabs__pane mui--is-active" id="orders-pane-1">
+                      <p class="empty">تا کنون سفارشی ثبت نشده است.</p>
+                    </div>
+                    <div class="mui-tabs__pane" id="orders-pane-2">
+                      <p class="empty">تا کنون سفارشی ثبت نشده است.</p>
+                    </div>
+                    <div class="mui-tabs__pane" id="orders-pane-3">
+                      <p class="empty">تا کنون سفارشی ثبت نشده است.</p>
+                    </div>
+                  </div>
+                  <!-- لیست علاقه مندی ها -->
+                  <div class="display-none" data-tab-num="3">
+                    
+                    <div class="item-wrapper">
+                      <div class="item-list">
+
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <!-- آدرس های من -->
+                  <div class="display-none" data-tab-num="4">
+                    <div class="address-box">
+                      <button class="address-add" id="address-add">افزودن آدرس جدید</button>
+
+                      <div class="address-container">
+                        <p class="empty">تا کنون آدرسی ذخیره نشده است.</p>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <!-- نظرات من -->
+                  <div class="display-none" data-tab-num="5">
+                    <div class="reviews-list-wrapper">
+                      <div class="reviews-list" id="reviewsList">
+                        <div class="review-item" data-site-user="arvand@example.com">
+                            <div class="review-header">
+                              <span class="reviewer-name">ناشناس</span>
+                              <span class="review-date">۱۴۰۴/۰۷/۰۸</span>
+                            </div>
+                            <div class="reviewer-info">
+                              <a class="rated-product">مبل راحتی</a>
+                              <div class="product-rating">
+                                <div class="stars" id="stars-1759229353123">
+                                  <span class="star filled" >★</span>
+                                  <span class="star filled" >★</span>
+                                  <span class="star filled" >★</span>
+                                  <span class="star filled" >★</span>
+                                  <span class="star ">☆</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="review-content">
+                              خیلی خوبه! راضی ام
+                            </div>
+                            <div class="helpful-buttons">
+                              <button class="helpful-btn">
+                                  👍 (1)
+                              </button>
+                            </div>
+                        </div>
+                        <!-- reviews-members-header -->
+                      </div>
+                    </div>
+                  </div>
+                  <!-- كیف پول من -->
+                  <div class="display-none" data-tab-num="6">
+                    <ul class="mui-tabs__bar mui-tabs__bar--justified">
+                      <li class="mui--is-active">
+                        <a data-mui-toggle="tab" data-mui-controls="credit-pane-1">
+                          <i class="las la-file-invoice-dollar"></i>
+                          <!-- مدیریت اعتبار حساب -->
+                        </a>
+                      </li>
+                      <li>
+                        <a data-mui-toggle="tab" data-mui-controls="credit-pane-2">
+                          <i class="las la-history"></i>
+                          <!-- تاریخچه تراكنش ها -->
+                        </a>
+                      </li>
+                      <li>
+                        <a data-mui-toggle="tab" data-mui-controls="credit-pane-3">
+                          <i class="las la-chart-area"></i>
+                          <!-- گزارش نموداری -->
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="mui-tabs__pane mui--is-active" id="credit-pane-1">
+                      <span class="title-small-screen">مدیریت اعتبار حساب</span>
+                      <div class="summary">
+                          <div class="summary-item">
+                              <i class="las la-money-check-alt deposit"></i>
+                              <h3>مجموع واریزها</h3>
+                              <div class="summary-amount deposit">۰</div>
+                          </div>
+                          <div class="summary-item">
+                              <i class="las la-shopping-cart purchase"></i>
+                              <h3>مجموع خریدها</h3>
+                              <div class="summary-amount purchase">۰</div>
+                          </div>
+                          <div class="summary-item">
+                              <i class="las la-wallet wallet"></i>
+                              <h3>موجودی كیف پول</h3>
+                              <div class="summary-amount wallet">۰</div>
+                          </div>
+                      </div>
+                      <form action="" id="paymentbox">
+                        <label for="increase-credit">
+                          <span class="label-text">افزایش موجودی کیف پول :</span>
+                          <input name="increase-credit" id="increase-credit" type="text" inputmode="numeric" placeholder="مبلغ مورد نظر" data-visible-input="">
+                          <input id="increase-value" type="number" min="0" max="200000000" pattern="^\d+$" data-hidden-input="">
+                          <i class="las la-money-bill"></i>
+                          <span class="hint-text">مبلغ مورد نظر برای افزایش اعتبار حساب را به تومان وارد نمایید.</span>
+                        </label>
+                        <label for="user-card">
+                          <span class="label-text">
+                            شماره کارت :
+                            <p class="user-card-bank"></p>
+                          </span>
+                          <input name="user-card" id="user-card" type="tel" inputmode="numeric" maxlength="19" autocomplete="off" placeholder="کارت بانکی" data-visible-input="" data-pan-id="">
+                          <i class="las la-credit-card" id="card-list-button"></i>
+                          <span class="bank-logo">
+                            <!-- <img src="assets/images/bank-logo/bank-markazi.png" alt="bank"> -->
+                          </span>
+                          <span class="hint-text">شماره کارت 16 رقمی درج شده روی کارت را وارد نمایید.</span>
+                          <div class="card-suggestionlist suggestionlist-dropdown-menu">
+                            <!-- pans contents -->
+                          </div>
+                        </label>
+                        <label for="user-card-cvv2" class="keypad-parent">
+                          <span class="label-text">شماره شناسایی دوم (CVV2) :</span>
+                          <input name="user-card-cvv2" id="user-card-cvv2" type="password" inputmode="numeric" minlength="3" maxlength="4" size="4" autocomplete="off" placeholder="" data-visible-input="">
+                          <i class="las la-shield-alt"></i>
+                          <span class="hint-text">شماره 3 یا 4 رقمی درج شده روی کارت را وارد نمایید.</span>
+                          <div class="Keypad-btn-wrapper">
+                            <button type="button" id="cvv2KeyPad" class="form-btn keypad" data-input-target="user-card-cvv2" tabindex="-1">
+                            </button>
+                          </div>
+                          <div class="keypad-container">
+                            <!-- keypad contents -->
+                          </div>
+                        </label>
+                        <label for="user-card-exp-month">
+                          <span class="label-text">تاریخ انقضای کارت :</span>
+                          <div>
+                            <div class="user-card-exp-month">
+                              <input name="user-card-exp-month" id="user-card-exp-month" type="tel" inputmode="numeric" size="2" minlength="1" maxlength="2" pattern="^\d+$" autocomplete="off" placeholder="ماه" data-visible-input="">
+                              <input id="card-exp-month-number-value" type="number" min="0" max="12" maxlength="2" data-hidden-input="">
+                            </div>
+                            <div class="user-card-exp-year">
+                              <input name="user-card-exp-year" id="user-card-exp-year" type="tel" inputmode="numeric" size="2" minlength="1" maxlength="2" pattern="^\d+$" autocomplete="off" placeholder="سال" data-visible-input="">
+                            </div>
+                          </div>
+                          <span class="hint-text">تاریخ انقضای کارت را وارد نمایید.</span>
+                        </label>
+                        <label for="user-card-password" class="keypad-parent">
+                          <span class="label-text">رمز اینترنتی کارت :</span>
+                          <input name="user-card-password" id="user-card-password" type="password" inputmode="numeric" minlength="6" maxlength="12" size="12" autocomplete="off" placeholder="رمز دوم/پویا" data-visible-input="">
+                          <i class="las la-key"></i>
+                          <span class="hint-text">رمز اینترنتی 6 تا 12 رقمی را وارد نمایید.</span>
+                          <div class="Keypad-btn-wrapper">
+                            <button type="button" id="passwordKeyPad" class="form-btn keypad" data-input-target="user-card-password" tabindex="-1"></button>
+                          </div>
+                          <div class="keypad-container">
+                            <!-- keypad contents -->
+                          </div>
+                        </label>
+                        <label class="form-check-label" for="savePanCheckbox">
+                          <input class="form-checkbox" type="checkbox" id="savePanCheckbox" checked="">
+                          <span>
+                            ذخیره کارت برای استفاده‌های بعدی
+                          </span>
+											  </label>
+                        <button name="credit-request-submit" type="submit" id="paymentSubmit">
+                          ثبت درخواست
+                          <div class="loader"></div>
+                        </button>
+                      </form>
+                    </div>
+                    <div class="mui-tabs__pane" id="credit-pane-2">
+                      <span class="title-small-screen">تاریخچه تراكنش ها</span>
+                      <div class="filters">
+                        <div class="transactions-filter-wrapper">
+                          <div class="transactions-filter type-filter">
+                            <div class="pre-box">
+                              <span></span>
+                            </div>
+                            <div class="custom-select">
+                              <select id="type-filter">
+                                  <option data-transactions-type="all" value="all">همه تراکنش‌ها</option>
+                                  <option data-transactions-type="all" value="all">همه تراکنش‌ها</option>
+                                  <option data-transactions-type="deposit" value="deposit">واریز</option>
+                                  <option data-transactions-type="purchase" value="purchase">خرید</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="transactions-filter status-filter">
+                            <div class="pre-box">
+                             <span></span>
+                           </div>
+                            <div class="custom-select">
+                              <select id="status-filter">
+                                  <option data-transactions-state="all" value="all">همه وضعیت‌ها</option>
+                                  <option data-transactions-state="all" value="all">همه وضعیت‌ها</option>
+                                  <option data-transactions-state="completed" value="completed">تکمیل شده</option>
+                                  <option data-transactions-state="pending" value="pending">در حال انتظار</option>
+                              </select>
+                            </div> 
+                          </div>
+                        </div>
+                        <div class="date-filter-wrapper">
+                          <div class="input-wrapper">
+                            <span class="pre-date-note">از:</span>
+                            <input type="text" id="pcal-start-date" class="pdate">
+                            <!-- <a class="pcalBtn" href="#"></a> -->
+                          </div>
+                          <div class="input-wrapper">
+                            <span class="pre-date-note">تا:</span>
+                            <input type="text" id="pcal-end-date" class="pdate">
+                            <!-- <a class="pcalBtn" href="#"></a> -->
+                          </div>
+                        </div>
+                        <div class="filter-button-wrapper">
+                          <button id="apply-transactions-filter"><i class="las la-filter"></i> اعمال فیلتر</button>
+                          <button id="discard-transactions-filter"><i class="las la-trash"></i> حذف فیلتر</button>
+                        </div> 
+                      </div>
+                      <div class="transactions-table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>تاریخ</th>
+                                    <th>نوع تراکنش</th>
+                                    <th>مبلغ(تومان)</th>
+                                    <th>توضیحات</th>
+                                    <th>وضعیت</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactions-table-body">
+                                <!-- <tr> -->
+                            </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="mui-tabs__pane" id="credit-pane-3">
+                      <span class="title-small-screen">گزارش نموداری</span>
+                      <div class="transactions-chart-wrapper">
+                        <canvas id="transactionChart"></canvas>
+                        <br/>
+                        <canvas id="creditChart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            
+          </div>
+          
+        </div>
+      </article>
+    </main>
+
+    <div class="content-wrapper pre-footer">
+      <div class="pre-footer-before"></div>
+      <img src="assets/images/footer.png" alt="footer-sofa">
+    </div>
+
+    <footer id="footer-changeable">
+      <div class="mui-container">
+        <div class="mui-row footer-content">
+          <div class="mui-col-md-5 mui-col-xs-12">
+            <h2>اطلاعات تماس</h2>
+            <ul>
+              <li>
+                <i class="las la-map-marker"></i>
+                <span class="rtl-unicode">
+                  تهران - خیابان انقلاب - خیابان پارس
+                </span>
+              </li>
+              <li>
+                <i class="las la-phone"></i>
+                <a href="tel:02112345678">
+                  <span class="rtl-unicode">
+                    021 - 12345678
+                  </span>
+                </a>
+              </li>
+              <li>
+                <i class="las la-envelope"></i>
+                <a href="mailto:somewhere@mail.com">
+                  <span>
+                    somewhere@mail.com
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="mui-col-md-3 mui-col-xs-6">
+            <h2>دسترسی سریع</h2>
+            <ul>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="/index.html">
+                  <span>خانه</span>
+                </a>
+              </li>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="/store.html">
+                  <span>فروشگاه</span>
+                </a>
+              </li>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="/404.html">
+                  <span>خطای ۴۰۴</span>
+                </a>
+              </li>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="">
+                  <span>دیگر نمونه کارها</span>
+                </a>
+              </li>
+              <li>
+                <i class="lab la-first-order-alt"></i>
+                <a href="">
+                  <span>درباه من</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="mui-col-md-4 mui-col-xs-6">
+            <div class="mui-col-md-12 mui-col-xs-12">
+              <a href="">
+                <img src="assets\images\namad1.png" alt="namad">
+              </a>
+              <a href="">
+                <img src="assets\images\namad2.png" alt="namad">
+              </a>
+            </div>
+            <div class="mui-col-md-12 mui-col-xs-12">
+              <div class="social">
+                <a href="">
+                  <i id="instagram" class="lab la-instagram specific-hover"></i>
+                </a>
+                <a href="">
+                  <i id="telegram" class="lab la-telegram specific-hover"></i>
+                </a>
+                <a href="https://wa.me/989036243626?text=سلام!">
+                  <i id="whatsapp" class="lab la-whatsapp specific-hover"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <span>تمامی حقوق این سایت محفوظ بوده و هرگونه استفاده از این سایت پیگرد قانونی دارد</span>
+        </div>
+      </div>
+    </footer>
+
+    <div class="post-footer"></div>
+
+
+
+    <script src="https://cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+    <script src="./assets/js/navbar.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/loginSimulatorModule.js"></script>
+    <script type="text/javascript" src="./assets/js/js-persian-cal.min.js" defer></script>
+    <script src="./assets/js/dashboard.js" defer></script>
+    <script src="https://unpkg.com/jss@10.10.0/dist/jss.js" defer></script>
+    <script src="https://unpkg.com/jss-preset-default@10.10.0/dist/jss-preset-default.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="./assets/js/navbar-cart.js" defer></script>
+    
+    <script>
+      
+    </script> 
+</body>
+</html>

@@ -1,0 +1,3967 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "proId": "ps001",
+            "name": "مبل راحتی ال چرم",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps001.jpg",
+            "categoriesId": [1,7,9],
+            "inStock": 1,
+            "colorId": [1,2,7],
+            "fabricId": [1],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 2,
+            "proId": "ps002",
+            "name": "مبل راحتی طرح خورشید",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps002.jpg",
+            "categoriesId": [1,8,9],
+            "inStock": 1,
+            "colorId": [1,4],
+            "fabricId": [2,3,4],
+            "discount": 15,
+            "discountedPrice": 17000000,
+            "quantity": 5
+        },
+        {
+            "id": 3,
+            "proId": "ps003",
+            "name": "مبل دو نفره طرح نسترن",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps003.jpg",
+            "categoriesId": [1,9],
+            "inStock": 0,
+            "colorId": [1,2],
+            "fabricId": [2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 0
+        },
+        {
+            "id": 4,
+            "proId": "ps004",
+            "name": "مبل راحتی ال طرح افسون",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps004.jpg",
+            "categoriesId": [1,8,9],
+            "inStock": 1,
+            "colorId": [1,2,3,4],
+            "fabricId": [1,2,3,4],
+            "discount": 10,
+            "discountedPrice": 18000000,
+            "quantity": 5
+        },
+        {
+            "id": 5,
+            "proId": "ps005",
+            "name": "مبل دونفره طرح کاووس",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps005.jpg",
+            "categoriesId": [1,7,9],
+            "inStock": 1,
+            "colorId": [1,2,3,4,5,6,7,8],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 6,
+            "proId": "ps006",
+            "name": "مبل راحتی سه نفره",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps006.jpg",
+            "categoriesId": [1,10],
+            "inStock": 1,
+            "colorId": [1,2,3,4,5,6,7],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 7,
+            "proId": "ps007",
+            "name": "مبل راحتی دونفره",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps007.jpg",
+            "categoriesId": [1,7],
+            "inStock": 1,
+            "colorId": [1,2,7,8],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 8,
+            "proId": "ps008",
+            "name": "مبل راحتی 4نفره",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps008.jpg",
+            "categoriesId": [1,7],
+            "inStock": 1,
+            "colorId": [1,2,3,4,5,6,7,8],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 9,
+            "proId": "ps009",
+            "name": "مبل راحتی بزرگ",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps009.jpg",
+            "categoriesId": [1,7,10],
+            "inStock": 1,
+            "colorId": [5,7],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 10,
+            "proId": "ps010",
+            "name": "مبل راحتی طرح مرمر",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps010.jpg",
+            "categoriesId": [1,7,9],
+            "inStock": 1,
+            "colorId": [1,2],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 11,
+            "proId": "ps011",
+            "name": "مبل راحتی طرح ابر",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps011.jpg",
+            "categoriesId": [1,7,9],
+            "inStock": 1,
+            "colorId": [1,2,7,8],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 12,
+            "proId": "ps012",
+            "name": "مبل راحتی ال بزرگ",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps012.jpg",
+            "categoriesId": [1,7,9],
+            "inStock": 1,
+            "colorId": [1,2,3,4,5,6,7,8],
+            "fabricId": [2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 13,
+            "proId": "ps013",
+            "name": "مبل راحتی مدرن",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps013.jpg",
+            "categoriesId": [1,8,9,10],
+            "inStock": 1,
+            "colorId": [2,3,5,8],
+            "fabricId": [1,2,3,4],
+            "discount": 20,
+            "discountedPrice": 16000000,
+            "quantity": 5
+        },
+        {
+            "id": 14,
+            "proId": "ps014",
+            "name": "مبل راحتی مدل افرا",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps014.jpg",
+            "categoriesId": [1,8,9],
+            "inStock": 1,
+            "colorId": [1,7],
+            "fabricId": [1,2,3,4],
+            "discount": 25,
+            "discountedPrice": 15000000,
+            "quantity": 5
+        },
+        {
+            "id": 15,
+            "proId": "ps015",
+            "name": "مبل راحتی 2+1 نفره طرح ياقوت",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps015.jpg",
+            "categoriesId": [1,8,9],
+            "inStock": 1,
+            "colorId": [1,2,3,4,5,6,7,8],
+            "fabricId": [1,2,3,4],
+            "discount": 12,
+            "discountedPrice": 17600000,
+            "quantity": 5
+        },
+        {
+            "id": 16,
+            "proId": "ps016",
+            "name": "مبل 2نفره طرح ياقوت",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps016.jpg",
+            "categoriesId": [1,9],
+            "inStock": 1,
+            "colorId": [1,2,3,4,5,6,7,8],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 17,
+            "proId": "ps017",
+            "name": "مبل راحتی کلاسيک",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps017.jpg",
+            "categoriesId": [1,9],
+            "inStock": 1,
+            "colorId": [7],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 18,
+            "proId": "ps018",
+            "name": "مبل راحتی 2نفره طرح بامبو",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps018.jpg",
+            "categoriesId": [1,9],
+            "inStock": 0,
+            "colorId": [1,2],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 0
+        },
+        {
+            "id": 19,
+            "proId": "ps019",
+            "name": "مبل راحتی طرح مهمان پذير",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps019.jpg",
+            "categoriesId": [1,9],
+            "inStock": 1,
+            "colorId": [1,6,7],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 20,
+            "proId": "ps020",
+            "name": "مبل راحتی طرح شرقی",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps020.jpg",
+            "categoriesId": [1,9],
+            "inStock": 1,
+            "colorId": [1,2,7],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 21,
+            "proId": "ps021",
+            "name": "مبل راحتی تخت شو",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps021.jpg",
+            "categoriesId": [1,9],
+            "inStock": 1,
+            "colorId": [7],
+            "fabricId": [1,2,3],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 22,
+            "proId": "ps022",
+            "name": "مبل راحتی ال",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps022.jpg",
+            "categoriesId": [1,9],
+            "inStock": 1,
+            "colorId": [4,5,6,7],
+            "fabricId": [2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 23,
+            "proId": "ps023",
+            "name": "مبل راحتی 3 نفره",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps023.jpg",
+            "categoriesId": [1,9],
+            "inStock": 1,
+            "colorId": [1,2,3,4,5,6,7,8],
+            "fabricId": [2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 24,
+            "proId": "ps024",
+            "name": "مبل راحتی 3 نفره",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps024.jpg",
+            "categoriesId": [1,9],
+            "inStock": 0,
+            "colorId": [1,7],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 0
+        },
+        {
+            "id": 25,
+            "proId": "ps025",
+            "name": "مبل راحتی طرح جوانه",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps025.jpg",
+            "categoriesId": [1,9],
+            "inStock": 1,
+            "colorId": [1,2,7],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 26,
+            "proId": "ps026",
+            "name": "مبل راحتی نئو کلاسيک",
+            "price": 20000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "ps026.jpg",
+            "categoriesId": [1,9],
+            "inStock": 1,
+            "colorId": [2,7],
+            "fabricId": [2,3],
+            "discount": 0,
+            "discountedPrice": 20000000,
+            "quantity": 5
+        },
+        {
+            "id": 27,
+            "proId": "pc001",
+            "name": "صندلی چرم طرح ديپلومات",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "طراحی ارگونومیک برای حمایت از کمر و کاهش خستگی",
+            "image": "pc001.jpg",
+            "categoriesId": [1,7,9,11],
+            "inStock": 1,
+            "colorId": [1,2],
+            "fabricId": [1],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 28,
+            "proId": "pc002",
+            "name": "صندلی طرح بهار",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "پارچه تنفُس با قابلیت شستشو و مقاوم در برابر لک",
+            "image": "pc002.jpg",
+            "categoriesId": [1,8,9,11],
+            "inStock": 1,
+            "colorId": [3,4,5,6,7,8],
+            "fabricId": [2,3,4],
+            "discount": 14,
+            "discountedPrice": 8600000,
+            "quantity": 5
+        },
+        {
+            "id": 29,
+            "proId": "pc003",
+            "name": "صندلی با ميز استراحت",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "سبک وزن با قابلیت جابجایی آسان",
+            "image": "pc003.jpg",
+            "categoriesId": [1,9,11],
+            "inStock": 0,
+            "colorId": [7],
+            "fabricId": [3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 0
+        },
+        {
+            "id": 30,
+            "proId": "pc004",
+            "name": "صندلی طرح اسفند",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "پارچه تنفُس با قابلیت شستشو و مقاوم در برابر لک",
+            "image": "pc004.jpg",
+            "categoriesId": [1,9,10,11],
+            "inStock": 1,
+            "colorId": [1,2,3,4,5,6,7,8],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 31,
+            "proId": "pc005",
+            "name": "صندلی با ميز استراحت",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "سبک وزن با قابلیت جابجایی آسان",
+            "image": "pc005.jpg",
+            "categoriesId": [1,9,11],
+            "inStock": 1,
+            "colorId": [1,2,7],
+            "fabricId": [2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 32,
+            "proId": "pc006",
+            "name": "صندلی طرح معين",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "pc006.jpg",
+            "categoriesId": [1,7,9,11],
+            "inStock": 1,
+            "colorId": [1,2,3,4,5,6,7,8],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 33,
+            "proId": "pc007",
+            "name": "صندلی طرح مشتاق",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "پایههای چوبی با روکش ضدخش و چهارگوش برای ثبات بالا",
+            "image": "pc007.jpg",
+            "categoriesId": [1,7,9,11],
+            "inStock": 1,
+            "colorId": [1,2,3,4,5,6,7,8],
+            "fabricId": [2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 34,
+            "proId": "pc008",
+            "name": "صندلی کلاسيک",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "مناسب برای خانه، دفتر و فضای مطالعه",
+            "image": "pc008.jpg",
+            "categoriesId": [1,8,9,11],
+            "inStock": 1,
+            "colorId": [1,2,3,6,7,8],
+            "fabricId": [1,2,4],
+            "discount": 20,
+            "discountedPrice": 8000000,
+            "quantity": 5
+        },
+        {
+            "id": 35,
+            "proId": "pc009",
+            "name": "صندلی طرح نئو کلاسيک",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " با طراحی شیک و مدرن، ترکیبی از زیبایی و استحکام را ارائه می‌دهد. این مجموعه با روکش چرم مصنوعی باکیفیت و رنگ‌بندی جذاب، انتخابی ایده‌آل برای پذیرایی از مهمانان در فضایی لوکس و راحت است.",
+            "image": "pc009.jpg",
+            "categoriesId": [1,8,9,11],
+            "inStock": 1,
+            "colorId": [1,2],
+            "fabricId": [2,3],
+            "discount": 10,
+            "discountedPrice": 9000000,
+            "quantity": 5
+        },
+        {
+            "id": 36,
+            "proId": "pc010",
+            "name": "صندلی پايه فلزی ارکيده",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "طراحی ارگونومیک برای حمایت از کمر و کاهش خستگی",
+            "image": "pc010.jpg",
+            "categoriesId": [1,10,11],
+            "inStock": 1,
+            "colorId": [1,5,6,7,8],
+            "fabricId": [2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 37,
+            "proId": "pc011",
+            "name": "صندلی پايه فلزی نيلوفر",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "طراحی ارگونومیک برای حمایت از کمر و کاهش خستگی",
+            "image": "pc011.jpg",
+            "categoriesId": [1,10,11],
+            "inStock": 0,
+            "colorId": [1,2,3,4,5,6,7,8],
+            "fabricId": [2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 0
+        },
+        {
+            "id": 38,
+            "proId": "pc012",
+            "name": "صندلی راحتی مدل طبيعت",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "مناسب برای خانه، دفتر و فضای مطالعه",
+            "image": "pc012.jpg",
+            "categoriesId": [1,7,9,11],
+            "inStock": 1,
+            "colorId": [1,2,3],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 39,
+            "proId": "pc013",
+            "name": "صندلی طرح مدرن",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "مناسب برای خانه، دفتر و فضای مطالعه",
+            "image": "pc013.jpg",
+            "categoriesId": [1,9,11],
+            "inStock": 1,
+            "colorId": [1,2,6,7,8],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 40,
+            "proId": "pc014",
+            "name": "صندلی طرح هزاره",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "پایههای چوبی با روکش ضدخش و چهارگوش برای ثبات بالا",
+            "image": "pc014.jpg",
+            "categoriesId": [1,8,9,11],
+            "inStock": 1,
+            "colorId": [1,2,6,7],
+            "fabricId": [1,2,3,4],
+            "discount": 29,
+            "discountedPrice": 7100000,
+            "quantity": 5
+        },
+        {
+            "id": 41,
+            "proId": "pc015",
+            "name": "صندلی طرح بامبو",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "سبک وزن با قابلیت جابجایی آسان",
+            "image": "pc015.jpg",
+            "categoriesId": [1,9,11],
+            "inStock": 1,
+            "colorId": [1,2,3,4,5,6,7,8],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 42,
+            "proId": "pc016",
+            "name": "صندلی طرح فيروزه",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "مناسب برای خانه، دفتر و فضای مطالعه",
+            "image": "pc016.jpg",
+            "categoriesId": [1,7,9,10,11],
+            "inStock": 1,
+            "colorId": [1,2,5,7],
+            "fabricId": [2,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 43,
+            "proId": "pc017",
+            "name": "صندلی طرح مرواريد",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "مناسب برای خانه، دفتر و فضای مطالعه",
+            "image": "pc017.jpg",
+            "categoriesId": [1,8,9,11],
+            "inStock": 1,
+            "colorId": [1,2,3,4,5,6,7,8],
+            "fabricId": [1,2,3,4],
+            "discount": 5,
+            "discountedPrice": 9500000,
+            "quantity": 5
+        },
+        {
+            "id": 44,
+            "proId": "pc018",
+            "name": "صندلی طرح صدف",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "پارچه تنفُس با قابلیت شستشو و مقاوم در برابر لک",
+            "image": "pc018.jpg",
+            "categoriesId": [1,9,11],
+            "inStock": 1,
+            "colorId": [1,2,3,4,5,6,7,8],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 45,
+            "proId": "pc019",
+            "name": "صندلی طرح ارديبهشت",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "سبک وزن با قابلیت جابجایی آسان",
+            "image": "pc019.jpg",
+            "categoriesId": [1,10,11],
+            "inStock": 0,
+            "colorId": [1,2,6,7,8],
+            "fabricId": [2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 0
+        },
+        {
+            "id": 46,
+            "proId": "pc020",
+            "name": "صندلی طرح شاه نشين",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "پارچه تنفُس با قابلیت شستشو و مقاوم در برابر لک",
+            "image": "pc020.jpg",
+            "categoriesId": [1,7,10,11],
+            "inStock": 1,
+            "colorId": [1,2,3,4,5,7],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 47,
+            "proId": "pc021",
+            "name": "صندلی طرح وزير",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": " پایههای چوبی با روکش ضدخش و چهارگوش برای ثبات بالا",
+            "image": "pc021.jpg",
+            "categoriesId": [1,11],
+            "inStock": 0,
+            "colorId": [1,2,3,4,5,6,7],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 0
+        },
+        {
+            "id": 48,
+            "proId": "pc022",
+            "name": "صندلی طرح افق",
+            "price": 9000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "سبک وزن با قابلیت جابجایی آسان",
+            "image": "pc022.jpg",
+            "categoriesId": [1,8,9,11],
+            "inStock": 1,
+            "colorId": [1,2,3,4],
+            "fabricId": [1,2,3],
+            "discount": 18,
+            "discountedPrice": 7380000,
+            "quantity": 5
+        },
+        {
+            "id": 49,
+            "proId": "pc023",
+            "name": "صندلی طرح ماوراء",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "سبک وزن با قابلیت جابجایی آسان",
+            "image": "pc023.jpg",
+            "categoriesId": [1,10,11],
+            "inStock": 0,
+            "colorId": [1,2,7],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 0
+        },
+        {
+            "id": 50,
+            "proId": "pc024",
+            "name": "صندلی طرح جنگل",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "طراحی ارگونومیک برای حمایت از کمر و کاهش خستگی",
+            "image": "pc024.jpg",
+            "categoriesId": [1,9,10,11],
+            "inStock": 1,
+            "colorId": [3,4,5,6,7,8],
+            "fabricId": [1,2,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 51,
+            "proId": "pc025",
+            "name": "صندلی طرح شاهين",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "پایههای چوبی با روکش ضدخش و چهارگوش برای ثبات بالا",
+            "image": "pc025.jpg",
+            "categoriesId": [1,7,9,11],
+            "inStock": 1,
+            "colorId": [1,2,3,5,7],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 52,
+            "proId": "pc026",
+            "name": "صندلی طرح رويا",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "مناسب برای خانه، دفتر و فضای مطالعه",
+            "image": "pc026.jpg",
+            "categoriesId": [1,10,11],
+            "inStock": 1,
+            "colorId": [1,3,8],
+            "fabricId": [3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 53,
+            "proId": "pc027",
+            "name": "صندلی طرح کرمان",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "پایههای چوبی با روکش ضدخش و چهارگوش برای ثبات بالا",
+            "image": "pc027.jpg",
+            "categoriesId": [1,8,9,11],
+            "inStock": 1,
+            "colorId": [3,4,7],
+            "fabricId": [1,2,3,4],
+            "discount": 10,
+            "discountedPrice": 9000000,
+            "quantity": 5
+        },
+        {
+            "id": 54,
+            "proId": "pc028",
+            "name": "صندلی طرح اشکان",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "پایههای چوبی با روکش ضدخش و چهارگوش برای ثبات بالا",
+            "image": "pc028.jpg",
+            "categoriesId": [1,9,11],
+            "inStock": 1,
+            "colorId": [1,2,4,7],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 55,
+            "proId": "pc029",
+            "name": "صندلی تنظيم شونده",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "طراحی ارگونومیک برای حمایت از کمر و کاهش خستگی",
+            "image": "pc029.jpg",
+            "categoriesId": [1,7,10,11],
+            "inStock": 1,
+            "colorId": [1,2,7],
+            "fabricId": [1,2],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 56,
+            "proId": "pc030",
+            "name": "صندلی طرح کوير",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "پارچه تنفُس با قابلیت شستشو و مقاوم در برابر لک",
+            "image": "pc030.jpg",
+            "categoriesId": [1,8,9,11],
+            "inStock": 1,
+            "colorId": [1,3,4,6,7],
+            "fabricId": [2,3],
+            "discount": 12,
+            "discountedPrice": 8800000,
+            "quantity": 5
+        },
+        {
+            "id": 57,
+            "proId": "pc031",
+            "name": "صندلی طرح برف",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "مناسب برای خانه، دفتر و فضای مطالعه",
+            "image": "pc031.jpg",
+            "categoriesId": [1,9,11],
+            "inStock": 0,
+            "colorId": [1,2,8],
+            "fabricId": [1,2],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 0
+        },
+        {
+            "id": 58,
+            "proId": "pc032",
+            "name": "صندلی طرح رفيع",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "پارچه تنفُس با قابلیت شستشو و مقاوم در برابر لک",
+            "image": "pc032.jpg",
+            "categoriesId": [1,9,11],
+            "inStock": 1,
+            "colorId": [2,7,8],
+            "fabricId": [2],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 59,
+            "proId": "pc033",
+            "name": "صندلی طرح دماوند",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "پارچه تنفُس با قابلیت شستشو و مقاوم در برابر لک",
+            "image": "pc033.jpg",
+            "categoriesId": [1,11],
+            "inStock": 1,
+            "colorId": [1,7],
+            "fabricId": [2,3],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 60,
+            "proId": "po001",
+            "name": "صندلی اداری",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "طراحی ارگونومیک برای حمایت از کمر و کاهش خستگی",
+            "image": "po001.jpg",
+            "categoriesId": [2,10,11],
+            "inStock": 1,
+            "colorId": [2],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 61,
+            "proId": "po002",
+            "name": "صندلی اداری",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "طراحی ارگونومیک برای حمایت از کمر و کاهش خستگی",
+            "image": "po002.jpg",
+            "categoriesId": [2,8,10,11],
+            "inStock": 1,
+            "colorId": [2,7],
+            "fabricId": [1,2,3,4],
+            "discount": 10,
+            "discountedPrice": 9000000,
+            "quantity": 5
+        },
+        {
+            "id": 62,
+            "proId": "po003",
+            "name": "صندلی اداری",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "طراحی ارگونومیک برای حمایت از کمر و کاهش خستگی",
+            "image": "po003.jpg",
+            "categoriesId": [2,10,11],
+            "inStock": 0,
+            "colorId": [2,3],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 0
+        },
+        {
+            "id": 63,
+            "proId": "po004",
+            "name": "صندلی اداری",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "طراحی ارگونومیک برای حمایت از کمر و کاهش خستگی",
+            "image": "po004.jpg",
+            "categoriesId": [2,10,11],
+            "inStock": 1,
+            "colorId": [4],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 64,
+            "proId": "po005",
+            "name": "صندلی اداری",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "طراحی ارگونومیک برای حمایت از کمر و کاهش خستگی",
+            "image": "po005.jpg",
+            "categoriesId": [2,10,11],
+            "inStock": 1,
+            "colorId": [5],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 65,
+            "proId": "po006",
+            "name": "صندلی اداری",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "طراحی ارگونومیک برای حمایت از کمر و کاهش خستگی",
+            "image": "po006.jpg",
+            "categoriesId": [2,10,11],
+            "inStock": 1,
+            "colorId": [6],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 5
+        },
+        {
+            "id": 66,
+            "proId": "pt001",
+            "name": "ميز ناهارخوری 6 نفره",
+            "price": 25000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "پایههای چوبی با روکش ضدخش و چهارگوش برای ثبات بالا",
+            "image": "pt001.jpg",
+            "categoriesId": [3,9],
+            "inStock": 1,
+            "colorId": [1,2,7],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 25000000,
+            "quantity": 5
+        },
+        {
+            "id": 67,
+            "proId": "pt002",
+            "name": "ميز چوبی 6 نفره",
+            "price": 35000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "طراحی ارگونومیک برای حمایت از کمر و کاهش خستگی",
+            "image": "pt002.jpg",
+            "categoriesId": [3,7,9],
+            "inStock": 1,
+            "colorId": [1],
+            "fabricId": [1,2,3,4],
+            "discount": 0,
+            "discountedPrice": 35000000,
+            "quantity": 5
+        },
+        {
+            "id": 68,
+            "proId": "pt003",
+            "name": "ميز چوبی کلاسيک",
+            "price": 15000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "سبک وزن با قابلیت جابجایی آسان",
+            "image": "pt003.jpg",
+            "categoriesId": [3,8,9],
+            "inStock": 1,
+            "colorId": [6],
+            "fabricId": [0],
+            "discount": 16,
+            "discountedPrice": 12600000,
+            "quantity": 5
+        },
+        {
+            "id": 69,
+            "proId": "pt004",
+            "name": "ميز پذيرايی",
+            "price": 10000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "سبک وزن با قابلیت جابجایی آسان",
+            "image": "pt004.jpg",
+            "categoriesId": [3,9],
+            "inStock": 0,
+            "colorId": [6],
+            "fabricId": [0],
+            "discount": 0,
+            "discountedPrice": 10000000,
+            "quantity": 0
+        },
+        {
+            "id": 70,
+            "proId": "pb001",
+            "name": "تخت خواب دو نفره",
+            "price": 30000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "سبک وزن با قابلیت جابجایی آسان",
+            "image": "pb001.jpg",
+            "categoriesId": [4,8,9,13],
+            "inStock": 1,
+            "colorId": [3],
+            "fabricId": [0],
+            "discount": 8,
+            "discountedPrice": 27600000,
+            "quantity": 5
+        },
+        {
+            "id": 71,
+            "proId": "pb002",
+            "name": "تخت خواب دو نفره",
+            "price": 30000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "سبک وزن با قابلیت جابجایی آسان",
+            "image": "pb002.jpg",
+            "categoriesId": [4,7,9,13],
+            "inStock": 1,
+            "colorId": [2],
+            "fabricId": [0],
+            "discount": 0,
+            "discountedPrice": 30000000,
+            "quantity": 5
+        },
+        {
+            "id": 72,
+            "proId": "pb003",
+            "name": "تخت خواب يک نفره",
+            "price": 15000000,
+            "description": "خلاصه توضيحات محصول...",
+            "productDetails": "سبک وزن با قابلیت جابجایی آسان",
+            "image": "pb003.jpg",
+            "categoriesId": [4,9,12],
+            "inStock": 1,
+            "colorId": [2],
+            "fabricId": [0],
+            "discount": 0,
+            "discountedPrice": 15000000,
+            "quantity": 5
+        }
+    ],
+    "fabrics": [
+        {
+            "id": 1,
+            "name": "چرم"
+        },
+        {
+            "id": 2,
+            "name": "پارچه مخمل"
+        },
+        {
+            "id": 3,
+            "name": "پارچه کتان"
+        },
+        {
+            "id": 4,
+            "name": "پارچه شمعی"
+        }
+    ],
+    "colors": [
+        {
+            "id": 1,
+            "name": "سفيد",
+            "hex": "#ffffff"
+        },
+        {
+            "id": 2,
+            "name": "سياه",
+            "hex": "#000000"
+        },
+        {
+            "id": 3,
+            "name": "سبز",
+            "hex": "#00ff00"
+        },
+        {
+            "id": 4,
+            "name": "زرد",
+            "hex": "#ffff00"
+        },
+        {
+            "id": 5,
+            "name": "آبی",
+            "hex": "#0000ff"
+        },
+        {
+            "id": 6,
+            "name": "قرمز",
+            "hex": "#ff0000"
+        },
+        {
+            "id": 7,
+            "name": "خاکستری",
+            "hex": "#777777"
+        },
+        {
+            "id": 8,
+            "name": "بنفش",
+            "hex": "#ff00ff"
+        }
+    ],
+    "categories": [
+        {
+            "id": 1,
+            "name": "راحتی"
+        },
+        {
+            "id": 2,
+            "name": "اداری"
+        },
+        {
+            "id": 3,
+            "name": "ميز"
+        },
+        {
+            "id": 4,
+            "name": "خواب"
+        },
+        {
+            "id": 5,
+            "name": "فرش"
+        },
+        {
+            "id": 6,
+            "name": "موکت"
+        },
+        {
+            "id": 7,
+            "name": "جديد"
+        },
+        {
+            "id": 8,
+            "name": "ويژه"
+        },
+        {
+            "id": 9,
+            "name": "چوبی"
+        },
+        {
+            "id": 10,
+            "name": "فلزی"
+        },
+        {
+            "id": 11,
+            "name": "صندلی"
+        },
+        {
+            "id": 12,
+            "name": "تک"
+        },
+        {
+            "id": 13,
+            "name": "جفت"
+        },
+        {
+            "id": 14,
+            "name": "همه"
+        }
+    ],
+    "reviews": [
+        {
+          "id": 1,
+          "comments": [
+			      {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000001000,
+              "name": "فاطمه محمدی",
+              "rating": 4,
+              "date": 1700001000000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 3
+            },
+            {
+              "id": 1700000001010,
+              "name": "علی کریمی",
+              "rating": 3,
+              "date": 1700001010000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 8
+            },
+            {
+              "id": 1700000001020,
+              "name": "سارا جمالی",
+              "rating": 5,
+              "date": 1700001020000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 13
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "comments": [
+            {
+              "id": 1759235201398,
+              "name": "اروند",
+              "rating": 4,
+              "date": 1759235201398,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی اش کمی بلندتر بود برای قد من مناسب تر می شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 0,
+              "validUser": "arvand@example.com",
+              "validUserPname": "مبل راحتی طرح خورشید",
+              "validUserPid": 2
+            },
+            {
+              "id": 1700000002000,
+              "name": "علی کریمی",
+              "rating": 3,
+              "date": 1700002000000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 6
+            },
+            {
+              "id": 1700000002010,
+              "name": "سارا جمالی",
+              "rating": 5,
+              "date": 1700002010000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 11
+            },
+            {
+              "id": 1700000002020,
+              "name": "حدیثه میرزازاده",
+              "rating": 4,
+              "date": 1700002020000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 16
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000003000,
+              "name": "سارا جمالی",
+              "rating": 5,
+              "date": 1700003000000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 9
+            },
+            {
+              "id": 1700000003010,
+              "name": "حدیثه میرزازاده",
+              "rating": 4,
+              "date": 1700003010000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 14
+            },
+            {
+              "id": 1700000003020,
+              "name": "احسان جعفری",
+              "rating": 3,
+              "date": 1700003020000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 19
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "comments": [
+            {
+              "id": 1700000004000,
+              "name": "حدیثه میرزازاده",
+              "rating": 4,
+              "date": 1700004000000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 12
+            },
+            {
+              "id": 1700000004010,
+              "name": "احسان جعفری",
+              "rating": 3,
+              "date": 1700004010000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 17
+            },
+            {
+              "id": 1700000004020,
+              "name": "امیر عباسی",
+              "rating": 5,
+              "date": 1700004020000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 2
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000005000,
+              "name": "احسان جعفری",
+              "rating": 3,
+              "date": 1700005000000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 15
+            },
+            {
+              "id": 1700000005010,
+              "name": "امیر عباسی",
+              "rating": 5,
+              "date": 1700005010000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 20
+            },
+            {
+              "id": 1700000005020,
+              "name": "نازنین رحیمی",
+              "rating": 4,
+              "date": 1700005020000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 5
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "comments": [
+            {
+              "id": 1700000006000,
+              "name": "امیر عباسی",
+              "rating": 5,
+              "date": 1700006000000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 18
+            },
+            {
+              "id": 1700000006010,
+              "name": "نازنین رحیمی",
+              "rating": 4,
+              "date": 1700006010000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 3
+            },
+            {
+              "id": 1700000006020,
+              "name": "حمید نظری",
+              "rating": 3,
+              "date": 1700006020000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 8
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000007000,
+              "name": "نازنین رحیمی",
+              "rating": 4,
+              "date": 1700007000000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000007010,
+              "name": "حمید نظری",
+              "rating": 3,
+              "date": 1700007010000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 6
+            },
+            {
+              "id": 1700000007020,
+              "name": "مریم کاظمی",
+              "rating": 5,
+              "date": 1700007020000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 11
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "comments": [
+            {
+              "id": 1700000008000,
+              "name": "حمید نظری",
+              "rating": 3,
+              "date": 1700008000000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 4
+            },
+            {
+              "id": 1700000008010,
+              "name": "مریم کاظمی",
+              "rating": 5,
+              "date": 1700008010000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 9
+            },
+            {
+              "id": 1700000008020,
+              "name": "محمد رضایی",
+              "rating": 4,
+              "date": 1700008020000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 14
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000009000,
+              "name": "مریم کاظمی",
+              "rating": 5,
+              "date": 1700009000000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 7
+            },
+            {
+              "id": 1700000009010,
+              "name": "محمد رضایی",
+              "rating": 4,
+              "date": 1700009010000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 12
+            },
+            {
+              "id": 1700000009020,
+              "name": "فاطمه محمدی",
+              "rating": 3,
+              "date": 1700009020000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 17
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "comments": [
+            {
+              "id": 1700000010000,
+              "name": "محمد رضایی",
+              "rating": 4,
+              "date": 1700010000000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 10
+            },
+            {
+              "id": 1700000010010,
+              "name": "فاطمه محمدی",
+              "rating": 3,
+              "date": 1700010010000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 15
+            },
+            {
+              "id": 1700000010020,
+              "name": "علی کریمی",
+              "rating": 5,
+              "date": 1700010020000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 20
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000011000,
+              "name": "فاطمه محمدی",
+              "rating": 3,
+              "date": 1700011000000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 13
+            },
+            {
+              "id": 1700000011010,
+              "name": "علی کریمی",
+              "rating": 5,
+              "date": 1700011010000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 18
+            },
+            {
+              "id": 1700000011020,
+              "name": "سارا جمالی",
+              "rating": 4,
+              "date": 1700011020000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 3
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "comments": [
+            {
+              "id": 1700000012000,
+              "name": "علی کریمی",
+              "rating": 5,
+              "date": 1700012000000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 16
+            },
+            {
+              "id": 1700000012010,
+              "name": "سارا جمالی",
+              "rating": 4,
+              "date": 1700012010000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000012020,
+              "name": "حدیثه میرزازاده",
+              "rating": 3,
+              "date": 1700012020000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 6
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000013000,
+              "name": "سارا جمالی",
+              "rating": 4,
+              "date": 1700013000000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 19
+            },
+            {
+              "id": 1700000013010,
+              "name": "حدیثه میرزازاده",
+              "rating": 3,
+              "date": 1700013010000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 4
+            },
+            {
+              "id": 1700000013020,
+              "name": "احسان جعفری",
+              "rating": 5,
+              "date": 1700013020000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 9
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "comments": [
+            {
+              "id": 1700000014000,
+              "name": "حدیثه میرزازاده",
+              "rating": 3,
+              "date": 1700014000000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 2
+            },
+            {
+              "id": 1700000014010,
+              "name": "احسان جعفری",
+              "rating": 5,
+              "date": 1700014010000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 7
+            },
+            {
+              "id": 1700000014020,
+              "name": "امیر عباسی",
+              "rating": 4,
+              "date": 1700014020000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 12
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "comments": [
+            {
+              "id": 1759235656662,
+              "name": "اروند",
+              "rating": 4,
+              "date": 1759235656662,
+              "content": "این مبل واقعا به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می شم روی این مبل، تمام خستگیام در میره.",
+              "helpful": 2,
+              "validUser": "arvand@example.com",
+              "validUserPname": "مبل راحتی ۲+۱ نفره طرح یاقوت",
+              "validUserPid": 15
+            },
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000015010,
+              "name": "امیر عباسی",
+              "rating": 4,
+              "date": 1700015010000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 10
+            },
+            {
+              "id": 1700000015020,
+              "name": "نازنین رحیمی",
+              "rating": 3,
+              "date": 1700015020000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 15
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "comments": [
+            {
+              "id": 1700000016000,
+              "name": "امیر عباسی",
+              "rating": 4,
+              "date": 1700016000000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 8
+            },
+            {
+              "id": 1700000016010,
+              "name": "نازنین رحیمی",
+              "rating": 3,
+              "date": 1700016010000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 13
+            },
+            {
+              "id": 1700000016020,
+              "name": "حمید نظری",
+              "rating": 5,
+              "date": 1700016020000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 18
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000017000,
+              "name": "نازنین رحیمی",
+              "rating": 3,
+              "date": 1700017000000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 11
+            },
+            {
+              "id": 1700000017010,
+              "name": "حمید نظری",
+              "rating": 5,
+              "date": 1700017010000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 16
+            },
+            {
+              "id": 1700000017020,
+              "name": "مریم کاظمی",
+              "rating": 4,
+              "date": 1700017020000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 1
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "comments": [
+            {
+              "id": 1700000018000,
+              "name": "حمید نظری",
+              "rating": 5,
+              "date": 1700018000000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 14
+            },
+            {
+              "id": 1700000018010,
+              "name": "مریم کاظمی",
+              "rating": 4,
+              "date": 1700018010000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 19
+            },
+            {
+              "id": 1700000018020,
+              "name": "محمد رضایی",
+              "rating": 3,
+              "date": 1700018020000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 4
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000019000,
+              "name": "مریم کاظمی",
+              "rating": 4,
+              "date": 1700019000000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 17
+            },
+            {
+              "id": 1700000019010,
+              "name": "محمد رضایی",
+              "rating": 3,
+              "date": 1700019010000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 2
+            },
+            {
+              "id": 1700000019020,
+              "name": "فاطمه محمدی",
+              "rating": 5,
+              "date": 1700019020000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 7
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "comments": [
+            {
+              "id": 1700000020000,
+              "name": "محمد رضایی",
+              "rating": 3,
+              "date": 1700020000000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 20
+            },
+            {
+              "id": 1700000020010,
+              "name": "فاطمه محمدی",
+              "rating": 5,
+              "date": 1700020010000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 5
+            },
+            {
+              "id": 1700000020020,
+              "name": "علی کریمی",
+              "rating": 4,
+              "date": 1700020020000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 10
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000021000,
+              "name": "فاطمه محمدی",
+              "rating": 5,
+              "date": 1700021000000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 3
+            },
+            {
+              "id": 1700000021010,
+              "name": "علی کریمی",
+              "rating": 4,
+              "date": 1700021010000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 8
+            },
+            {
+              "id": 1700000021020,
+              "name": "سارا جمالی",
+              "rating": 3,
+              "date": 1700021020000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 13
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "comments": [
+            {
+              "id": 1700000022000,
+              "name": "علی کریمی",
+              "rating": 4,
+              "date": 1700022000000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 6
+            },
+            {
+              "id": 1700000022010,
+              "name": "سارا جمالی",
+              "rating": 3,
+              "date": 1700022010000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 11
+            },
+            {
+              "id": 1700000022020,
+              "name": "حدیثه میرزازاده",
+              "rating": 5,
+              "date": 1700022020000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 16
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000023000,
+              "name": "سارا جمالی",
+              "rating": 3,
+              "date": 1700023000000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 9
+            },
+            {
+              "id": 1700000023010,
+              "name": "حدیثه میرزازاده",
+              "rating": 5,
+              "date": 1700023010000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 14
+            },
+            {
+              "id": 1700000023020,
+              "name": "احسان جعفری",
+              "rating": 4,
+              "date": 1700023020000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 19
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "comments": [
+            {
+              "id": 1700000024000,
+              "name": "حدیثه میرزازاده",
+              "rating": 5,
+              "date": 1700024000000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 12
+            },
+            {
+              "id": 1700000024010,
+              "name": "احسان جعفری",
+              "rating": 4,
+              "date": 1700024010000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 17
+            },
+            {
+              "id": 1700000024020,
+              "name": "امیر عباسی",
+              "rating": 3,
+              "date": 1700024020000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 2
+            }
+          ]
+        },
+        {
+          "id": 25,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000025000,
+              "name": "احسان جعفری",
+              "rating": 4,
+              "date": 1700025000000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 15
+            },
+            {
+              "id": 1700000025010,
+              "name": "امیر عباسی",
+              "rating": 3,
+              "date": 1700025010000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 20
+            },
+            {
+              "id": 1700000025020,
+              "name": "نازنین رحیمی",
+              "rating": 5,
+              "date": 1700025020000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 5
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "comments": [
+            {
+              "id": 1700000026000,
+              "name": "امیر عباسی",
+              "rating": 3,
+              "date": 1700026000000,
+              "content": "برای قیمتش بد نیست، اما فکر می‌کنم پر کردن داخل مبل می‌تونست بهتر باشه. بعد از ۶ ماه کمی فرورفتگی پیدا کرده.",
+              "helpful": 18
+            },
+            {
+              "id": 1700000026010,
+              "name": "نازنین رحیمی",
+              "rating": 5,
+              "date": 1700026010000,
+              "content": "این مبل واقعاً به اسمش هست - راحتی محض! بعد از ۸ ساعت کار سخت وقتی می‌شم روی این مبل، تمام خستگیام در میره. پارچه ضد لکه هم که واقعاً به درد خانواده‌هایی مثل ما با بچه کوچیک می‌خوره.",
+              "helpful": 3
+            },
+            {
+              "id": 1700000026020,
+              "name": "حمید نظری",
+              "rating": 4,
+              "date": 1700026020000,
+              "content": "کلی از طراحی و رنگ مبل راضی هستم. فقط اگر پشتی‌اش کمی بلندتر بود برای قد من مناسب‌تر می‌شد. اما به طور کلی ارزش خرید داشت.",
+              "helpful": 8
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000027000,
+              "name": "نازنین رحیمی",
+              "rating": 5,
+              "date": 1700027000000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000027010,
+              "name": "حمید نظری",
+              "rating": 4,
+              "date": 1700027010000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 6
+            },
+            {
+              "id": 1700000027020,
+              "name": "مریم کاظمی",
+              "rating": 2,
+              "date": 1700027020000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 11
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "comments": [
+            {
+              "id": 1700000028000,
+              "name": "حمید نظری",
+              "rating": 4,
+              "date": 1700028000000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 4
+            },
+            {
+              "id": 1700000028010,
+              "name": "مریم کاظمی",
+              "rating": 2,
+              "date": 1700028010000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 9
+            },
+            {
+              "id": 1700000028020,
+              "name": "محمد رضایی",
+              "rating": 5,
+              "date": 1700028020000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 14
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000029000,
+              "name": "مریم کاظمی",
+              "rating": 2,
+              "date": 1700029000000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 7
+            },
+            {
+              "id": 1700000029010,
+              "name": "محمد رضایی",
+              "rating": 5,
+              "date": 1700029010000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 12
+            },
+            {
+              "id": 1700000029020,
+              "name": "فاطمه محمدی",
+              "rating": 4,
+              "date": 1700029020000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 17
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "comments": [
+            {
+              "id": 1700000030000,
+              "name": "محمد رضایی",
+              "rating": 5,
+              "date": 1700030000000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 10
+            },
+            {
+              "id": 1700000030010,
+              "name": "فاطمه محمدی",
+              "rating": 4,
+              "date": 1700030010000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 15
+            },
+            {
+              "id": 1700000030020,
+              "name": "علی کریمی",
+              "rating": 2,
+              "date": 1700030020000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 20
+            }
+          ]
+        },
+        {
+          "id": 31,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000031000,
+              "name": "فاطمه محمدی",
+              "rating": 4,
+              "date": 1700031000000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 13
+            },
+            {
+              "id": 1700000031010,
+              "name": "علی کریمی",
+              "rating": 2,
+              "date": 1700031010000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 18
+            },
+            {
+              "id": 1700000031020,
+              "name": "سارا جمالی",
+              "rating": 5,
+              "date": 1700031020000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 3
+            }
+          ]
+        },
+        {
+          "id": 32,
+          "comments": [
+            {
+              "id": 1700000032000,
+              "name": "علی کریمی",
+              "rating": 2,
+              "date": 1700032000000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 16
+            },
+            {
+              "id": 1700000032010,
+              "name": "سارا جمالی",
+              "rating": 5,
+              "date": 1700032010000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000032020,
+              "name": "حدیثه میرزازاده",
+              "rating": 4,
+              "date": 1700032020000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 6
+            }
+          ]
+        },
+        {
+          "id": 33,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000033000,
+              "name": "سارا جمالی",
+              "rating": 5,
+              "date": 1700033000000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 19
+            },
+            {
+              "id": 1700000033010,
+              "name": "حدیثه میرزازاده",
+              "rating": 4,
+              "date": 1700033010000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 4
+            },
+            {
+              "id": 1700000033020,
+              "name": "احسان جعفری",
+              "rating": 2,
+              "date": 1700033020000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 9
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "comments": [
+            {
+              "id": 1700000034000,
+              "name": "حدیثه میرزازاده",
+              "rating": 4,
+              "date": 1700034000000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 2
+            },
+            {
+              "id": 1700000034010,
+              "name": "احسان جعفری",
+              "rating": 2,
+              "date": 1700034010000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 7
+            },
+            {
+              "id": 1700000034020,
+              "name": "امیر عباسی",
+              "rating": 5,
+              "date": 1700034020000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 12
+            }
+          ]
+        },
+        {
+          "id": 35,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000035000,
+              "name": "احسان جعفری",
+              "rating": 2,
+              "date": 1700035000000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 5
+            },
+            {
+              "id": 1700000035010,
+              "name": "امیر عباسی",
+              "rating": 5,
+              "date": 1700035010000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 10
+            },
+            {
+              "id": 1700000035020,
+              "name": "نازنین رحیمی",
+              "rating": 4,
+              "date": 1700035020000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 15
+            }
+          ]
+        },
+        {
+          "id": 36,
+          "comments": [
+            {
+              "id": 1700000036000,
+              "name": "امیر عباسی",
+              "rating": 5,
+              "date": 1700036000000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 8
+            },
+            {
+              "id": 1700000036010,
+              "name": "نازنین رحیمی",
+              "rating": 4,
+              "date": 1700036010000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 13
+            },
+            {
+              "id": 1700000036020,
+              "name": "حمید نظری",
+              "rating": 2,
+              "date": 1700036020000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 18
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000037000,
+              "name": "نازنین رحیمی",
+              "rating": 4,
+              "date": 1700037000000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 11
+            },
+            {
+              "id": 1700000037010,
+              "name": "حمید نظری",
+              "rating": 2,
+              "date": 1700037010000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 16
+            },
+            {
+              "id": 1700000037020,
+              "name": "مریم کاظمی",
+              "rating": 5,
+              "date": 1700037020000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 1
+            }
+          ]
+        },
+        {
+          "id": 38,
+          "comments": [
+            {
+              "id": 1700000038000,
+              "name": "حمید نظری",
+              "rating": 2,
+              "date": 1700038000000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 14
+            },
+            {
+              "id": 1700000038010,
+              "name": "مریم کاظمی",
+              "rating": 5,
+              "date": 1700038010000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 19
+            },
+            {
+              "id": 1700000038020,
+              "name": "محمد رضایی",
+              "rating": 4,
+              "date": 1700038020000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 4
+            }
+          ]
+        },
+        {
+          "id": 39,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000039000,
+              "name": "مریم کاظمی",
+              "rating": 5,
+              "date": 1700039000000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 17
+            },
+            {
+              "id": 1700000039010,
+              "name": "محمد رضایی",
+              "rating": 4,
+              "date": 1700039010000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 2
+            },
+            {
+              "id": 1700000039020,
+              "name": "فاطمه محمدی",
+              "rating": 2,
+              "date": 1700039020000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 7
+            }
+          ]
+        },
+        {
+          "id": 40,
+          "comments": [
+            {
+              "id": 1700000040000,
+              "name": "محمد رضایی",
+              "rating": 4,
+              "date": 1700040000000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 20
+            },
+            {
+              "id": 1700000040010,
+              "name": "فاطمه محمدی",
+              "rating": 2,
+              "date": 1700040010000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 5
+            },
+            {
+              "id": 1700000040020,
+              "name": "علی کریمی",
+              "rating": 5,
+              "date": 1700040020000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 10
+            }
+          ]
+        },
+        {
+          "id": 41,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000041000,
+              "name": "فاطمه محمدی",
+              "rating": 2,
+              "date": 1700041000000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 3
+            },
+            {
+              "id": 1700000041010,
+              "name": "علی کریمی",
+              "rating": 5,
+              "date": 1700041010000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 8
+            },
+            {
+              "id": 1700000041020,
+              "name": "سارا جمالی",
+              "rating": 4,
+              "date": 1700041020000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 13
+            }
+          ]
+        },
+        {
+          "id": 42,
+          "comments": [
+            {
+              "id": 1700000042000,
+              "name": "علی کریمی",
+              "rating": 5,
+              "date": 1700042000000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 6
+            },
+            {
+              "id": 1700000042010,
+              "name": "سارا جمالی",
+              "rating": 4,
+              "date": 1700042010000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 11
+            },
+            {
+              "id": 1700000042020,
+              "name": "حدیثه میرزازاده",
+              "rating": 2,
+              "date": 1700042020000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 16
+            }
+          ]
+        },
+        {
+          "id": 43,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000043000,
+              "name": "سارا جمالی",
+              "rating": 4,
+              "date": 1700043000000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 9
+            },
+            {
+              "id": 1700000043010,
+              "name": "حدیثه میرزازاده",
+              "rating": 2,
+              "date": 1700043010000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 14
+            },
+            {
+              "id": 1700000043020,
+              "name": "احسان جعفری",
+              "rating": 5,
+              "date": 1700043020000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 19
+            }
+          ]
+        },
+        {
+          "id": 44,
+          "comments": [
+            {
+              "id": 1700000044000,
+              "name": "حدیثه میرزازاده",
+              "rating": 2,
+              "date": 1700044000000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 12
+            },
+            {
+              "id": 1700000044010,
+              "name": "احسان جعفری",
+              "rating": 5,
+              "date": 1700044010000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 17
+            },
+            {
+              "id": 1700000044020,
+              "name": "امیر عباسی",
+              "rating": 4,
+              "date": 1700044020000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 2
+            }
+          ]
+        },
+        {
+          "id": 45,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000045000,
+              "name": "احسان جعفری",
+              "rating": 5,
+              "date": 1700045000000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 15
+            },
+            {
+              "id": 1700000045010,
+              "name": "امیر عباسی",
+              "rating": 4,
+              "date": 1700045010000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 20
+            },
+            {
+              "id": 1700000045020,
+              "name": "نازنین رحیمی",
+              "rating": 2,
+              "date": 1700045020000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 5
+            }
+          ]
+        },
+        {
+          "id": 46,
+          "comments": [
+            {
+              "id": 1700000046000,
+              "name": "امیر عباسی",
+              "rating": 4,
+              "date": 1700046000000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 18
+            },
+            {
+              "id": 1700000046010,
+              "name": "نازنین رحیمی",
+              "rating": 2,
+              "date": 1700046010000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 3
+            },
+            {
+              "id": 1700000046020,
+              "name": "حمید نظری",
+              "rating": 5,
+              "date": 1700046020000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 8
+            }
+          ]
+        },
+        {
+          "id": 47,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000047000,
+              "name": "نازنین رحیمی",
+              "rating": 2,
+              "date": 1700047000000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 11
+            },
+            {
+              "id": 1700000047010,
+              "name": "حمید نظری",
+              "rating": 5,
+              "date": 1700047010000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 16
+            },
+            {
+              "id": 1700000047020,
+              "name": "مریم کاظمی",
+              "rating": 4,
+              "date": 1700047020000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 1
+            }
+          ]
+        },
+        {
+          "id": 48,
+          "comments": [
+            {
+              "id": 1700000048000,
+              "name": "حمید نظری",
+              "rating": 5,
+              "date": 1700048000000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 14
+            },
+            {
+              "id": 1700000048010,
+              "name": "مریم کاظمی",
+              "rating": 4,
+              "date": 1700048010000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 19
+            },
+            {
+              "id": 1700000048020,
+              "name": "محمد رضایی",
+              "rating": 2,
+              "date": 1700048020000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 4
+            }
+          ]
+        },
+        {
+          "id": 49,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000049000,
+              "name": "مریم کاظمی",
+              "rating": 4,
+              "date": 1700049000000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 17
+            },
+            {
+              "id": 1700000049010,
+              "name": "محمد رضایی",
+              "rating": 2,
+              "date": 1700049010000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 2
+            },
+            {
+              "id": 1700000049020,
+              "name": "فاطمه محمدی",
+              "rating": 5,
+              "date": 1700049020000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 7
+            }
+          ]
+        },
+        {
+          "id": 50,
+          "comments": [
+            {
+              "id": 1700000050000,
+              "name": "محمد رضایی",
+              "rating": 2,
+              "date": 1700050000000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 20
+            },
+            {
+              "id": 1700000050010,
+              "name": "فاطمه محمدی",
+              "rating": 5,
+              "date": 1700050010000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 5
+            },
+            {
+              "id": 1700000050020,
+              "name": "علی کریمی",
+              "rating": 4,
+              "date": 1700050020000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 10
+            }
+          ]
+        },
+        {
+          "id": 51,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000051000,
+              "name": "فاطمه محمدی",
+              "rating": 5,
+              "date": 1700051000000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 3
+            },
+            {
+              "id": 1700000051010,
+              "name": "علی کریمی",
+              "rating": 4,
+              "date": 1700051010000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 8
+            },
+            {
+              "id": 1700000051020,
+              "name": "سارا جمالی",
+              "rating": 2,
+              "date": 1700051020000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 13
+            }
+          ]
+        },
+        {
+          "id": 52,
+          "comments": [
+            {
+              "id": 1700000052000,
+              "name": "علی کریمی",
+              "rating": 4,
+              "date": 1700052000000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 6
+            },
+            {
+              "id": 1700000052010,
+              "name": "سارا جمالی",
+              "rating": 2,
+              "date": 1700052010000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 11
+            },
+            {
+              "id": 1700000052020,
+              "name": "حدیثه میرزازاده",
+              "rating": 5,
+              "date": 1700052020000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 16
+            }
+          ]
+        },
+        {
+          "id": 53,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000053000,
+              "name": "سارا جمالی",
+              "rating": 2,
+              "date": 1700053000000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 9
+            },
+            {
+              "id": 1700000053010,
+              "name": "حدیثه میرزازاده",
+              "rating": 5,
+              "date": 1700053010000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 14
+            },
+            {
+              "id": 1700000053020,
+              "name": "احسان جعفری",
+              "rating": 4,
+              "date": 1700053020000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 19
+            }
+          ]
+        },
+        {
+          "id": 54,
+          "comments": [
+            {
+              "id": 1700000054000,
+              "name": "حدیثه میرزازاده",
+              "rating": 5,
+              "date": 1700054000000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 12
+            },
+            {
+              "id": 1700000054010,
+              "name": "احسان جعفری",
+              "rating": 4,
+              "date": 1700054010000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 17
+            },
+            {
+              "id": 1700000054020,
+              "name": "امیر عباسی",
+              "rating": 2,
+              "date": 1700054020000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 2
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000055000,
+              "name": "احسان جعفری",
+              "rating": 4,
+              "date": 1700055000000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 15
+            },
+            {
+              "id": 1700000055010,
+              "name": "امیر عباسی",
+              "rating": 2,
+              "date": 1700055010000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 20
+            },
+            {
+              "id": 1700000055020,
+              "name": "نازنین رحیمی",
+              "rating": 5,
+              "date": 1700055020000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 5
+            }
+          ]
+        },
+        {
+          "id": 56,
+          "comments": [
+            {
+              "id": 1759235362461,
+              "name": "اروند",
+              "rating": 4,
+              "date": 1759235362461,
+              "content": "قبلا صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی اره. فقط چرخ ها کمی صدا دارن.",
+              "helpful": 0,
+              "validUser": "arvand@example.com",
+              "validUserPname": "صندلی طرح کویر",
+              "validUserPid": 56
+            },
+            {
+              "id": 1700000056000,
+              "name": "امیر عباسی",
+              "rating": 2,
+              "date": 1700056000000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 18
+            },
+            {
+              "id": 1700000056010,
+              "name": "نازنین رحیمی",
+              "rating": 5,
+              "date": 1700056010000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 3
+            },
+            {
+              "id": 1700000056020,
+              "name": "حمید نظری",
+              "rating": 4,
+              "date": 1700056020000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 8
+            }
+          ]
+        },
+        {
+          "id": 57,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000057000,
+              "name": "نازنین رحیمی",
+              "rating": 5,
+              "date": 1700057000000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 11
+            },
+            {
+              "id": 1700000057010,
+              "name": "حمید نظری",
+              "rating": 4,
+              "date": 1700057010000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 16
+            },
+            {
+              "id": 1700000057020,
+              "name": "مریم کاظمی",
+              "rating": 2,
+              "date": 1700057020000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 1
+            }
+          ]
+        },
+        {
+          "id": 58,
+          "comments": [
+            {
+              "id": 1700000058000,
+              "name": "حمید نظری",
+              "rating": 4,
+              "date": 1700058000000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 14
+            },
+            {
+              "id": 1700000058010,
+              "name": "مریم کاظمی",
+              "rating": 2,
+              "date": 1700058010000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 19
+            },
+            {
+              "id": 1700000058020,
+              "name": "محمد رضایی",
+              "rating": 5,
+              "date": 1700058020000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 4
+            }
+          ]
+        },
+        {
+          "id": 59,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000059000,
+              "name": "مریم کاظمی",
+              "rating": 2,
+              "date": 1700059000000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 17
+            },
+            {
+              "id": 1700000059010,
+              "name": "محمد رضایی",
+              "rating": 5,
+              "date": 1700059010000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 2
+            },
+            {
+              "id": 1700000059020,
+              "name": "فاطمه محمدی",
+              "rating": 4,
+              "date": 1700059020000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 7
+            }
+          ]
+        },
+        {
+          "id": 60,
+          "comments": [
+            {
+              "id": 1700000060000,
+              "name": "محمد رضایی",
+              "rating": 5,
+              "date": 1700060000000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 0
+            },
+            {
+              "id": 1700000060010,
+              "name": "فاطمه محمدی",
+              "rating": 4,
+              "date": 1700060010000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 5
+            },
+            {
+              "id": 1700000060020,
+              "name": "علی کریمی",
+              "rating": 2,
+              "date": 1700060020000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 10
+            }
+          ]
+        },
+        {
+          "id": 61,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000061000,
+              "name": "فاطمه محمدی",
+              "rating": 4,
+              "date": 1700061000000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 3
+            },
+            {
+              "id": 1700000061010,
+              "name": "علی کریمی",
+              "rating": 2,
+              "date": 1700061010000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 8
+            },
+            {
+              "id": 1700000061020,
+              "name": "سارا جمالی",
+              "rating": 5,
+              "date": 1700061020000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 13
+            }
+          ]
+        },
+        {
+          "id": 62,
+          "comments": [
+            {
+              "id": 1700000062000,
+              "name": "علی کریمی",
+              "rating": 2,
+              "date": 1700062000000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 6
+            },
+            {
+              "id": 1700000062010,
+              "name": "سارا جمالی",
+              "rating": 5,
+              "date": 1700062010000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 11
+            },
+            {
+              "id": 1700000062020,
+              "name": "حدیثه میرزازاده",
+              "rating": 4,
+              "date": 1700062020000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 16
+            }
+          ]
+        },
+        {
+          "id": 63,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000063000,
+              "name": "سارا جمالی",
+              "rating": 5,
+              "date": 1700063000000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 9
+            },
+            {
+              "id": 1700000063010,
+              "name": "حدیثه میرزازاده",
+              "rating": 4,
+              "date": 1700063010000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 14
+            },
+            {
+              "id": 1700000063020,
+              "name": "احسان جعفری",
+              "rating": 2,
+              "date": 1700063020000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 19
+            }
+          ]
+        },
+        {
+          "id": 64,
+          "comments": [
+            {
+              "id": 1700000064000,
+              "name": "حدیثه میرزازاده",
+              "rating": 4,
+              "date": 1700064000000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 12
+            },
+            {
+              "id": 1700000064010,
+              "name": "احسان جعفری",
+              "rating": 2,
+              "date": 1700064010000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 17
+            },
+            {
+              "id": 1700000064020,
+              "name": "امیر عباسی",
+              "rating": 5,
+              "date": 1700064020000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 2
+            }
+          ]
+        },
+        {
+          "id": 65,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000065000,
+              "name": "احسان جعفری",
+              "rating": 2,
+              "date": 1700065000000,
+              "content": "بعد از ۳ ماه استفاده فنرها شل شدن . خدمات پس از فروش هم جوابگو نبود.",
+              "helpful": 15
+            },
+            {
+              "id": 1700000065010,
+              "name": "امیر عباسی",
+              "rating": 5,
+              "date": 1700065010000,
+              "content": "به عنوان برنامه‌نویس که ۱۰ ساعت روزانه پشت میزم، این صندلی واقعاً نجاتم داد. تنظیمات ارگونومیک کامل داره و کمر دردم بعد از ۲ هفته استفاده کاملاً از بین رفته.",
+              "helpful": 20
+            },
+            {
+              "id": 1700000065020,
+              "name": "نازنین رحیمی",
+              "rating": 4,
+              "date": 1700065020000,
+              "content": "قبلاً صندلی ۸ میلیونی خارجی داشتم که این صندلی ایرانی ازش کم نمی‌اره. فقط چرخ‌ها کمی صدا دارن.",
+              "helpful": 5
+            }
+          ]
+        },
+        {
+          "id": 66,
+          "comments": [
+            {
+              "id": 1700000066000,
+              "name": "امیر عباسی",
+              "rating": 5,
+              "date": 1700066000000,
+              "content": "این میز ناهارخوری واقعاً شیک و بادوامه. سطحش به راحتی تمیز می‌شه و برای مهمانی ها عالی هست.",
+              "helpful": 8
+            },
+            {
+              "id": 1700000066010,
+              "name": "نازنین رحیمی",
+              "rating": 4,
+              "date": 1700066010000,
+              "content": "میز چوبی زیبایی است اما وزنش زیاد است و جابجاش سخت است. البته کیفیت ساخت بالایی دارد.",
+              "helpful": 13
+            },
+            {
+              "id": 1700000066020,
+              "name": "حمید نظری",
+              "rating": 3,
+              "date": 1700066020000,
+              "content": "میز برای قیمتش مناسب است اما بعد از یک سال استفاده رنگش کمی کمرنگ شده.",
+              "helpful": 18
+            }
+          ]
+        },
+        {
+          "id": 67,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000067000,
+              "name": "نازنین رحیمی",
+              "rating": 4,
+              "date": 1700067000000,
+              "content": "میز چوبی زیبایی است اما وزنش زیاد است و جابجاش سخت است. البته کیفیت ساخت بالایی دارد.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000067010,
+              "name": "حمید نظری",
+              "rating": 3,
+              "date": 1700067010000,
+              "content": "میز برای قیمتش مناسب است اما بعد از یک سال استفاده رنگش کمی کمرنگ شده.",
+              "helpful": 6
+            },
+            {
+              "id": 1700000067020,
+              "name": "مریم کاظمی",
+              "rating": 5,
+              "date": 1700067020000,
+              "content": "این میز ناهارخوری واقعاً شیک و بادوامه. سطحش به راحتی تمیز می‌شه و برای مهمانی ها عالی هست.",
+              "helpful": 11
+            }
+          ]
+        },
+        {
+          "id": 68,
+          "comments": [
+            {
+              "id": 1700000068000,
+              "name": "حمید نظری",
+              "rating": 3,
+              "date": 1700068000000,
+              "content": "میز برای قیمتش مناسب است اما بعد از یک سال استفاده رنگش کمی کمرنگ شده.",
+              "helpful": 4
+            },
+            {
+              "id": 1700000068010,
+              "name": "مریم کاظمی",
+              "rating": 5,
+              "date": 1700068010000,
+              "content": "این میز ناهارخوری واقعاً شیک و بادوامه. سطحش به راحتی تمیز می‌شه و برای مهمانی ها عالی هست.",
+              "helpful": 9
+            },
+            {
+              "id": 1700000068020,
+              "name": "محمد رضایی",
+              "rating": 4,
+              "date": 1700068020000,
+              "content": "میز چوبی زیبایی است اما وزنش زیاد است و جابجاش سخت است. البته کیفیت ساخت بالایی دارد.",
+              "helpful": 14
+            }
+          ]
+        },
+        {
+          "id": 69,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000069000,
+              "name": "مریم کاظمی",
+              "rating": 5,
+              "date": 1700069000000,
+              "content": "این میز ناهارخوری واقعاً شیک و بادوامه. سطحش به راحتی تمیز می‌شه و برای مهمانی ها عالی هست.",
+              "helpful": 7
+            },
+            {
+              "id": 1700000069010,
+              "name": "محمد رضایی",
+              "rating": 4,
+              "date": 1700069010000,
+              "content": "میز چوبی زیبایی است اما وزنش زیاد است و جابجاش سخت است. البته کیفیت ساخت بالایی دارد.",
+              "helpful": 12
+            },
+            {
+              "id": 1700000069020,
+              "name": "فاطمه محمدی",
+              "rating": 3,
+              "date": 1700069020000,
+              "content": "میز برای قیمتش مناسب است اما بعد از یک سال استفاده رنگش کمی کمرنگ شده.",
+              "helpful": 17
+            }
+          ]
+        },
+        {
+          "id": 70,
+          "comments": [
+            {
+              "id": 1700000070000,
+              "name": "محمد رضایی",
+              "rating": 5,
+              "date": 1700070000000,
+              "content": "تختم رو ۲ ماه پیش خریدم و واقعاً کیفیت خوابم متحول شده. فنرهای独立 فشار رو به طور مساوی پخش می‌کنن و دیگه نصف شب با درد کمر بیدار نمی‌شم.",
+              "helpful": 10
+            },
+            {
+              "id": 1700000070010,
+              "name": "فاطمه محمدی",
+              "rating": 4,
+              "date": 1700070010000,
+              "content": "تخت خیلی بادووم و محکمه. فقط اگر عرضش ۲۰ سانت بیشتر بود فضای راحت‌تری داشتیم. اما به طور کلی از خرید راضی هستیم.",
+              "helpful": 15
+            },
+            {
+              "id": 1700000070020,
+              "name": "علی کریمی",
+              "rating": 5,
+              "date": 1700070020000,
+              "content": "چوب استفاده شده در قاب از الوار جنگلی هستش و کاملاً طبیعی. سیستم تهویه تشک هم واقعاً در تابستان به درد می‌خوره.",
+              "helpful": 20
+            }
+          ]
+        },
+        {
+          "id": 71,
+          "comments": [
+            {
+              "id": 1710000001000,
+              "name": "محمد مقیمی",
+              "rating": 5,
+              "date": 1710000001000,
+              "content": "کیفیت عالی داره. واقعاً راحت و بادوام هست. پیشنهاد می‌کنم حتما بخرید.",
+              "helpful": 12
+            },
+            {
+              "id": 1710000001010,
+              "name": "مهران پناهی",
+              "rating": 1,
+              "date": 1710000001010,
+              "content": "متاسفانه بعد از یک ماه استفاده دسته‌اش شل شده. کیفیت قابل قبولی نداره.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000071000,
+              "name": "فاطمه محمدی",
+              "rating": 4,
+              "date": 1700071000000,
+              "content": "تخت خیلی بادووم و محکمه. فقط اگر عرضش ۲۰ سانت بیشتر بود فضای راحت‌تری داشتیم. اما به طور کلی از خرید راضی هستیم.",
+              "helpful": 13
+            },
+            {
+              "id": 1700000071010,
+              "name": "علی کریمی",
+              "rating": 5,
+              "date": 1700071010000,
+              "content": "چوب استفاده شده در قاب از الوار جنگلی هستش و کاملاً طبیعی. سیستم تهویه تشک هم واقعاً در تابستان به درد می‌خوره.",
+              "helpful": 18
+            },
+            {
+              "id": 1700000071020,
+              "name": "سارا جمالی",
+              "rating": 3,
+              "date": 1700071020000,
+              "content": "قیمت مناسب ولی نیاز به بهبود - برای قیمتش قابل قبوله، اما روکش تشک کیفیت بالایی نداره و مجبور شدم روکش جداگانه بخرم. طراحی کلی خوبه.",
+              "helpful": 3
+            }
+          ]
+        },
+        {
+          "id": 72,
+          "comments": [
+            {
+              "id": 1700000072000,
+              "name": "علی کریمی",
+              "rating": 5,
+              "date": 1700072000000,
+              "content": "چوب استفاده شده در قاب از الوار جنگلی هستش و کاملاً طبیعی. سیستم تهویه تشک هم واقعاً در تابستان به درد می‌خوره.",
+              "helpful": 16
+            },
+            {
+              "id": 1700000072010,
+              "name": "سارا جمالی",
+              "rating": 3,
+              "date": 1700072010000,
+              "content": "قیمت مناسب ولی نیاز به بهبود - برای قیمتش قابل قبوله، اما روکش تشک کیفیت بالایی نداره و مجبور شدم روکش جداگانه بخرم. طراحی کلی خوبه.",
+              "helpful": 1
+            },
+            {
+              "id": 1700000072020,
+              "name": "حدیثه میرزازاده",
+              "rating": 5,
+              "date": 1700072020000,
+              "content": "تختم رو ۲ ماه پیش خریدم و واقعاً کیفیت خوابم متحول شده. فنرهای فشار رو به طور مساوی پخش می‌کنن و دیگه نصف شب با درد کمر بیدار نمی‌شم.",
+              "helpful": 6
+            }
+          ]
+        }
+    ]
+}
+
+

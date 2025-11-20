@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+  direction: rtl;
+}
+
+:root {
+  --background-panel: #274f6b;
+  --background-body: #dddddd;
+  --links-hover: #ef30c6;
+  --check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+
+@font-face {
+  font-family: "broya";
+  src:
+    url( "../../assets/fonts/broya.woff2" ) format( 'woff2' ),
+    url( "../../assets/fonts/broya.ttf" ) format( 'truetype' );
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "broyabd";
+  src:
+    url( "../../assets/fonts/broyabd.woff2" ) format( 'woff2' ),
+    url( "../../assets/fonts/broyabd.ttf" ) format( 'truetype' );
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'byekan';
+    src: url('../../assets/fonts/BYekan.woff2') format('woff2'),
+         url('../../assets/fonts/BYekan.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+	font-family: 'Estedad-Black';
+	src: url('../../assets/fonts/Estedad/Estedad-FD-Black.woff2') format( 'woff2' );
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Estedad-Bold';
+	src: url('../../assets/fonts/Estedad/Estedad-FD-Bold.woff2') format( 'woff2' );
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Estedad-Reg';
+	src: url('../../assets/fonts/Estedad/Estedad-FD-Regular.woff2') format( 'woff2' );
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Estedad';
+	src: url('../../assets/fonts/Estedad/Estedad-FD-SemiBold.woff2') format( 'woff2' );
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Yekan';
+	src: url( '../../assets/fonts/Yekan.eot' );
+	src: url( '../../assets/fonts/Yekan.eot?#iefix' ) format( 'embedded-opentype' ),
+		url( '../../assets/fonts/Yekan.woff2' ) format( 'woff2' ),
+		url( '../../assets/fonts/Yekan.woff' ) format( 'woff' ),
+		url( '../../assets/fonts/Yekan.ttf' ) format( 'truetype' ),
+		url( '../../assets/fonts/Yekan.svg#Yekan' ) format( 'svg' );
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+html, body {
+    font-family: Yekan,Arial,sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    background-color: #f8f9fa;
+}
+
+html{overflow-x:hidden}
+
+h1, .h1{font-size:32px} 
+h2, .h2{font-size:28px}
+h3, .h3{font-size:22px}
+h4, .h4{font-size:18px}
+h5, .h5{font-size:16px}
+h6, .h6{font-size:15px}
+
+.serif {
+  font-family: serif
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: byekan, "Segoe UI", Arial, sans-serif;
+  font-weight: 600;
+  color: #000000;
+  margin: 0; 
+}
+
+.image {
+  max-width: 100%;
+  height: auto
+}
+
+.img {
+  width:100%;
+}
+
+img {
+  vertical-align: middle
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  text-decoration: none;
+}
+
+.text-caption {
+  font-size:80%;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.display-none {
+  display: none !important;
+}
+
+.show {
+  display: block;
+}
+
+.display-inline {
+  display: inline;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.opacity-half {
+  opacity: 0.5;
+}
+
+.opacity {
+  opacity: 1;
+}
+
+small, .small {
+  font-size: 80%;
+}
+
+sub,sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+strong {
+  font-weight: 500;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 20px 0;
+} 
+
+.rtl-unicode {
+  direction: rtl;
+  unicode-bidi: plaintext;
+}
+
+.checkmark {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='green' stroke-width='3' d='M4 12 l5 5 10-10'/%3E%3C/svg%3E");
+  width: 24px;
+  height: 24px;
+}
+
+input.form-checkbox[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  appearance: none;
+  border: 1px solid var(--background-panel);
+  border-radius: 2px;
+  background-color: #f5f5f5;
+  margin: 4px;
+
+  &:checked {
+    background-color: var(--background-panel) !important;
+    background-image: var(--check-bg-image);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  &:focus {
+    border-color: #527288;
+    outline: 0;
+    box-shadow: 0px 0 0 4px rgba(13, 110, 253, .25);
+    
+  }
+}
+
+/*Gradient Pattern*/
+.gradient-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3ClinearGradient id='g'%3E%3Cstop offset='0%25' stop-color='%23f00'/%3E%3Cstop offset='100%25' stop-color='%2300f'/%3E%3C/linearGradient%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");
+}
+
+.rounded-6 {
+  border-radius: 6px;
+}
+
+.rounded-4 {
+  border-radius: 4px;
+}
+
+.box-shadow-tip {
+   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .16), 0 0 2px 0 rgba(0, 0, 0, .12);
+}
+
+button {
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+p {
+  margin: 0;
+}
+
+a, button, input {
+  touch-action: manipulation;
+}

@@ -1,0 +1,1125 @@
+
+@font-face {
+    font-family: 'password';
+    font-display: block; 
+    src: url('../fonts/password.woff2') format('woff2'),
+         url('../fonts/password.woff') format('woff'); 
+}
+
+.bread-crumb-container {
+    position: relative;
+    z-index: 1;
+    background-color: var(--background-body);
+}
+
+.bread-crumb {
+    background: var(--background-panel);
+    margin: 80px auto 30px;
+    padding: 6px 0;
+    border-radius: 6px;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+
+    &>span {
+        padding-right: 12px;
+        color: #FFF;
+    }
+    
+    ol {
+        padding: 0 15px;
+        margin: 0;
+        color: #fff;
+        line-height: 1.4;
+        
+        li {
+            display: inline-block;
+            position: relative;
+            vertical-align: bottom;
+            
+            a {
+                color: #d2ab67;
+                vertical-align: text-bottom;
+                font-family: sans-serif;
+                font-size: 12px;
+                font-weight: 400;
+                padding: 0 2px;
+
+                i {
+                    transform: scale(1.35);
+                    -webkit-transform: scale(1.35);
+                    -moz-transform: scale(1.35);
+                    -ms-transform: scale(1.35);
+                    -o-transform: scale(1.35);
+                }
+            }
+        }
+
+        li:last-child a {
+            color: #fff;
+        }
+    }
+}
+
+.bread-crumb ol li:not(:last-child) {
+    padding-left: 20px;
+}
+
+.bread-crumb ol li:not(:last-child)::before {
+    position: absolute;
+    font-family: "Line Awesome Free";
+    font-weight: 900;
+    content: "\f104";
+    left: 3px;
+    top: 0;
+    font-size: 12pt;
+    line-height: 1;
+    width: 16px;
+    height: 16px;
+    bottom: 0;
+    margin: auto;
+}
+
+.bread-crumb > * {
+  vertical-align: middle;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    background-color: var(--background-body);
+    padding-top: 86px;
+    padding-bottom: 110px;
+  
+    &> article {
+      margin-top: 20px;
+    }  
+}
+
+.checkout-form-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    &::before {
+        content: "";
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        -ms-border-radius: 100%;
+        -o-border-radius: 100%;
+        position: absolute;
+        top: -80px;
+        background-color: #f1f1f1;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .16), 0 0 2px 0 rgba(0, 0, 0, .12);
+        z-index: -1;
+    }
+
+    &::after {
+        position: absolute;
+        font-family: "Line Awesome Free";
+        font-weight: 900;
+        content: "\f07a";
+        font-size: 80px;
+        user-select: none;
+        display: flex;
+        justify-content: center;
+        line-height: 112px;
+        width: 118px;
+        height: 120px;
+        border-radius: 100%;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        -ms-border-radius: 100%;
+        -o-border-radius: 100%;
+        top: -64px;
+        background-color: var(--background-panel);
+        color: #f1f1f1;
+    }
+
+    .checkout-form {
+        padding: 110px 0px 70px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .16), 0 0 2px 0 rgba(0, 0, 0, .12);
+        border-radius: 6px;
+        background-color: #f1f1f1;
+        min-height: 580px;
+        margin: auto;
+        width: 100%;
+
+        @media screen and (max-width: 1200px) {
+            padding: 110px 0px 70px;
+
+            @media screen and (max-width: 992px) {
+                padding: 70px 10px 70px;
+            
+                @media screen and (max-width: 544px) {
+                    padding: 70px 10px 70px;
+                }
+            }
+        }
+
+        .right-part {
+            min-height: 400px;
+            position: relative;
+
+            .empty-cart {
+                top: 40%;
+                color: rgb(39, 79, 107);
+                display: block;
+                position: absolute;
+                font-size: 18px;
+                min-width: 100%;
+                text-align: center;
+                margin-block: auto;
+                margin-inline: auto;
+            }
+
+            .table-title {
+                display: none;
+                text-align: center;
+                font-size: 20px;
+                margin-bottom: 20px;
+
+                @media screen and (width < 768px) {
+                    display: block;
+                }
+            }
+
+            table {
+                width: 100%;
+                color: var(--background-panel);
+
+                thead {
+                    font-family: 'Estedad';
+                    font-size: 16px;
+
+                    @media screen and (width < 1200px) {
+                        font-size: 14px;
+
+                        @media screen and (width < 768px) {
+                            display: none;
+                        }
+                    }
+
+                    tr {
+                        border-bottom: 1px solid #ddd;
+
+                        th {
+                            padding: 12px 12px 12px 0px;
+                            text-align: right;
+                            
+
+                            &:first-of-type {
+                                width: 14px;
+                            }
+
+                            &:nth-child(-n+2) {
+                                font-size: 0px;
+                            }
+
+                        }
+                    }
+                }
+
+                tbody {
+                    font-family: 'Estedad-Reg';
+                    font-size: 14px;
+
+                    @media screen and (width < 1200px) {
+                        font-size: 14px;
+                        
+                        @media screen and (width < 544px) {
+                            font-size: 13px;
+                        }
+                    }
+
+                    tr {
+                        height: 80px;
+
+                        @media screen and (width < 768px) {
+                            display: flex;
+                            flex-direction: column;
+                            position: relative;
+                            min-height: 184px;
+                            height: fit-content;
+                            background-color: #fffffd;
+                            border-radius: 6px;
+                            margin-bottom: 16px;
+                        }
+
+                        td {
+                            padding: 12px 12px 12px 0px;
+                            text-align: right;
+                            vertical-align: middle;
+                            
+                            &:first-child {
+                                padding-right: 6px;
+
+                                @media screen and (width < 1200px) {
+                                    padding-right: 2px;
+
+                                    @media screen and (width < 992px) {
+                                        padding-right: 0px;
+                                    }
+                                }
+                            }
+                            
+                            &:nth-child(3) {
+                                
+                                @media screen and (width < 1200px) {
+                                    width: 220px;
+                                    max-width: 220px;
+                                }
+
+                                > span {
+                                    cursor: pointer;
+
+                                    &:hover {
+                                        color: #1726c8;
+                                    }
+
+                                    @media screen and (width < 768px) {
+                                        font-family: 'Estedad';
+                                        display: block;
+                                        width: 95%;
+                                    }
+                                }
+                            }
+
+                            @media screen and (width < 768px) {
+                                padding: 12px 0px 12px 0px;
+                                
+                                &:nth-child(n+4)::before {
+                                    content: attr(data-title);
+                                    flex: 1 1 auto;
+                                    padding-top: 0;
+                                    text-align: right;
+                                    text-transform: uppercase;
+                                    font-weight: 600;
+                                    font-size: 12px;
+                                    margin-block: auto;
+                                }
+                                
+                                &:nth-child(n+3) {
+                                    display: flex;
+                                    width: calc(100% - 98px);;
+                                    max-width: calc(100% - 98px);;
+                                    margin-right: 84px;
+                                    margin-left: 84px;
+                                }
+
+                                &:nth-child(n+3):not(:last-child) {
+                                    border-bottom: 1px dashed;
+                                }
+                            }
+                            
+                        }
+
+                        td:first-of-type {
+                            width: 14px;
+    
+                            a {
+                                width: 14px;
+                                height: 14px;
+                                display: flex;
+                                justify-content: center;
+        
+                                path {
+                                    transition: all 0.4s;
+                                    fill: #757373;;
+                                }
+        
+                                &:hover path {
+                                    fill: #ed4093;
+                                    transition: all 0.4s;
+                                }
+                            }
+
+                            @media screen and (width < 768px) {
+                                position: absolute;
+                                left: 8px;
+                                width: 20px;
+                                
+                                a {
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
+                        }
+
+                        td:nth-child(2) {
+                            width: 80px;
+                            
+                            a {
+                                min-width: 80px;
+                                max-width: 80px;
+                                display: flex;
+                                justify-content: center;
+
+                                img {
+                                    min-width: 80px;
+                                    max-width: 80px;
+                                    border-radius: 8px;
+                                }
+                            }
+
+                            @media screen and (width < 1200px) {
+                                width: 65px;
+                            
+                                a {
+                                    min-width: 65px;
+                                    max-width: 65px;
+
+                                    img {
+                                        min-width: 65px;
+                                        max-width: 65px;
+                                    }
+                                }
+
+                                @media screen and (width < 992px) {
+                                    width: 50px;
+                                    
+                                    a {
+                                        min-width: 50px;
+                                        max-width: 50px;
+                                        
+                                        img {
+                                            min-width: 50px;
+                                            max-width: 50px;
+                                        }
+                                    }
+
+                                    @media screen and (width < 768px) {
+                                        position: absolute;
+                                        right: 6px;
+                                        top: 6px;
+                                        width: 70px;
+                                        padding: 0px;
+                                    
+                                        a {
+                                            min-width: 70px;
+                                            max-width: 70px;
+        
+                                            img {
+                                                min-width: 70px;
+                                                max-width: 70px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                        }
+
+                        td:nth-child(5) {
+                            &> .product-quantity {
+                                display: flex;
+                                align-items: center;
+            
+                                &> span {
+                                    width: 30px;
+                                    display: inline-flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+            
+                                &> .quantity-btn {
+                                    font-size: 16px;
+                                    width: 24px;
+                                    height: 24px;
+                                    border-radius: 4px;
+                                    background-color: #265271;
+                                    color: #fff;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+                            }
+                        }
+
+                        td:nth-child(6),
+                        td:nth-child(4) {
+                            span {
+                                text-wrap-mode: nowrap;
+
+                                &::after {
+                                    content: " تومان";
+                                    margin-right: 2px;
+
+                                    @media screen and (width < 992px) {
+                                        font-size: 12px;
+                                    }
+                                }
+                            }
+                        }
+
+                        td:nth-child(6) {
+                            font-weight: 600;
+
+                            > span {
+                                display: block;
+                                width: 105px;
+                                text-align: left;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .left-part {
+            position: relative;
+            
+            > ul {
+                margin-bottom: 0;
+
+                > li {
+                    margin-bottom: 8px;
+
+                    > a {
+                        /* Titles */
+                        > span {
+                            background-image: linear-gradient(to top, 
+                                              var(--background-body) -11px, 
+                                              var(--background-panel) 18px);
+                        }
+                    }
+                }
+                /* contents */
+                > li ul {
+                    width: 100%;
+                    padding: 20px 12px;
+                    margin-bottom: 0;
+                    text-align: right;
+                    font-family: 'Estedad';
+                    font-size: 14px;
+                    display: block;
+                    background-image: linear-gradient(to bottom, 
+                                    var(--background-panel) -8px, 
+                                    var(--background-body) 5px);
+                    color: #274f6b;
+                    border-radius: 0 0 6px 6px;
+                    cursor: unset;
+
+                    @media screen and (width >= 768px) and (width < 992px) {
+                        font-size: 12px;
+                    }
+                }
+
+                > li.cart-accordion {
+                    width: 100%;
+                    color: #ffffff;
+
+                    > a {
+                        
+                        > span {
+                            padding: 12px;
+                            text-align: right;
+                            font-family: 'Estedad';
+                            font-size: 16px;
+                            display: block;
+                            background-color: #274f6b;
+                            border-radius: 6px;
+                            position: relative;
+                            
+                            @media screen and (width < 1200px) {
+                                font-size: 14px;
+                            }
+
+                            &::after {
+                                position: absolute;
+                                content: "";
+                                top: 20px;
+                                left: 16px;
+                                width: 0;
+                                height: 0;
+                                border: 6px solid transparent;
+                                border-color: #ffffff transparent transparent transparent;
+                            }
+                        }
+                    }
+
+                    > ul {
+                        display: none;
+                    }
+
+                    > a.active {
+
+                        & ~ ul {
+                            display: block;
+                        }
+
+                        > span {
+                            border-radius: 6px 6px 0 0;
+
+                            &::after {
+                                border-color: transparent transparent #ffffff transparent;
+                                top: 11px;
+                            }
+                        }
+                    }
+
+                }
+
+                > li.cart-section {
+                    width: 100%;
+                    color: #ffffff;
+                    
+                    > span {
+                        padding: 12px;
+                        text-align: right;
+                        font-family: 'Estedad';
+                        font-size: 16px;
+                        display: block;
+                        background-color: #274f6b;
+                        background-image: linear-gradient(to top, 
+                                              var(--background-body) -11px, 
+                                              var(--background-panel) 18px);
+                        border-radius: 6px 6px 0 0;
+                        
+                        @media screen and (width < 1200px) {
+                            font-size: 14px;
+                        }
+                    }
+
+                    .cart-content {
+                        gap: 10px;
+                        display: flex;
+                        padding: 20px 12px;
+                        border-bottom: 3px solid #eee;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        > div {
+                            display: flex;
+                            font-size: 16px;
+                            font-family: Estedad;
+                            justify-content: space-between;
+
+                            > span:first-child {
+                                font-size: 14px;
+                            }
+
+                            
+                            span:last-child.price-count {
+                                min-width: 156px;
+                                width: fit-content;
+                                font-variant-numeric: tabular-nums;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: flex-end;
+                                
+                                @media (width < 395px) {
+                                    min-width: unset;
+                                    font-variant-numeric: unset;
+                                    display: initial;
+                                }
+                                @media (width >= 992px) and (width < 1200px) {
+                                    min-width: unset;
+                                    font-variant-numeric: unset;
+                                    display: initial;
+                                }
+                                
+                            }
+
+                            > span:last-child.price-count::after {
+                                content: " تومان";
+                                font-size: 14px;
+                            }
+                            
+                            @media screen and (width >= 768px) and (width < 992px) {
+                                font-size: 14px;
+                                > span:first-child {
+                                    font-size: 12px;
+                                }
+                                > span:last-child.price-count::after {
+                                    content: " تومان";
+                                    font-size: 12px;
+                                }
+
+                            }
+                        }
+
+                        > div.cart-overall {
+                            color: #222;
+                        }
+
+                        > .cart-benefit > span:first-child::after {
+                            content: "سود شما از این خرید";
+
+                            @media screen and (width >= 768px) and (width < 992px) {
+                                content: "سود شما";
+                            }
+                        }
+
+                        > div.cart-benefit:has(> span[data-benefit-value="0"]) {
+                            display: none;
+                        }
+                    }
+                }
+
+                #user-address {
+                        
+                    .address-item {
+                        padding: 0 12px;
+                        
+                        &:not(:first-child) {
+                            margin-top: 24px;
+                        }
+                        
+                        .address-form-check {
+                            display: block;
+                            min-height: 1.5rem;
+                            margin-bottom: 0.125rem;
+                            position: relative;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            
+                            input {
+                                display: none;
+                                appearance: none;
+                            }
+                            
+                            input:checked {
+                                width: 100%;
+                                height: 100%;
+                                margin: 0px;
+                                background: no-repeat;
+                                border-radius: 4px;
+                                pointer-events: none;
+                                position: absolute;
+                                border: 2px solid #274f6b;
+                                display: block;
+                                appearance: none;
+                                
+                                & ~ div > div.content-control p.badge {
+                                    display: flex !important;
+                                }
+                                
+                                & ~ div > div.content-control p.badge-idle {
+                                    display: none !important;
+                                }
+                                
+                                & ~ label {
+                                    z-index: -1;
+                                }
+                            }
+                            
+                            label  {
+                                cursor: pointer;
+                                position: absolute;
+                                top: 0;
+                                bottom: 0px;
+                                left: 0;
+                                box-shadow: 0px 0px 1px #000;
+                                right: 0;
+                                border: none;
+                                border-radius: 4px;
+                                z-index: 1;
+                            }
+                        
+                            > div {
+                            
+                                > .content-control {
+                                    border-radius: 0.375rem;
+                                    background-color: #fff;
+                                    padding: 12px;
+                                    padding-right: 32px;
+                                    width: 100%;
+                                
+                                    > div {
+                                        min-height: 22px;
+                                        margin-bottom: .5rem;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: space-between;
+                                    
+                                        h6 > span {
+                                            font-weight: 600;
+                                            font-size: 10px;
+                                            word-spacing: 2px;
+                                            color: rgba(0, 0, 0, 0.7);
+                                        }
+                                        
+                                        .badge {
+                                            display: none;
+                                            align-items: center;
+                                            justify-content: center;
+                                            padding: 0.35em 0.65em;
+                                            font-weight: 600;
+                                            color: #fff;
+                                            text-align: center;
+                                            white-space: nowrap;
+                                            vertical-align: baseline;
+                                            background-color: #108d20;
+                                            margin-bottom: 0;
+                                            position: absolute;
+                                            right: 2px;
+                                            top: 2px;
+                                            width: 24px;
+                                            height: calc(100% - 4px);
+                                            writing-mode: sideways-rl;
+                                            font-size: 70%;
+                                            z-index: 0;
+                                            border-radius: 0;
+                                        }
+
+                                        .badge-idle {
+                                            display: flex;
+                                            background-color: #c7c7c7;
+                                            margin-bottom: 0;
+                                            position: absolute;
+                                            right: 0;
+                                            top: 0;
+                                            width: 26px;
+                                            height: 100%;
+                                            z-index: 0;
+                                            border-radius: 0;
+                                        }
+                                    
+                                    }
+                                
+                                    > p {
+                                        overflow: visible;
+                                        font-size: 12px;
+                                    
+                                        @media screen and (width < 544px) {
+                                            font-size: 10px;
+                                        }
+                                    }
+                                }
+                            
+                            }
+                        }
+                    }
+                }
+
+                #payment-method {
+                        
+                    .method-item {
+                        padding: 0 12px;
+                        
+                        &:not(:first-child) {
+                            margin-top: 24px;
+                        }
+                        
+                        .method-form-check {
+                            display: block;
+                            min-height: 1.5rem;
+                            margin-bottom: 0.125rem;
+                            position: relative;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            
+                            input {
+                                display: none;
+                                appearance: none;
+                            }
+                            
+                            input:checked {
+                                width: 100%;
+                                height: 100%;
+                                margin: 0px;
+                                background: no-repeat;
+                                border-radius: 4px;
+                                pointer-events: none;
+                                position: absolute;
+                                border: 2px solid #274f6b;
+                                display: block;
+                                appearance: none;
+                                
+                                & ~ div > div.content-control p.badge {
+                                    display: flex !important;
+                                }
+                                
+                                & ~ div > div.content-control p.badge-idle {
+                                    display: none !important;
+                                }
+                                
+                                & ~ label {
+                                    z-index: -1;
+                                }
+                            }
+                            
+                            label  {
+                                cursor: pointer;
+                                position: absolute;
+                                top: 0;
+                                bottom: 0px;
+                                left: 0;
+                                box-shadow: 0px 0px 1px #000;
+                                right: 0;
+                                border: none;
+                                border-radius: 4px;
+                                z-index: 1;
+                            }
+                        
+                            > div {
+                            
+                                > .content-control {
+                                    border-radius: 0.375rem;
+                                    background-color: #fff;
+                                    padding: 12px;
+                                    padding-right: 32px;
+                                    width: 100%;
+                                
+                                    > div {
+                                        min-height: 22px;
+                                        margin-bottom: .5rem;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: space-between;
+                                    
+                                        h6 > span {
+                                            font-weight: 600;
+                                            font-size: 10px;
+                                            word-spacing: 2px;
+                                            color: rgba(0, 0, 0, 0.7);
+                                        }
+                                        
+                                        .badge {
+                                            display: none;
+                                            align-items: center;
+                                            justify-content: center;
+                                            padding: 0.35em 0.65em;
+                                            font-weight: 600;
+                                            color: #fff;
+                                            text-align: center;
+                                            white-space: nowrap;
+                                            vertical-align: baseline;
+                                            background-color: #108d20;
+                                            margin-bottom: 0;
+                                            position: absolute;
+                                            right: 2px;
+                                            top: 2px;
+                                            width: 24px;
+                                            height: calc(100% - 4px);
+                                            writing-mode: sideways-rl;
+                                            font-size: 70%;
+                                            z-index: 0;
+                                            border-radius: 0;
+                                        }
+
+                                        .badge-idle {
+                                            display: flex;
+                                            background-color: #c7c7c7;
+                                            margin-bottom: 0;
+                                            position: absolute;
+                                            right: 0;
+                                            top: 0;
+                                            width: 26px;
+                                            height: 100%;
+                                            z-index: 0;
+                                            border-radius: 0;
+                                        }
+                                    
+                                    }
+                                
+                                    > p {
+                                        overflow: visible;
+                                        font-size: 12px;
+                                    
+                                        @media screen and (width < 544px) {
+                                            font-size: 10px;
+                                        }
+                                    }
+                                }
+                            
+                            }
+                        }
+                    }
+                }
+
+                #suggestion {
+                    .input-group {
+                        position: relative;
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: stretch;
+                        width: 100%;
+
+                        .input-group-text {
+                            display: flex;
+                            align-items: center;
+                            padding: 6px 10px;
+                            font-size: 20px;
+                            font-weight: 400;
+                            line-height: 1.5;
+                            color: #000000;
+                            text-align: center;
+                            white-space: nowrap;
+                            border: 1px solid var(--background-panel);
+                            border-radius: 6px;
+                            border-top-left-radius: 0;
+                            border-bottom-left-radius: 0;
+                        }
+
+                        textarea.form-control {
+                            margin-right: calc(1px * -1);
+                            border-radius: 6px;
+                            border-top-right-radius: 0;
+                            border-bottom-right-radius: 0;
+                            position: relative;
+                            flex: 1 1 auto;
+                            width: 1%;
+                            min-width: 0;
+                            min-height: calc(1.5em + .75rem + calc(1px * 2));
+                            height: 70px;
+                            box-shadow: none !important;
+                            display: block;
+                            padding: 6px 12px;
+                            font-size: 12px;
+                            font-weight: 400;
+                            line-height: 1.5;
+                            background-clip: padding-box;
+                            border: 1px solid var(--background-panel);
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            appearance: none;
+                            transition: border-color .15s ease-in-out, 
+                                        box-shadow .15s ease-in-out;
+                            resize: none;
+                            outline: none;
+                        }
+                    }
+                }
+
+                button {
+                    color: #fff;
+                    background-color: var(--background-panel);
+                    width: 140px;
+                    height: 36px;
+                    display: flex;
+                    font-size: 14px;
+                    text-align: center;
+                    align-items: center;
+                    border-radius: 6px;
+                    justify-content: center;
+                    margin-inline: auto;
+                    margin-top: 16px;
+                    position: relative;
+                    overflow: hidden;
+                    
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        width: 15%;
+                        height: 15%;
+                        background-color: rgba(180, 198, 211, 0.4);
+                        transform-origin: 50% 50%;
+                        border-radius: 6px;
+                        transition: all 0.45s;
+                        opacity: 0;
+                    }
+
+                    &::before {
+                        content: attr(data-text-content);
+                        position: absolute;
+                        z-index: 1;
+                        color: #ffffff;
+                    }
+
+                    &:disabled {
+                        background-color: #717171;
+                        color: rgb(190, 190, 190);
+                        &::before {
+                            opacity: 0;
+                        }
+                        &:hover {
+                            &::after {
+                                opacity: 0;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        &::after {
+                            width: 150%;
+                            height: 150%;
+                            opacity: 1;
+                        }
+                    }
+
+                    .loader {
+                        visibility: hidden;
+                        scale: 0.6;
+                        position: absolute;
+                        left: 32%;
+                        top: -20%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mui--divider-left {
+    @media screen and (max-width: 992px) {
+        border: none;
+    }
+}
+
+input[data-password-font='set'] {
+    font-family: 'password' !important;
+    letter-spacing: 0.25rem !important;
+}
+
+.form-check {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-family: 'Yekan';
+
+    a {
+        transition: color 0.25s ease;
+      
+        &:hover {
+          color: #ed4093;
+        }
+    }
+
+    .remember-me {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        span {
+            margin-right: 2px;
+        }
+    }
+}
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  border-radius: 50%;
+  background:
+    linear-gradient(0deg ,rgb(0 0 0/50%) 30%,#0000 0 70%,rgb(0 0 0/100%) 0) 50%/8% 100%,
+    linear-gradient(90deg,rgb(0 0 0/25%) 30%,#0000 0 70%,rgb(0 0 0/75% ) 0) 50%/100% 8%;
+  background-repeat: no-repeat;
+  animation: l23 1s infinite steps(12);
+}
+.loader::before,
+.loader::after {
+   content: "";
+   grid-area: 1/1;
+   border-radius: 50%;
+   background: inherit;
+   opacity: 0.915;
+   transform: rotate(30deg);
+}
+.loader::after {
+   opacity: 0.83;
+   transform: rotate(60deg);
+}
+@keyframes l23 {
+  100% {transform: rotate(1turn)}
+}

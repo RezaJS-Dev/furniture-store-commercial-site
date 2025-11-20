@@ -1,0 +1,259 @@
+/* Footer CSS Properties */
+
+.pre-footer {
+    height: 215px;
+    position: relative;
+    overflow: visible;
+    display: flex;
+    z-index: 1;
+    
+    img {
+        align-self: center;
+        margin-inline-start: 48%;
+        z-index: 1;
+        top: 50px;
+        bottom: -9px;
+        position: absolute;
+    }
+
+    @media screen and (max-width: 1000px) {
+        img {
+            margin-inline-start: 28%;
+        }
+        @media screen and (max-width: 768px) {
+            overflow: hidden;
+ 
+            img {
+                margin-inline-start: 10%;
+                max-width: 89%;
+                bottom: -25px;
+                top: 0;
+            }
+        }
+    }
+
+    @media (orientation: landscape) {
+        overflow: hidden;
+ 
+        img {
+            z-index: 10;
+        }
+    }
+}
+
+.pre-footer-before {
+    visibility: hidden;
+    background: #274f6b;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: -2px;
+    height: 165px;
+    width: 100%;
+    z-index: -1;
+    will-change: opacity;
+    transition: opacity 0.16s linear;
+    -webkit-transition: opacity 0.16s linear;
+    -moz-transition: opacity 0.16s linear;
+    -ms-transition: opacity 0.16s linear;
+    -o-transition: opacity 0.16s linear;
+}
+
+.pre-footer:after {
+    content: '';
+    background: var(--background-body);
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 70px;
+    height: 150px;
+    width: 100%;
+    z-index: 0;
+    transform: rotate(2.8deg) scale(1.6);
+    -webkit-transform: rotate(2.8deg) scale(1.6);
+    -moz-transform: rotate(2.8deg) scale(1.6);
+    -ms-transform: rotate(2.8deg) scale(1.6);
+    -o-transform: rotate(2.8deg) scale(1.6);
+}
+
+footer#footer-changeable {
+    background-color: #274f6b;
+    position: sticky;
+    bottom: 0;
+    opacity: 0.6;
+    padding-top: 42px;
+    will-change: opacity, transform;
+    transform-style: preserve-3d;
+    transform: translate3d(0px, 50%, 0px);
+    -webkit-transform: translate3d(0px, 50%, 0px);
+    -moz-transform: translate3d(0px, 50%, 0px);
+    -ms-transform: translate3d(0px, 50%, 0px);
+    -o-transform: translate3d(0px, 50%, 0px);
+    transition: opacity 0.2s linear;
+    -webkit-transition: opacity 0.2s linear;
+    -moz-transition: opacity 0.2s linear;
+    -ms-transition: opacity 0.2s linear;
+    -o-transition: opacity 0.2s linear;
+
+    &::before {
+        content: '';
+        background: #274f6b;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -110px;
+        height: 115px;
+        width: 100%;
+    }
+
+    @media screen and (max-width: 1000px) {
+        h2 {
+            font-size: clamp(20px, 2vw, 28px);
+        }
+        .footer-content > div {
+            min-height: 168px;
+            &:nth-child(1),
+            &:nth-child(2) {
+                ul {
+                    row-gap: 4px;
+                }
+            }
+        }
+        .footer-content > div {
+            &:nth-child(1), &:nth-child(2) {
+                & ul {
+                  span {
+                    font-family: broya;
+                    font-size: 1.6rem;
+                  }
+                }
+            }
+        } 
+    }
+}
+
+.footer-content > div {
+    min-height: 300px;
+
+    h2 {
+        margin: 1.4rem 0 3.4rem;
+        color: #e1e0e0;
+        position: relative;
+        user-select: none;
+
+        &::after {
+            content: "";
+            height: 2px;
+            width: 190px;
+            background-color: #e1e0e0;
+            position: absolute;
+            top: 48px;
+            right: -4px;
+        }
+    }
+
+    &:nth-child(1),
+    &:nth-child(2) {
+       
+        ul {
+            display: flex;
+            flex-direction: column;
+            row-gap: 14px;
+
+            li {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            span {
+                font-family: broya;
+                font-size: 2rem;
+                margin-right: 1rem;
+                color: #e1e0e0;
+            }
+
+            a:hover {
+                text-decoration-line: none;
+                -moz-text-decoration-line: none;
+                cursor: pointer;
+                    
+                span {
+                    color: #ed6968;
+                    transition: 0.4s ease;
+                    -webkit-transition: 0.4s ease;
+                    -moz-transition: 0.4s ease;
+                    -ms-transition: 0.4s ease;
+                    -o-transition: 0.4s ease;
+                }
+            
+            }
+
+            i {
+                font-size: 2.2rem;
+                color: #ed6968;
+            }
+            
+        }
+    }
+
+    &:last-child {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 8px;
+
+        > div:nth-child(1) {
+            grid-column: span 2 / span 2;
+            grid-row: span 2 / span 2;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        
+        > div:last-child {
+            grid-column: span 2 / span 2;
+            grid-row-start: 3;
+            
+            div.social {
+                display: flex;
+                justify-content: space-evenly;
+    
+                i { 
+                    font-size: 3rem;
+                    margin: 2rem 1rem;
+                    color: #e1e0e0;
+
+                    &:hover {
+                        color: #ed6968;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.copyright {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+
+    span {
+      font-family: broya;
+      font-size: 1.8rem;
+      margin-right: 1rem;
+      color: #e1e0e0;
+    }
+
+    @media screen and (max-width: 1000px) {
+        margin: 1rem 0;
+        span {
+            font-family: broya;
+            font-size: 1.3rem;
+            
+        }
+    }
+}
+

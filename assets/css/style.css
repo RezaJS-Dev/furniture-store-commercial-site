@@ -1,0 +1,1339 @@
+
+header {
+    
+    .slideshow {
+        min-width: 100%;
+        min-height: 83vh;
+        position: relative;
+
+        &::after {
+            content: "";
+            display: flex;
+            width: 100%;
+            height: 83vh;
+            background: linear-gradient(180deg,
+                rgb(255 255 255) 70px, 
+                rgba(253, 255, 252, 0.9) 100px, 
+                rgba(250, 219, 250, 0.3), 
+                rgba(250, 219, 250, 0.3) 76vh, 
+                rgba(230, 220, 220, 1));
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 1000px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            z-index: 20;
+
+            * {
+                box-sizing:border-box
+            }
+
+            @media screen and (width < 768px) {
+                top: 78px;
+            }
+
+            &:hover {
+
+                > .next,
+                > .prev {
+                    opacity: 1;
+                }
+            }
+
+            /* Hide the images by default */
+            .slides {
+                display: none;
+                grid-template-columns: 50% 50%;
+                overflow: hidden;
+
+                @media screen and (width < 768px) {
+                    grid-template-columns: 1fr;
+                    grid-template-rows: repeat(2, 1fr);
+                    grid-column-gap: 0px;
+                    grid-row-gap: 0px;
+                    height: 71vh;
+                }
+                
+                > div {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                    margin-bottom: 250px;
+                    margin-inline-start: 43px;
+
+                    @media screen and (width < 768px) {
+                        justify-self: right;
+                        margin-right: 56px;
+                        margin-bottom: -50px;
+                    }
+                
+                    /* Caption text */
+                    .text {
+                        color: #f2f2f2;
+                        width: 100%;
+
+                        h1 {
+                            color: var(--background-panel);
+                            text-shadow: -2px 2px 6px rgba(0, 0, 0, 0.5);
+                            font-size:32px;
+                            padding: 10px;
+
+                            @media screen and (width < 768px) {
+                                padding-right: 0;
+                            }
+                        }
+
+                        span {
+                            color: var(--background-panel);
+                            font-size: 22px;
+                            padding: 10px;
+                        }
+                    }
+                  
+                    a {
+                        display: flex;
+                        margin: 12px;
+                        margin-left: 75px;
+                        height: 40px;
+                        width: auto;
+                        font-size: 18px;
+                        background-color: var(--background-panel);
+                        color: var(--background-body);
+                        padding: 12px;
+                        border-radius: 4px;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        transition: all 0.35s;
+                        position: relative;
+
+                        &::after {
+                            transition: all 0.35s;
+                            content: "";
+                            width: 100%;
+                            height: 100%;
+                            position: absolute;
+                        }
+                        
+                        &:hover::after {
+                            background-color: rgba(255, 255, 255, .3);
+                        }
+
+                        @media screen and (width < 768px) {
+                            margin-left: 12px;
+                        }
+                    }
+                }
+
+                img {
+                    justify-self: end;
+                    width: max(68vh, 111%);
+
+                    @media screen and (width < 768px) {
+                        width: 47vh;
+                        margin: auto;
+                        margin-inline-end: 50px;
+                    }
+                }
+            }
+
+            /* Next & previous buttons */
+            .prev, .next {
+                display: flex;
+                opacity: 0;
+                position: absolute;
+                height: 35px;
+                width: 35px;
+                background-color: var(--background-panel);
+                color: var(--background-body);
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                bottom: 10px;
+                right: 30px;
+                font-size: 16px;
+                transition: 0.6s ease;
+                border-radius: 100%;
+                user-select: none;
+                line-height: 1;
+            }
+  
+            /* Position the "next button" to the right */
+            .next {
+                right: 70px;
+            }
+  
+            /* On hover, add a black background color with a little bit see-through */
+            .prev:hover, .next:hover {
+                background-color: rgba(0,0,0,0.8);
+            }
+  
+            /* The dots/bullets/indicators */
+            .indicators {
+                text-align:center;
+                user-select: none;
+                -moz-user-select: none;
+  
+                .dot {
+                    cursor: pointer;
+                    height: 15px;
+                    width: 15px;
+                    margin: 0 2px;
+                    background-color: #bbb;
+                    border-radius: 50%;
+                    display: inline-block;
+                    transition: background-color 0.6s ease;
+                }
+      
+                .active, .dot:hover {
+                    background-color: #717171;
+                }
+            }
+  
+            /* Fading animation */
+            .fade {
+                animation-name: zoomIn;
+                animation-duration: 1.5s;
+            }
+
+        }
+        
+        .slideshow-background {
+            width: 100%;
+            height: 83vh;
+            background-image: url(../images/homepageBackground.jpg);
+            background-position: 100% 98%;
+            background-repeat: no-repeat;
+            background-size: 100% 123%;
+            z-index: 1;
+            position: relative;
+
+            @media screen and (max-width: 767px) {
+                background-position: 30% 98%;
+                background-size: 140% 92%;
+            }
+
+        }
+    }
+}
+
+main {
+    position: relative;
+    padding-bottom: 30px;
+    z-index: 1;
+    background: linear-gradient(180deg,
+        #e5dbdc,
+        var(--background-body));
+}
+
+section {
+
+    &.store-items {
+        padding: 20px 0 20px;
+        margin: 20px 0 60px;
+
+        .store-title {
+
+            h2 {
+                color: var(--background-panel);
+            }
+
+            span {
+                margin: 8px 0 8px;
+                display: block;
+                font-size: 15px;
+                color: var(--background-panel);
+
+                @media screen and (max-width: 991px) {
+                    margin: 12px 0 24px;
+                }
+            }
+
+        }
+        
+        .items-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            
+            @media screen and (max-width: 991px) {
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                grid-column-gap: 0px;
+                grid-row-gap: 0px;
+                justify-items: center;
+
+                @media screen and (max-width: 544px) {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    grid-template-rows: repeat(3, 1fr);
+                    grid-column-gap: 0px;
+                    grid-row-gap: 0px;
+                }  
+            }
+
+            .items {
+                max-height: 225px;
+                border-radius: 100%;
+                padding: 0;
+                margin: 15px;
+                transition: all 0.25s;
+                -webkit-transition: all 0.25s;
+                box-shadow: 0 0px 12px 5px rgba(255, 255, 255, 0.96), 0 0 4px 0px rgba(0, 0, 0, 0.42);
+                
+                &:hover {
+                    box-shadow: 0 0px 12px 12px rgba(255, 255, 255, 0.96), 0 0 4px 0px rgba(0, 0, 0, 0.42);
+                }
+
+                &:nth-child(1) a {
+                    background-image: url(../images/thumb/thumb1.jpg);
+                }
+                &:nth-child(2) a {
+                    background-image: url(../images/thumb/thumb2.jpg);
+                }
+                &:nth-child(3) a {
+                    background-image: url(../images/thumb/thumb3.jpg);
+                }
+                &:nth-child(4) a {
+                    background-image: url(../images/thumb/thumb4.jpg);
+                }
+                &:nth-child(5) a {
+                    background-image: url(../images/thumb/thumb5.jpg);
+                }
+                
+                @media screen and (max-width: 1199px) {
+
+                    @media screen and (max-width: 991px) {
+                        margin: 0;
+
+                        &:nth-child(1) {
+                            grid-area: 1 / 1 / 2 / 3;
+                        }
+                        &:nth-child(2) {
+                            grid-area: 1 / 3 / 2 / 5;
+                        }
+                        &:nth-child(3) {
+                            grid-area: 1 / 5 / 2 / 7;
+                        }
+                        &:nth-child(4) {
+                            grid-area: 2 / 2 / 3 / 4;
+                        }
+                        &:nth-child(5) {
+                            grid-area: 2 / 4 / 3 / 6;
+                        }
+
+                        @media screen and (max-width: 544px) {
+                            &:nth-child(1) {
+                                grid-area: 1 / 1 / 2 / 3;
+                            }
+                            &:nth-child(2) {
+                                grid-area: 1 / 3 / 2 / 5;
+                            }
+                            &:nth-child(3) {
+                                grid-area: 2 / 2 / 3 / 4;
+                            }
+                            &:nth-child(4) {
+                                grid-area: 3 / 1 / 4 / 3;
+                            }
+                            &:nth-child(5) {
+                                grid-area: 3 / 3 / 4 / 5;
+                            }
+                        }
+                    }
+                }
+
+                & > a {
+                    height: 205px;
+                    width: 198px;
+                    border-radius: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    background-size: 105% 105%;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    transition: all 0.25s;
+                    -webkit-transition: all 0.25s;
+
+                    &::before {
+                      content: '';
+                      display: block;
+                      opacity: 0;
+                      width: 100%;
+                      height: 100%;
+                      position: absolute;
+                      background-color: rgba(0, 0, 0, 0.4);
+                      border-radius: 100%;
+                      z-index: 0;
+                      transition: all 0.25s;
+                      -webkit-transition: all 0.25s;
+
+                    }
+
+                    &:hover {
+                        background-size: 100% 100%;
+
+                        &::before {
+                          opacity: 1;
+                        }
+
+                        > span {
+                            transform: translateY(-20px);
+                            transition: all 0.25s;
+                            -webkit-transition: all 0.25s;
+                        }
+
+                        > div {
+                            opacity: 1;
+                            visibility: visible;
+                            transition: all 0.25s;
+                            -webkit-transition: all 0.25s;
+                            transform: translateY(20px);
+                            -webkit-transform: translateY(20px);
+                            -moz-transform: translateY(20px);
+                            -ms-transform: translateY(20px);
+                            -o-transform: translateY(20px);
+                        }
+
+
+                    }
+
+                    > span {
+                        position: absolute;
+                        padding: 4px 10px;
+                        background-color: #fff;
+                        color: #000;
+                        font-size: 18px;
+                        border-radius: 24px;
+                        transform: translateY(0px);
+                        transition: all 0.25s;
+                        -webkit-transition: all 0.25s;
+                    }
+
+                    > div {
+                        color: #ffffff;
+                        font-size: 16px;
+                        font-family: byekan;
+                        transform: translateY(0px);
+                        opacity: 0;
+                        visibility: hidden;
+                        transition: all 0.25s;
+                        -webkit-transition: all 0.25s;
+                        transform: translateY(60px);
+                        -webkit-transform: translateY(60px);
+                        -moz-transform: translateY(60px);
+                        -ms-transform: translateY(60px);
+                        -o-transform: translateY(60px);
+
+                        &::after {
+                            content: " محصول";
+                            font-family: Yekan;
+                        }
+                    }
+
+                    @media screen and (max-width: 1199px) {
+                        height: 170px;
+                        width: 166px;
+
+                        @media screen and (max-width: 991px) {
+                            height: 190px;
+                            width: 190px;
+    
+                            @media screen and (max-width: 767px) {
+                                height: 160px;
+                                width: 160px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.order-items {
+        padding: 20px 0 20px;
+        margin: 20px 0 60px;
+
+        .order-title {
+            h3 {
+                margin: 8px 0 16px;
+                display: block;
+                color: var(--background-panel);
+                
+                @media screen and (max-width: 991px) {
+                    margin: 12px 0 24px;
+                }
+            }
+        }
+
+        .carousel-container {
+            display: flex;
+            align-items: center;
+            max-width: 100%;
+            margin: 0 auto;
+            position: relative;
+
+            &:hover > .carousel-btn {
+                opacity: 1;
+            }
+
+            &:hover > .carousel-btn:disabled {
+                opacity: 0.5;
+            }
+
+            &:not(hover) > .carousel-btn,
+            &:not(hover) > .carousel-btn:disabled {
+                opacity: 0;
+            }
+
+            @media screen and (width < 768px) {
+                &:not(hover) > .carousel-btn,
+                &:hover > .carousel-btn {
+                     opacity: 1;
+                }
+
+                &:hover > .carousel-btn:disabled,
+                &:not(hover) > .carousel-btn:disabled,
+                .carousel-btn:disabled {
+                    opacity: 0.5;
+                }
+            }
+
+            .carousel-btn {
+                opacity: 0;
+                color: #274f6b;
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 2.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1;
+                transition: all 0.35s;
+                user-select: none;
+                
+                @media screen and (width < 768px) {
+                    opacity: 1;
+                    position: absolute;
+                    bottom: -40px;
+                    background-color: var(--background-panel);
+                    color: var(--background-body);
+                    width: 66px;
+                    height: 36px;
+                    border-radius: 8px;
+                    padding: 2px 0 0;
+
+                    &.prev-btn {
+                        right: 0px;
+                    }
+                    
+                    &.next-btn {
+                        left: 0px;
+                    }
+                }
+            }
+
+            .carousel-btn:hover {
+                color: #274f6b;
+                font-size: 3.2rem;
+
+                @media screen and (width < 768px) {
+                    color: var(--background-body);
+                    font-size: 2.5rem;
+                }
+            }
+            
+            .carousel-items {
+                display: flex;
+                overflow-x: hidden;
+                scroll-behavior: smooth;
+                gap: 10px;
+                padding: 10px 0;
+                flex-grow: 1;
+                flex-shrink: 1;
+                flex-basis: 0%;
+                user-select: none;
+                
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                @media screen and (width < 992px) {
+                    display: flex;
+                    overflow-x: auto;
+                    scroll-snap-type: x mandatory;
+                    scroll-behavior: smooth;
+                    -webkit-overflow-scrolling: touch;
+                    /* Hide scrollbar */
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                    gap: 15px;
+                }
+
+                .c-item {
+                    overflow: hidden;
+                    height: 370px;
+                    width: 230px;
+                    flex-grow: 0;
+                    flex-shrink: 0;
+                    flex-basis: 230px;
+                    background: linear-gradient(#fff 68%, rgb(139 152 183) 92%, rgb(255, 255, 255) 114% 312%);
+                    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .16), 0 0 2px 0 rgba(0, 0, 0, .12);
+                    position: relative;
+                    user-select: none;
+                    
+                    @media screen and (width < 992px) {
+                        height: 295px;
+                        width: 170px;
+                        scroll-snap-align: start;
+                        flex: 0 0 170px;
+                    }
+                    
+                
+                    .image-product {
+                        position: relative;
+                    
+                        img {
+                            width: 100%;
+                            cursor: pointer;
+                        }
+                    
+                        .favorites-btn {
+                            display: flex;
+                            position: absolute;
+                            top: 8px;
+                            right: 10px;
+                        
+                            label.favorite-checkbox:has(input[type="checkbox"]:checked) {
+                              background-image: url('../svg/heart-solid.svg');
+                            }
+                        
+                            label.favorite-checkbox {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 28px;
+                                height: 28px;
+                                cursor: pointer;
+                                background-image: url('../svg/heart.svg');
+                                background-size: 29px;
+                                background-repeat: no-repeat;
+                                filter: invert(41%) sepia(96%) saturate(5768%) hue-rotate(325deg) brightness(101%) contrast(102%);
+                            
+                                input {
+                                    appearance: none;
+                                    display: none;
+                                }
+                            
+                                @media screen and (width < 992px) {
+                                    width: 22px;
+                                    height: 22px;
+                                    background-size: 22px;
+                                }
+                            }
+                        
+                        }
+                    
+                        .favorites-btn:hover + .favorites-tooltip {
+                            visibility: visible;
+                            opacity: 1;
+                            transition: all 0.45s;
+                        
+                            @media screen and (width < 992px) {
+                                display: none;
+                            }
+                        }
+                    
+                        .favorites-tooltip {
+                            visibility: hidden;
+                            opacity: 0;
+                            pointer-events: none;
+                            display: flex;
+                            position: absolute;
+                            top: 8px;
+                            right: 50px;
+                            height: 32px;
+                            width: fit-content;
+                            padding: 10px;
+                            background-color: var(--background-panel);
+                            font-size: 12px;
+                            transition: all 0.35s;
+                        
+                            span {
+                                position: relative;
+                                display: flex;
+                                justify-content: right;
+                                align-items: center;
+                                color: #fff;
+                                z-index: 1;
+                            
+                                &::after {
+                                    content: "";
+                                    display: block;
+                                    position: absolute;
+                                    background-color: var(--background-panel);
+                                    width: 12px;
+                                    height: 12px;
+                                    right: -14px;
+                                    transform: rotate(45deg);
+                                    z-index: -1;
+                                }
+                            }
+                        }
+                    
+                        .tag {
+                            position: absolute;
+                            left: 0;
+                            top: 12px;
+                            width: fit-content;
+                            color: #fff;
+                            border-radius: 0 20px 20px 0;
+                            font-size: 18px;
+                            text-align: center;
+                            padding: 1px 12px 1px 10px;
+                            max-height: 60px;
+                            height: 26px;
+                        
+                            @media screen and (width < 992px) {
+                                top: 10px;
+                                font-size: 14px;
+                                padding: 1px 10px 1px 10px;
+                                width: 60px;
+                            }
+                        
+                            &.discount {
+                                background-color: #f70404;
+                                font-family: 'byekan';
+                                font-size: 16px;
+                            
+                                &::before {
+                                    content: "%";
+                                }
+                            }
+                            &.new-product {
+                                background-color: #ffa400;
+                                font-size: 15px;
+                            }
+                            &.out-of-stock {
+                                background-color: #9e9e9e;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                
+                    .product-action { 
+                        padding: 10px;
+                        transition: all 0.35s;
+                    
+                        @media screen and (width < 992px) {
+                            padding-top: 32px;
+                        
+                            @media screen and (width < 544px) {
+                            
+                                & > div.pre-act {
+                                    transform: translateY(-36px);
+                                
+                                    div.p-price {
+                                        margin-bottom: 12px;
+                                    
+                                        .price-gross {
+                                            font-size: 13px;
+                                        }
+                                    }
+                                
+                                    div.cart-btn {
+                                    
+                                        & > .order-details,
+                                        & > .show-product {
+                                            opacity: 1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    
+                        @media screen and (width >= 544px) {
+                        
+                            &:hover {
+                            
+                                & .pre-act {
+                                    transform: translateY(-36px);
+                                    transition: all 0.35s;
+                                
+                                    .p-price {
+                                        margin-bottom: 10px;
+                                    }
+                                
+                                    .cart-btn {
+                                    
+                                        .order-details,
+                                        .show-product {
+                                            opacity: 1;
+                                            transition: all 0.3s;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .pre-act {
+                            transition: all 0.35s;
+                            margin-bottom: 16px;
+                        
+                            .p-details {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                            
+                                .p-name {
+                                    padding: 0 12px;
+                                    margin-bottom: 8px;
+                                    padding-bottom: 4px;
+                                    font-family: Estedad-Bold, Yekan;
+                                    font-size: 16px;
+                                    text-wrap-mode: nowrap;
+                                    overflow: clip;
+                                    cursor: pointer;
+                                
+                                    @media screen and (width < 992px) {
+                                        margin-bottom: -8px;
+                                        padding: 0 12px 8px;
+                                        font-size: 13px;
+                                        font-weight: 600;
+                                    }
+                                }
+                            
+                                .p-cat,
+                                .p-dscr,
+                                .p-id {
+                                    padding: 0 12px;
+                                    margin-bottom: 8px;
+                                    font-size: 14px;
+                                    color: #345783;
+                                    line-height: 1.2;
+                                }
+                            
+                                .p-cat,
+                                .p-dscr {
+                                    max-height: 22px;
+                                    min-height: 21px;
+                                    overflow: overlay;
+                                    width: 280px;
+                                    text-align: center;
+                                    padding-top: 5px;
+                                    line-height: 1.05;
+                                    text-align: center;
+                                    padding-inline: 40px;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                
+                                    @media screen and (width < 992px) {
+                                        display: none;
+                                    }
+                                }
+                            
+                                .p-dscr.more-height {
+                                    min-height: 44px;
+                                    padding-top: 0px;
+                                    text-align: center;
+                                    padding-right: 35px;
+                                    padding-left: 28px;
+                                    text-overflow: unset;
+                                    white-space: unset;
+                                    overflow: overlay;
+                                
+                                    @media screen and (width < 992px) {
+                                        display: block;
+                                        min-height: 0;
+                                        max-height: 15px;
+                                        height: 15px;
+                                        visibility: hidden;
+                                    }
+                                }
+                            
+                                .p-id {
+                                    @media screen and (width < 992px) {
+                                        margin-top: 8px;
+                                        margin-bottom: 0px;
+                                    }
+                                }
+                            }
+                        
+                            .p-price {
+                                flex-direction: column;
+                                display: flex;
+                                align-items: center;
+                                row-gap: 8px; 
+                                margin-bottom: 14px;
+                                margin-top: 12px;
+                                font-family: Estedad-Bold, Yekan, Tahoma, Geneva, Verdana, sans-serif;
+                                font-weight: 400;
+                            
+                                @media screen and (width >= 992px) {
+                                    margin-top: 2px;
+                                }
+                            
+                                > span::after {
+                                    content: " تومان";
+                                }
+
+                                .price-gross {
+                                    font-size: 10px;
+                                    color: #a72b2b;
+                                    opacity: 0.7;
+                                    width: fit-content;
+                                    position: relative;
+                                    display: inline-flex;
+                                    column-gap: 1px;
+                                    justify-content: center;
+                                    text-decoration: line-through;
+                                    font-size: 12px;
+                                    @media screen and (width < 1200px) {
+                                        font-size: 10px;
+                                    }
+                                }
+
+                                .price-net {
+                                    font-size: 20px;
+                                    color: #112b75;
+
+                                    @media screen and (width < 1200px) {
+                                        font-size: 16px;
+                                        
+                                        @media screen and (width < 544px) {
+                                            font-size: 17px;
+                                        }
+                                    }
+                                
+                                }
+                            }
+                        
+                            .cart-btn {
+                                display: flex;
+                                justify-content: space-evenly;
+                                width: 100%;
+                                margin-bottom: 12px;
+                            
+                                .order-details {
+                                    display: flex;
+                                    width: 50%;
+                                    justify-content: center;
+                                    align-items: center;
+
+                                    background-color: #fff;
+                                    outline: none;
+                                    border: none;
+                                    opacity: 0.0;
+                                    transition: all 0.3s;
+                                    cursor: pointer;
+                                    padding: 6px;
+                                    font-size: 12px;
+                                
+                                    @media screen and (width < 992px) {
+                                        width: 60%;
+                                    }
+                                }
+                            
+                                .show-product {
+                                    font-size: 25px;
+                                    color: #fff;
+                                    position: relative;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    opacity: 0.05;
+                                    transition: all 0.3s;
+                                
+                                    &:hover {
+                                        &::after,
+                                        &::before {
+                                           transition: all 0.3s;
+                                           visibility: visible;
+                                        }
+                                    }
+                                
+                                    &::before {
+                                        transition: all 0.15s;
+                                        visibility: hidden;
+                                        opacity: 1;
+                                        content: "جزييات محصول";
+                                        position: absolute;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        z-index: 1;
+                                        width: 76px;
+                                        font-size: 10px;
+                                        height: 28px;
+                                        top: -36px;
+                                        left: -24px;
+                                        background-color: var(--background-panel);
+                                        border-radius: 4px;
+                                    
+                                        @media screen and (width < 992px) {
+                                            width: 68px;
+                                            font-size: 9px;
+                                            height: 26px;
+                                            top: -36px;
+                                            left: -20px;
+                                        }
+                                    }
+                                
+                                    &::after {
+                                        transition: all 0.15s;
+                                        visibility: hidden;
+                                        opacity: 1;
+                                        content: "";
+                                        display: block;
+                                        position: absolute;
+                                        background-color: var(--background-panel);
+                                        width: 12px;
+                                        height: 12px;
+                                        right: 5px;
+                                        top: -16px;
+                                        transform: rotate(45deg);
+                                        z-index: -1;
+                                    
+                                        @media screen and (width < 992px) {
+                                            top: -20px;
+                                        }
+                                    }
+                                
+                                    &:focus {
+                                        outline: none;
+                                    }
+                                }
+                            }
+                        }
+                    
+                        .post-act {
+                            position: absolute;
+                            bottom: 0px;
+                            left: 0;
+                            right: 0;
+                            padding: 12px;
+                            height: 328px;
+                            width: 230px;
+                            background-color: #d4f3ff;
+                            overflow: auto;
+                            scrollbar-width: thin;
+                            overscroll-behavior: none;
+                            transform: scaleY(0);
+                            transform-origin: 50% 140%;
+                            transition: all 0.4s;
+                        
+                            @media screen and (width < 992px) {
+                                padding: 2px;
+                                height: 260px;
+                                width: 170px;
+                            
+                            }
+                        
+                            .post-act-contents {
+                                position: relative;
+                            
+                                .close-btn {
+                                    width: 20px;
+                                    height: 20px;
+                                    display: flex;
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
+                                    transition: all 0.4s;
+                                
+                                    path {
+                                        transition: all 0.4s;
+                                        fill: #757373;
+                                    }
+                                
+                                    &:hover path {
+                                        fill: #ed4093;
+                                        transition: all 0.4s;
+                                    }
+                                }
+                            
+                                .reset-btn {
+                                    width: 15px;
+                                    height: 15px;
+                                    display: flex;
+                                    position: absolute;
+                                    left: 32px;
+                                    top: 3px;
+                                    font-size: 15px;
+                                    color: #757373;
+                                    transition: all 0.4s;
+                                    cursor: pointer;
+                                
+                                    &:active {
+                                        cursor: pointer;
+                                    }
+                                
+                                    &:hover {
+                                        color: #ed4093;
+                                        transition: all 0.4s;
+                                    }
+                                
+                                    @media screen and (width < 992px) {
+                                        left: 24px;
+                                    }
+                                }
+                            
+                                h6 {
+                                    margin-bottom: 10px;
+                                    color: #535151;
+                                
+                                    @media screen and (width < 992px) {
+                                        margin-bottom: 6px;
+                                        font-size: 12px;
+                                    }
+                                }
+                            
+                                form {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: center;
+                                
+                                    legend {
+                                        font-size: 14px;
+                                        margin-bottom: 8px;
+                                    }
+                                
+                                    ul {
+                                        display: flex;
+                                        flex-direction:row;
+                                        flex-wrap:wrap;
+                                        justify-content:flex-start;
+                                        align-content:center;
+                                        margin: 0;
+                                    
+                                        li {
+                                        
+                                            label:has(input[type="radio"]:checked) {
+                                               outline: 2px #000 solid;
+                                            }
+                                        
+                                            label {
+                                                display: inline-flex;
+                                                width: fit-content;
+                                                background-color: #fff;
+                                                justify-content: center;
+                                                font-weight: 500;
+                                                font-size: 11px;
+                                                border: 1px #cfcfcf solid;
+                                                border-radius: 4px;
+                                                user-select: none;
+                                            
+                                                input {
+                                                    appearance: none;
+                                                    -moz-appearance: none;
+                                                    -webkit-appearance: none;
+                                                    display: none;
+                                                }
+                                            }    
+                                        
+                                        }
+                                    }
+                                
+                                    ul.select-fabric {
+                                        li {
+                                        
+                                            label {
+                                                padding: 6px;
+                                                margin: 2px;
+                                                min-width: 70px;
+                                                justify-content: center;
+                                                line-height: 1;
+                                                font-size: 12px;
+                                            }
+                                        }
+                                    }
+                                
+                                    ul.select-color {
+                                    
+                                        li {
+                                        
+                                            label {
+                                                padding: 4px;
+                                                margin: 2px;
+                                                min-width: 50px;
+                                                justify-content: center;
+                                                align-items: center;
+                                            
+                                                &:has(input[type='radio']) {
+                                                    &::after {
+                                                        content: "";
+                                                        display: inline-flex;
+                                                        background-repeat: no-repeat;
+                                                        width: 15px;
+                                                        height: 15px;
+                                                        background-size: 100%;
+                                                        margin-right: 2px;
+                                                    }
+                                                }
+                                            
+                                                &:has(input[value="1"]) {
+                                                    &::after {
+                                                        background-image: url('../images/colorBtn/white.svg');
+                                                    }
+                                                }
+                                                &:has(input[value="2"]) {
+                                                    &::after {
+                                                        background-image: url('../images/colorBtn/black.svg');
+                                                    }
+                                                }
+                                                &:has(input[value="3"]) {
+                                                    &::after {
+                                                        background-image: url('../images/colorBtn/green.svg');
+                                                    }
+                                                }
+                                                &:has(input[value="4"]) {
+                                                    &::after {
+                                                        background-image: url('../images/colorBtn/yellow.svg');
+                                                    }
+                                                }
+                                                &:has(input[value="5"]) {
+                                                    &::after {
+                                                        background-image: url('../images/colorBtn/blue.svg');
+                                                    }
+                                                }
+                                                &:has(input[value="6"]) {
+                                                    &::after {
+                                                        background-image: url('../images/colorBtn/red.svg');
+                                                    }
+                                                }
+                                                &:has(input[value="7"]) {
+                                                    &::after {
+                                                        background-image: url('../images/colorBtn/gray.svg');
+                                                    }
+                                                }
+                                                &:has(input[value="8"]) {
+                                                    &::after {
+                                                        background-image: url('../images/colorBtn/purple.svg');
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                
+                                    ul.select-material {
+                                        li {
+                                        
+                                            label {
+                                                padding: 6px;
+                                                margin: 2px;
+                                                min-width: 70px;
+                                                justify-content: center;
+                                                line-height: 1;
+                                            }
+                                        }
+                                    }
+                                
+                                    button {
+                                        appearance: none;
+                                        align-self: center;
+                                        padding: 12px;
+                                        font-size: 12px;
+                                        border: none;
+                                        width: 120px;
+                                        background-color: #ff904d;
+                                        border-radius: 6px;
+                                        color: #fff;
+                                        margin-top: 5px;
+
+                                        &.sold-out {
+                                            background-color: #757373;
+                                            color: #ffffff;
+                                        }
+                                    
+                                        &:not(.sold-out)::after {
+                                            content: "افزودن به سبد خريد";
+                                        }
+                                    
+                                        @media screen and (width < 992px) {
+                                            padding: 2px;
+                                            font-size: 22px;
+                                            width: 90px;
+
+                                            &.sold-out {
+                                                padding: 8px;
+                                                font-size: 14px;
+                                            }
+
+                                            &:not(.sold-out)::after {
+                                                content: "\f07a";
+                                                font-family: 'Line Awesome Free';
+                                                font-weight: 900;
+                                                -webkit-font-smoothing: antialiased;
+                                                display: inline-block;
+                                                font-style: normal;
+                                                font-variant: normal;
+                                                text-rendering: auto;
+                                                line-height: 1;
+                                                font-size: 18px;
+                                            }
+
+                                            &:not(.sold-out)::before {
+                                                content: " خريد";
+                                                font-family: 'Yekan';
+                                                font-size: 14px;
+                                                vertical-align: middle;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  border-radius: 50%;
+  background:
+    linear-gradient(0deg ,rgb(0 0 0/50%) 30%,#0000 0 70%,rgb(0 0 0/100%) 0) 50%/8% 100%,
+    linear-gradient(90deg,rgb(0 0 0/25%) 30%,#0000 0 70%,rgb(0 0 0/75% ) 0) 50%/100% 8%;
+  background-repeat: no-repeat;
+  animation: l23 1s infinite steps(12);
+}
+.loader::before,
+.loader::after {
+   content: "";
+   grid-area: 1/1;
+   border-radius: 50%;
+   background: inherit;
+   opacity: 0.915;
+   transform: rotate(30deg);
+}
+.loader::after {
+   opacity: 0.83;
+   transform: rotate(60deg);
+}
+@keyframes l23 {
+  100% {transform: rotate(1turn)}
+}
