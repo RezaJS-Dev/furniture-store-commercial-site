@@ -44,7 +44,7 @@
                 }
             }
             
-            h3 {
+            h4 {
                 
                 @media screen and (width < 544px) {
                     margin: 24px 20px;
@@ -67,7 +67,7 @@
             filter: invert(1) drop-shadow(2px 8px 16px #000);
             transform-style: preserve-3d;
             @media screen and (width < 544px) {
-                font-size: 180px;
+                font-size: 150px;
             }
             
         }
@@ -82,6 +82,9 @@
             align-items: center;
             justify-content: center;
             gap: 20px;
+            @media screen and (width < 544px) {
+                margin-top: 0px;
+            }
         }
         .nav-link {
             color: white;
@@ -109,6 +112,10 @@
                 margin: 30px 20px;
                 font-size: 22px;
                 font-family: Yekan;
+                @media screen and (width < 544px) {
+                    margin: 22px 20px;
+                    font-size: 20px;
+                }
             }
 
             form {
@@ -172,8 +179,8 @@
 <body>
     <div class="error-content">
         <h1 class="error-code">404</h1>
-        <h1>متاسفانه صفحه مورد نظر شما وجود ندارد!</h1>
-        <h3>برای ادامه گشت و گذار در سایت فروشگاه ما می توانید از دکمه های زیر کمک بگیرید.</h3>
+        <h3>متاسفانه صفحه مورد نظر شما وجود ندارد!</h3>
+        <h4>برای ادامه گشت و گذار در سایت فروشگاه ما می توانید از دکمه های زیر کمک بگیرید.</h4>
         <div class="navigation">
             <a href="/index.html" class="nav-link">🏠 صفحه اول سایت</a>
             <a href="/store.html" class="nav-link">↩ رفتن به فروشگاه</a>
