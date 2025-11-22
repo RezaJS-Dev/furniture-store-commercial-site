@@ -124,8 +124,6 @@ pageLoad.then((database) => {
             let db = null;
             let objectStore = null;
             let dbOpenRequest = window.indexedDB.open('db', 1);
-            // Prevent infinite recovery loops
-            let recoveryAttempted = false; 
             // Event listeners
             dbOpenRequest.addEventListener('upgradeneeded', (e) => {
                 db = e.target.result;
@@ -177,19 +175,13 @@ pageLoad.then((database) => {
             dbOpenRequest.addEventListener('success', (e) => {
                 db = e.target.result;
                 if (!db.objectStoreNames.contains("products")) {
-                  if (!recoveryAttempted) {
-                      console.warn('Object stores missing, attempting recovery...');
-                      recoveryAttempted = true;
-                      db.close(); // Close current connection
-                      window.indexedDB.deleteDatabase('db').onsuccess = () => {
-                          console.log('Database deleted, reopening...');
-                          setTimeout(() => indexdb(), 100); // Small delay before retry
-                      };
-                      return;
-                  } else {
-                      console.error('Recovery already attempted, giving up');
-                      return;
-                  }
+                    console.warn('Object stores missing, attempting recovery...');
+                    db.close(); // Close current connection
+                    window.indexedDB.deleteDatabase('db').onsuccess = () => {
+                        console.log('Database deleted, reopening...');
+                        setTimeout(() => indexdb(), 100); // Small delay before retry
+                    };
+                    return;
                 };
                 console.log('success opening db.');
                 if (typeof storeDatabase == "undefined") {
