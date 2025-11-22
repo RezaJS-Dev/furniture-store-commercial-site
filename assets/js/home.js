@@ -1,3 +1,5 @@
+// Dispatch event when productsDB is ready
+const productsDBReadySuccessEvent = new CustomEvent('productsDatabaseSuccessReady');
 
 // load the database.json
 const pageLoad = new Promise((resolve, reject) => {
@@ -323,6 +325,7 @@ pageLoad.then((database) => {
                             };
                         });
                     };
+                    document.dispatchEvent(productsDBReadySuccessEvent);
                 };
             });
 
@@ -631,7 +634,7 @@ const productQuantityCounter = async function() {
   return;
 }
 
-document.addEventListener('DOMContentLoaded', productQuantityCounter);
+document.addEventListener('productsDatabaseSuccessReady', productQuantityCounter);
 
 // filtering worker executer
 const filteringWorkerObjectFunc = function(data) {
@@ -667,7 +670,7 @@ const filteringWorkerObjectFunc = function(data) {
 };
 
 // Special sell products extracting
-document.addEventListener('DOMContentLoaded', async function () {
+document.addEventListener('productsDatabaseSuccessReady', async function () {
   const filterParameters = {
     category: 8,
     sortField: 'idIDX',
@@ -1432,7 +1435,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 // New Products extracting
-document.addEventListener('DOMContentLoaded', async function () {
+document.addEventListener('productsDatabaseSuccessReady', async function () {
   const filterParameters = {
     category: 7,
     sortField: 'idIDX',
