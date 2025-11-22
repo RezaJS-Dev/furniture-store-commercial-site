@@ -13,6 +13,11 @@ const pageLoad = new Promise((resolve, reject) => {
 pageLoad.then((database) => {
     new Promise((resolve, reject) => {
         const storeDatabase = database;
+        console.log('Starting database initialization with data:', storeDatabase);
+        if (!storeDatabase || !storeDatabase.products) {
+            console.error('Invalid database structure:', storeDatabase);
+            return;
+        };
         // normalizing persian texts
         let normalizedProducts = [];
         let normalizedReviews = [];
@@ -119,6 +124,8 @@ pageLoad.then((database) => {
             let db = null;
             let objectStore = null;
             let dbOpenRequest = window.indexedDB.open('db', 1);
+            // Prevent infinite recovery loops
+            let recoveryAttempted = false; 
             // Event listeners
             dbOpenRequest.addEventListener('upgradeneeded', (e) => {
                 db = e.target.result;
@@ -167,30 +174,28 @@ pageLoad.then((database) => {
                 reviewsObjectStore.createIndex('dateIDX', 'date', {unique: true});
             });
 
-            dbOpenRequest.addEventListener("blocked", (e) => {
-                db = e.target.result;
-                if (!db.objectStoreNames.contains("products")) {
-                  new Promise((res,rej) => {
-                    window.indexedDB.deleteDatabase('db');
-                    res();
-                  })
-                  .then(() => indexdb());
-                  return;
-                };
-            })
-
             dbOpenRequest.addEventListener('success', (e) => {
                 db = e.target.result;
                 if (!db.objectStoreNames.contains("products")) {
-                  new Promise((res,rej) => {
-                    window.indexedDB.deleteDatabase('db');
-                    res();
-                  })
-                  .then(() => indexdb());
-                  return;
+                  if (!recoveryAttempted) {
+                      console.warn('Object stores missing, attempting recovery...');
+                      recoveryAttempted = true;
+                      db.close(); // Close current connection
+                      window.indexedDB.deleteDatabase('db').onsuccess = () => {
+                          console.log('Database deleted, reopening...');
+                          setTimeout(() => indexdb(), 100); // Small delay before retry
+                      };
+                      return;
+                  } else {
+                      console.error('Recovery already attempted, giving up');
+                      return;
+                  }
                 };
                 console.log('success opening db.');
-                if (typeof storeDatabase == "undefined") return; 
+                if (typeof storeDatabase == "undefined") {
+                    console.error('storeDatabase is undefined');
+                    return;
+                } 
 
                 // Adding / Updating products
                 let psTransaction = makeTX('products', 'readwrite');
@@ -339,19 +344,30 @@ pageLoad.then((database) => {
                         });
                     };
                     document.dispatchEvent(productsDBReadySuccessEvent);
+                    console.log('productsDBReadySuccessEvent dispatched.');
                     resolve(storeDatabase);
                 };
             });
 
             dbOpenRequest.addEventListener('error', (err) => {
-                console.log('Error occurred while trying to open db');
-                console.warn(err);
+                console.error('Error occurred while trying to open db:', err);
+                if (!recoveryAttempted) {
+                    console.log('Attempting recovery after error...');
+                    recoveryAttempted = true;
+                    window.indexedDB.deleteDatabase('db').onsuccess = () => {
+                        setTimeout(() => indexdb(), 100);
+                    };
+                }
             });
 
             function makeTX(storeName, mode) {
+              if (!db) {
+                  console.error('Database not available for transaction');
+                  return null;
+              }
               let tx = db.transaction(storeName, mode);
               tx.onerror = (err) => {
-                console.warn(err);
+                  console.warn('Transaction error:', err);
               };
               return tx;
             }
