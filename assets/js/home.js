@@ -167,6 +167,18 @@ pageLoad.then((database) => {
                 reviewsObjectStore.createIndex('dateIDX', 'date', {unique: true});
             });
 
+            dbOpenRequest.addEventListener("blocked", (e) => {
+                db = e.target.result;
+                if (!db.objectStoreNames.contains("products")) {
+                  new Promise((res,rej) => {
+                    window.indexedDB.deleteDatabase('db');
+                    res();
+                  })
+                  .then(() => indexdb());
+                  return;
+                };
+            })
+
             dbOpenRequest.addEventListener('success', (e) => {
                 db = e.target.result;
                 if (!db.objectStoreNames.contains("products")) {
