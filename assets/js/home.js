@@ -120,9 +120,11 @@ pageLoad.then((database) => {
         storeDatabase.products = normalizedProducts;
         storeDatabase.reviews = normalizedReviews;
         console.log('initial database:',storeDatabase);
+        let recovery = false;
         const indexdb = function () {
             let db = null;
             let objectStore = null;
+            if (recovery) window.indexedDB.deleteDatabase('db');
             let dbOpenRequest = window.indexedDB.open('db', 1);
             // Event listeners
             dbOpenRequest.addEventListener('upgradeneeded', (e) => {
@@ -179,6 +181,7 @@ pageLoad.then((database) => {
                     db.close(); // Close current connection
                     setTimeout(() => {
                       new Promise((res,rej) => {
+                        recovery = true;
                         let deleteDB = window.indexedDB.deleteDatabase('db');
                         res(deleteDB);
                       }).then((i) => indexdb());
