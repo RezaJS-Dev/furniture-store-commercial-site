@@ -323,6 +323,8 @@ pageLoad.then((database) => {
                             };
                         });
                     };
+                    document.dispatchEvent(productsDBReadySuccessEvent);
+                    productsDBReadySuccessEventDispatched = true;
                 };
             });
 
