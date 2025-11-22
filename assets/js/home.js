@@ -176,11 +176,10 @@ pageLoad.then((database) => {
                 db = e.target.result;
                 if (!db.objectStoreNames.contains("products")) {
                     console.warn('Object stores missing, attempting recovery...');
-                    db.close(); // Close current connection
-                    window.indexedDB.deleteDatabase('db').onsuccess = () => {
-                        console.log('Database deleted, reopening...');
-                        setTimeout(() => indexdb(), 100); // Small delay before retry
-                    };
+                    new Promise((res,rej) => {
+                      db.close(); // Close current connection
+                      res(window.indexedDB.deleteDatabase('db'));
+                    }).then(() => setTimeout(() => indexdb(), 100));
                     return;
                 };
                 console.log('success opening db.');
