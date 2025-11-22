@@ -171,7 +171,8 @@ pageLoad.then((database) => {
                 db = e.target.result;
                 if (!db.objectStoreNames.contains("products")) {
                   new Promise((res,rej) => {
-                    res(window.indexedDB.deleteDatabase('db'));
+                    window.indexedDB.deleteDatabase('db');
+                    res();
                   })
                   .then(() => indexdb());
                   return;
