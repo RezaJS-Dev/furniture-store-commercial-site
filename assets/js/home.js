@@ -176,11 +176,13 @@ pageLoad.then((database) => {
                 db = e.target.result;
                 if (!db.objectStoreNames.contains("products")) {
                     console.warn('Object stores missing, attempting recovery...');
-                    new Promise((res,rej) => {
-                      db.close(); // Close current connection
-                      let deleteDB = window.indexedDB.deleteDatabase('db');
-                      res(deleteDB);
-                    }).then((i) => indexdb());
+                    db.close(); // Close current connection
+                    setTimeout(() => {
+                      new Promise((res,rej) => {
+                        let deleteDB = window.indexedDB.deleteDatabase('db');
+                        res(deleteDB);
+                      }).then((i) => indexdb());
+                    }, 10);
                     return;
                 };
                 console.log('success opening db.');
@@ -345,11 +347,13 @@ pageLoad.then((database) => {
                 console.error('Error occurred while trying to open db:', err);
                 if (!db.objectStoreNames.contains("products")) {
                     console.warn('Object stores missing, attempting recovery...');
-                    new Promise((res,rej) => {
-                      db.close(); // Close current connection
-                      let deleteDB = window.indexedDB.deleteDatabase('db');
-                      res(deleteDB);
-                    }).then((i) => indexdb());
+                    db.close(); // Close current connection
+                    setTimeout(() => {
+                      new Promise((res,rej) => {
+                        let deleteDB = window.indexedDB.deleteDatabase('db');
+                        res(deleteDB);
+                      }).then((i) => indexdb());
+                    }, 10);
                     return;
                 };
             });
