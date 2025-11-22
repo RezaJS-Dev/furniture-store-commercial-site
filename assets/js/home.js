@@ -167,11 +167,24 @@ pageLoad.then((database) => {
                 reviewsObjectStore.createIndex('dateIDX', 'date', {unique: true});
             });
 
+            dbOpenRequest.addEventListener("blocked", (e) => {
+                db = e.target.result;
+                if (!db.objectStoreNames.contains("products")) {
+                  new Promise((res,rej) => {
+                    window.indexedDB.deleteDatabase('db');
+                    res();
+                  })
+                  .then(() => indexdb());
+                  return;
+                };
+            })
+
             dbOpenRequest.addEventListener('success', (e) => {
                 db = e.target.result;
                 if (!db.objectStoreNames.contains("products")) {
                   new Promise((res,rej) => {
-                    res(window.indexedDB.deleteDatabase('db'));
+                    window.indexedDB.deleteDatabase('db');
+                    res();
                   })
                   .then(() => indexdb());
                   return;
@@ -326,6 +339,7 @@ pageLoad.then((database) => {
                         });
                     };
                     document.dispatchEvent(productsDBReadySuccessEvent);
+                    resolve(storeDatabase);
                 };
             });
 
@@ -343,7 +357,6 @@ pageLoad.then((database) => {
             }
         };
         indexdb();
-        resolve(storeDatabase);
     })
 });
 
@@ -634,7 +647,6 @@ const productQuantityCounter = async function() {
   return;
 }
 
-document.addEventListener('productsDatabaseSuccessReady', productQuantityCounter);
 
 // filtering worker executer
 const filteringWorkerObjectFunc = function(data) {
@@ -669,1550 +681,1555 @@ const filteringWorkerObjectFunc = function(data) {
   });
 };
 
-// Special sell products extracting
-document.addEventListener('productsDatabaseSuccessReady', async function () {
-  const filterParameters = {
-    category: 8,
-    sortField: 'idIDX',
-    sortDirection: 'asc',
-    page: 1,
-    pageSize: +Infinity,
-  };
-  const specialProducts = await filteringWorkerObjectFunc(filterParameters);
-  if (specialProducts.length == 0) return;
-  const carouselItems = document.querySelector(".carousel-items.special-items");
+pageLoad.then((v) => {
+  document.addEventListener('productsDatabaseSuccessReady', productQuantityCounter);
 
-  const renderProducts = async function (products) {
-    // transaction to database - to get user favorites
-    async function favGetter() {
-      return new Promise((resolve, reject) => {
-        if (typeof username === "undefined") {
-          resolve(undefined);
-        } else {
-          const dbCurrentUserOpenRequest = window.indexedDB.open(`${username}`, 1);
-          dbCurrentUserOpenRequest.onerror = () => reject('Error opening database');
-          dbCurrentUserOpenRequest.onsuccess = (e) => {
-            const db = e.target.result; // Declare inside callback
-            if (!db.objectStoreNames.contains("favorite")) {
-              resolve(undefined);
-              return;
-            };
-            const transaction = db.transaction(['favorite'], 'readonly');
-            const store = transaction.objectStore('favorite');
-            const getRequest = store.getAll();
-            getRequest.onsuccess = () => {
-              const data = getRequest.result;
-              resolve(data);
-            };
-            getRequest.onerror = () => {
-              resolve(undefined);
-            };
-          };
-        };
-      });
-    }
-
-    let userFavArr;
-    if (typeof username !== undefined) {
-      userFavArr = await favGetter();
-    }
-
-    // Internal Products renderer function
-    const renderer = function(productsToRender) {
-      {
-        if (productsToRender.length == 0) {
-          carouselItems.innerHTML = `<span class="no-match-found">متاسفانه کالایی با مشخصات مورد نظر یافت نشد.</span>`;
-        } else {
-          carouselItems.innerHTML = "";
-          for (let p of productsToRender) {
-            // p is a product object
-            const pId = p.id;
-            const pProId = p.proId;
-            const pName = p.name;
-            const pPrice = p.price;
-            const pDescription = p.description;
-            const pProductDetails = p.productDetails;
-            const pImage = p.image;
-            const pCategoriesId = p.categoriesId;
-            const pInStock = p.inStock;
-            const pColorId = p.colorId;
-            const pFabricId = p.fabricId;
-            const pDiscount = p.discount;
-
-            if (pInStock === 1) {
-          
-              const materialQuest = (function () {
-                  let test;
-                  if ( p.categoriesId.indexOf( 9, 0) !== -1 && 
-                      p.categoriesId.indexOf( 10, 0) !== -1) {
-                    test = true;
-                  }
-                  if (test == true) {
-                    return `
-                      <fieldset class="material-selection">
-                        <legend class="select-material-title">انتخاب نوع جنس كالا:</legend>
-                        <ul class="select-material">
-                          <li>
-                            <label>چوبی
-                              <input type="radio" name="material" value="9">
-                            </label>
-                          </li>
-                          <li>
-                            <label>فلزی
-                              <input type="radio" name="material" value="10">
-                            </label>
-                          </li>
-                        </ul>
-                      </fieldset>
-                    `
-                  } else {
-                    return "";
-                  }
-              })();
-          
-              let fabricQuest;
-              const fabricTest = (function () {
-                let questArr = [];
-                if ( pFabricId[0] !== 0 ) {
-                  const fabOne = pFabricId.some(i => i === 1);
-                  const fabTwo = pFabricId.some(i => i === 2);
-                  const fabThree = pFabricId.some(i => i === 3);
-                  const fabFour = pFabricId.some(i => i === 4);
-                  const fabOneText = (fabOne) ? `
-                    <li>
-                      <label>چرم
-                        <input type="radio" name="fabric" value="1">
-                      </label>
-                    </li>` : "";
-                  const fabTwoText = (fabTwo) ? `
-                    <li>
-                      <label>پارچه مخمل
-                        <input type="radio" name="fabric" value="2">
-                      </label>
-                    </li>` : "";
-                  const fabThreeText = (fabThree) ? `
-                    <li>
-                      <label>پارچه کتان
-                        <input type="radio" name="fabric" value="3">
-                      </label>
-                    </li>` : "";
-                  const fabFourText = (fabFour) ? `
-                    <li>
-                      <label>پارچه شمعی
-                        <input type="radio" name="fabric" value="4">
-                      </label>
-                    </li>` : "";
-                  questArr.unshift(fabOneText, fabTwoText, fabThreeText, fabFourText);
-                  if (
-                    fabOne !== false || 
-                    fabTwo !== false || 
-                    fabThree !== false || 
-                    fabFour !== false 
-                  ) {
-                    fabricQuest = `
-                      <fieldset class="fabric-selection">
-                        <legend class="select-fabric-title">انتخاب نوع پارچه:</legend>
-                        <ul class="select-fabric">
-                          ${questArr.join('')}
-                        </ul>
-                      </fieldset>
-                    `;
-                  } else {
-                    return "";
-                  }
-                } else {
-                  fabricQuest = "";
-                }
-              })();
-          
-              let colorQuest;
-              const colorTest = (function () {
-                let questArr = [];
-                const colorOne = pColorId.some(i => i === 1);
-                const colorTwo = pColorId.some(i => i === 2);
-                const colorThree = pColorId.some(i => i === 3);
-                const colorFour = pColorId.some(i => i === 4);
-                const colorFive = pColorId.some(i => i === 5);
-                const colorSix = pColorId.some(i => i === 6);
-                const colorSeven = pColorId.some(i => i === 7);
-                const colorEight = pColorId.some(i => i === 8);
-                const colorOneText = (colorOne) ? `
-                  <li>
-                    <label>سفيد
-                      <input type="radio" name="color" value="1">
-                    </label>
-                  </li>
-                  ` : "";
-                const colorTwoText = (colorTwo) ? `
-                  <li>
-                    <label>سياه
-                      <input type="radio" name="color" value="2">
-                    </label>
-                  </li>
-                  ` : "";
-                const colorThreeText = (colorThree) ? `
-                  <li>
-                    <label>سبز
-                      <input type="radio" name="color" value="3">
-                    </label>
-                  </li>
-                  ` : "";
-                const colorFourText = (colorFour) ? `
-                  <li>
-                    <label>زرد
-                      <input type="radio" name="color" value="4">
-                    </label>
-                  </li>
-                  ` : "";
-                const colorFiveText = (colorFive) ? `
-                  <li>
-                    <label>آبی
-                      <input type="radio" name="color" value="5">
-                    </label>
-                  </li>
-                  ` : "";
-                const colorSixText = (colorSix) ? `
-                  <li>
-                    <label>قرمز
-                      <input type="radio" name="color" value="6">
-                    </label>
-                  </li>
-                  ` : "";
-                const colorSevenText = (colorSeven) ? `
-                  <li>
-                    <label>خاکستری
-                      <input type="radio" name="color" value="7">
-                    </label>
-                  </li>
-                  ` : "";
-                const colorEightText = (colorEight) ? `
-                  <li>
-                    <label>بنفش
-                      <input type="radio" name="color" value="8">
-                    </label>
-                  </li>
-                  ` : "";
-                questArr.unshift(
-                  colorOneText, 
-                  colorTwoText, 
-                  colorThreeText, 
-                  colorFourText, 
-                  colorFiveText, 
-                  colorSixText, 
-                  colorSevenText, 
-                  colorEightText
-                );
-                colorQuest = `
-                  <fieldset class="color-selection">
-                    <legend class="select-color-title">انتخاب نوع رنگ:</legend>
-                    <ul class="select-color">
-                      ${questArr.join('')}
-                    </ul>
-                  </fieldset>
-                `;
-              })();
-              
-              let tagText = (function () {
-                if (pInStock === 0) return `<span class="tag out-of-stock">ناموجود</span>`;
-                if (pCategoriesId.includes(7)) return `<span class="tag new-product">جدید</span>`;
-                if (p.discount !== 0) return `<span class="tag discount">${pDiscount.toFixed(0)}</span>`;
-                return "";
-              })();
-          
-              let grossPriceContent = (function () {
-                if (!pDiscount) return "";
-                return `
-                  <span class="price-gross" tabindex="-1">
-                    <strong class="order-price" tabindex="-1">${pPrice}</strong>
-                  </span>`;
-              })();
-          
-              let descriptionTxtContent = (function () {
-                if (pDiscount) {
-                  return `<span class="p-dscr" tabindex="-1">${pDescription}</span>`;
-                } else {
-                  return `<span class="p-dscr more-height" tabindex="-1">${pDescription}</span>`
-                }
-              })();
-    
-              let orderBtn = (function () {
-                if (pInStock === 0) return `<button class="sold-out" tabindex="-1">سفارش تولید</button>`;
-                return '<button class="add-to-cart" tabindex="-1"></button>';
-              })();
-    
-              let favBtn = (function () {
-                  if (typeof userFavArr === 'undefined') return `<input type="checkbox" tabindex="-1" disabled></input>`;
-                  if (userFavArr.length > 0) {
-                    const savedFavoriteTest = userFavArr.includes(pId);
-                    if (savedFavoriteTest) return `<input type="checkbox" tabindex="-1" checked="true"></input>`
-                    return `<input type="checkbox" tabindex="-1"></input>`
-                  } else {
-                    return `<input type="checkbox" tabindex="-1"></input>`
-                  }
-              })();
-          
-              const productEl = document.createElement('div');
-              productEl.className = "c-item rounded-6";
-              productEl.setAttribute('data-product-id', `${pId}`)
-              productEl.innerHTML = `
-                <div class="image-product" tabindex="-1">
-                  <img src="assets/images/p/${pImage}" alt="${pName} ${pProId} ${pId}" tabindex="-1">
-                  <div class="favorites-btn" tabindex="-1">
-                    <label class="favorite-checkbox" tabindex="-1">
-                      ${favBtn}
-                    </label>
-                  </div>
-                  <div class="favorites-tooltip rounded-4" tabindex="-1">
-                    <span tabindex="-1">افزودن به علاقه‌مندی</span>
-                  </div>
-                  ${tagText}
-                </div>
-                <div class="product-action" tabindex="-1">
-                  <div class="pre-act" tabindex="-1">
-                    <div class="p-details" tabindex="-1">
-                      <p class="p-name" tabindex="-1">${pName}</p>
-                      ${descriptionTxtContent}
-                    </div>
-                    <div class="p-price" tabindex="-1">
-                      ${grossPriceContent}
-                      <span class="price-net" tabindex="-1">
-                        <strong class="order-price" tabindex="-1">${(pPrice * (1 - (pDiscount/100))).toFixed(0)}</strong>
-                      </span>
-                    </div>
-                    <div class="cart-btn" tabindex="-1">
-                      <button class="order-details rounded-4" onclick="this.parentElement.parentElement.nextElementSibling.style.transform='scaleY(1)';" tabindex="-1">
-                        جزييات سفارش
-                      </button>
-                      <a class="show-product" href="${'/product.html?productID=' + pId}" tabindex="-1">
-                        <i class="las la-search"></i>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="post-act" tabindex="-1">
-                    <div class="post-act-contents" tabindex="-1">
-                      <button class="close-btn" href="javascript:void(0);" title="بستن" onclick="this.parentElement.parentElement.style.transform='scaleY(0)';" tabindex="-1">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 128 128" xml:space="preserve">
-                          <g><path d="M101.682,32.206L69.887,64l31.795,31.794l-5.887,5.888L64,69.888l-31.794,31.794l-5.888-5.888L58.112,64 L26.318,32.206l5.888-5.888L64,58.112l31.794-31.794L101.682,32.206z"></path></g>
-                        </svg>
-                      </button>
-                      <button class="reset-btn" title="پاك كردن" tabindex="-1">
-                        <i class="las la-undo-alt"></i>
-                      </button>
-                      <h6>انتخاب متريال سفارشی:</h6>
-                      <form action="javascript:void(0)" tabindex="-1">
-                        ${materialQuest}
-                        ${fabricQuest}
-                        ${colorQuest}
-                        ${orderBtn}
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              `;
-              carouselItems.appendChild(productEl);
-            }
-          };
-        };
-      }
-      // go to product page by clicking on product image
-      carouselItems.querySelectorAll('.image-product img').forEach(elm => {
-        let mouseDownScrollS = 0;
-        elm.addEventListener('mousedown', (e) => {
-          e.preventDefault();
-          let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
-          mouseDownScrollS = rect.left;
-        });
-        elm.addEventListener('mouseup', (e) => {
-          e.preventDefault();
-          let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
-          if (mouseDownScrollS === rect.left) {
-            e.stopImmediatePropagation();
-            const ProductId = Number(e.currentTarget.closest('[data-product-id]').dataset.productId);
-            redirectToProduct(ProductId);
-          }
-        });
-      });
-      // go to product page by clicking on product name
-      carouselItems.querySelectorAll('.product-action .p-name').forEach(elm => {
-        let mouseDownScrollS = 0;
-        elm.addEventListener('mousedown', (e) => {
-          e.preventDefault();
-          let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
-          mouseDownScrollS = rect.left;
-        });
-        elm.addEventListener('mouseup', (e) => {
-          e.preventDefault();
-          let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
-          if (mouseDownScrollS === rect.left) {
-            e.stopImmediatePropagation();
-            const ProductId = Number(e.currentTarget.closest('[data-product-id]').dataset.productId);
-            redirectToProduct(ProductId);
-          }
-        });
-      });
-      // go to product page by clicking on show-product button
-      carouselItems.querySelectorAll('a.show-product').forEach(elm => {
-        let mouseDownScrollS = 0;
-        elm.addEventListener('mousedown', (e) => {
-          e.preventDefault();
-          let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
-          mouseDownScrollS = rect.left;
-        });
-        elm.addEventListener('mouseup', (e) => {
-          e.preventDefault();
-          let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
-          if (mouseDownScrollS === rect.left) {
-            e.stopImmediatePropagation();
-            const ProductId = Number(e.currentTarget.closest('[data-product-id]').dataset.productId);
-            redirectToProduct(ProductId);
-          }
-        
-        });
-      });
-      function redirectToProduct(pId, url) {
-        if (localStorage.getItem('productItemLink') && localStorage.getItem('productItemLink') !== undefined) {
-            localStorage.removeItem('productItemLink');
-        }
-        if (localStorage.getItem('productStorePageLink') && localStorage.getItem('productStorePageLink') !== undefined) {
-            localStorage.removeItem('productStorePageLink');
-        }
-        window.location.href = window.location.origin + '/product.html?productID=' + pId;
-      }
-      // collecting user post actions of selecting additional options
-      carouselItems.querySelectorAll('fieldset.material-selection').forEach(elm => {
-        elm.onchange = function (e) {
-          e.currentTarget.setAttribute('data-selected-material-value', e.currentTarget.querySelector('input:checked').getAttribute('value'))
-        };
-      });
-      carouselItems.querySelectorAll('fieldset.fabric-selection').forEach(elm => {
-        elm.onchange = function (e) {
-          e.currentTarget.setAttribute('data-selected-fabric-value', e.currentTarget.querySelector('input:checked').getAttribute('value'))
-        };
-      });
-      carouselItems.querySelectorAll('fieldset.color-selection').forEach(elm => {
-        elm.onchange = function (e) {
-          e.currentTarget.setAttribute('data-selected-color-value', e.currentTarget.querySelector('input:checked').getAttribute('value'))
-        };
-      });
-      // favorite button functionality
-      carouselItems.querySelectorAll('.favorites-btn').forEach(elm => {
-        const throttle = function (mainFunction, delay) {
-          let timerFlag = null;               
-          return (...args) => {               
-            if (timerFlag === null) {         
-              mainFunction(...args);          
-              timerFlag = setTimeout(() => {  
-                timerFlag = null;             
-              }, delay);
-            }
-          };
-        };
-        // Add to favorites
-        const favInputCheckedFunc = function (e) {
-          const thisProductId = Number(e.closest('div[data-product-id]').dataset.productId);
-          const dbCurrentUserOpenRequest = window.indexedDB.open(`${username}`, 1);
-          dbCurrentUserOpenRequest.onerror = () => reject('Error opening database');
-          dbCurrentUserOpenRequest.onsuccess = (e) => {
-            const db = e.target.result; // Declare inside callback
-            const transaction = db.transaction(['favorite'], 'readwrite');
-            const store = transaction.objectStore('favorite');
-            const getRequest = store.add(thisProductId);
-            getRequest.onsuccess = () => {
-              console.log('Added new favorite');
-              const countTransaction = db.transaction(['favorite'], 'readonly');
-              const countStore = countTransaction.objectStore('favorite');
-              const counter = countStore.count();
-              
-              counter.onsuccess = (e) => {
-                const quantityOfFavs = e.target.result;
-                console.log(quantityOfFavs);
-                
-                const updateTransaction = db.transaction(['profile'], 'readwrite');
-                const profileStore = updateTransaction.objectStore('profile');
-                const profileGetReq = profileStore.get(1);
-                
-                profileGetReq.onsuccess = (e) => {
-                  const profile = e.target.result;
-                  profile.favoritesCount = quantityOfFavs;
-                  const updateFavRequest = profileStore.put(profile, 1);
-                  updateFavRequest.onsuccess = () => console.log('Favorites counter updated');
-                  updateFavRequest.onerror = () => console.log('Error updating favorites counter!');
-                };
-                
-                profileGetReq.onerror = () => console.log('Error getting profile');
-              }
-            };
-            getRequest.onerror = () => console.log('Error adding favorites');
-          };
-        };
-        // Remove from favorites
-        const favInputNotCheckedFunc = function (e) {
-          const thisProductId = Number(e.closest('div[data-product-id]').dataset.productId);
-          const dbCurrentUserOpenRequest = window.indexedDB.open(`${username}`, 1);
-          dbCurrentUserOpenRequest.onerror = () => reject('Error opening database');
-          dbCurrentUserOpenRequest.onsuccess = (e) => {
-            const db = e.target.result; // Declare inside callback
-            const transaction = db.transaction(['favorite'], 'readwrite');
-            const store = transaction.objectStore('favorite');
-            const cursor = store.openCursor();
-            cursor.onsuccess = function(event) {
-              const result = event.target.result;                          
-              if (result) {                                                
-                if (result.value === thisProductId) {
-                  const removeReq = store.delete(result.key);
-                  removeReq.onsuccess = () => {
-                    console.log('Removed the favorite');
-                    const countTransaction = db.transaction(['favorite'], 'readonly');
-                    const countStore = countTransaction.objectStore('favorite');
-                    const counter = countStore.count();
-                    
-                    counter.onsuccess = (e) => {
-                      const quantityOfFavs = e.target.result;
-                      console.log(quantityOfFavs);
-                      
-                      const updateTransaction = db.transaction(['profile'], 'readwrite');
-                      const profileStore = updateTransaction.objectStore('profile');
-                      const profileGetReq = profileStore.get(1);
-                      
-                      profileGetReq.onsuccess = (e) => {
-                        const profile = e.target.result;
-                        profile.favoritesCount = quantityOfFavs;
-                        const updateFavRequest = profileStore.put(profile, 1);
-                        updateFavRequest.onsuccess = () => console.log('Favorites counter updated');
-                        updateFavRequest.onerror = () => console.log('Error updating favorites counter!');
-                      };
-                      
-                      profileGetReq.onerror = () => console.log('Error getting profile');
-                    }
-                  }
-                  removeReq.onerror = () => console.log('Error removing the favorite');
-                  result.continue();
-                } else {
-                  result.continue();
-                }
-              } else {                                                                    
-                console.log("No more entries!");
-              }
-            };
-            cursor.onerror = function(event) {
-              console.error("Cursor request failed:", event.target.error);
-            };
-          };
-        };
-        const throttledChecked = throttle(favInputCheckedFunc, 2000);
-        const throttledNotChecked = throttle(favInputNotCheckedFunc, 2000);
-
-        elm.addEventListener('click', function (e) {
-          
-          if (typeof username !== undefined) {
-            if (e.currentTarget.querySelector('input[type="checkbox"]').checked === false) {
-              e.currentTarget.querySelector('input[type="checkbox"]').checked = true;
-              throttledChecked(e.currentTarget.querySelector('input[type="checkbox"]'));
-            } else {
-              e.currentTarget.querySelector('input[type="checkbox"]').checked = false;
-              throttledNotChecked(e.currentTarget.querySelector('input[type="checkbox"]'));
-            }
-          } else {
-            return;
-          }
-        });
-      });
-      // setting event listener on add to cart buttons
-      carouselItems.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', async function(e) {
-          const id = Number(e.target.closest('[data-product-id]').dataset.productId);
-          const currentTarget = e.currentTarget;
-          let product;
-          const productObject = () => {
-            let db = null;
-            const dbPromise = new Promise((resolve, reject) => {
-                const request = indexedDB.open('db', 1);
-                request.onsuccess = (event) => resolve(event.target.result);
-                request.onerror = (event) => reject(event.target.error);
-            });
-            return async function getProductItems(id) {
-              try {
-                db = await dbPromise;
-                const productTX = db.transaction('products', 'readonly');
-                const productStore = productTX.objectStore('products');
-                const productRequest = productStore.get(id);
-                product = await new Promise((resolve, reject) => {
-                    productRequest.onsuccess = (event) => resolve(event.target.result);
-                    productRequest.onerror = (event) => reject(event.target.error);
-                });
-              } catch (error) {
-                console.error('Error loading product:', error);
-              }
-            }
-          }
-          let loadProducts = productObject();
-          await loadProducts(id);
-          const orderTime = Date.now();
-          
-          let materialSelectedValue, 
-              fabricSelectedValue, 
-              colorSelectedValue,
-              considerMaterial = false,
-              considerFabric = false,
-              considerColor = false,
-              selectedProductObj;
-          if (currentTarget.parentElement.querySelector('fieldset.material-selection')) {
-            materialSelectedValue = parseInt(currentTarget.parentElement.querySelector('fieldset.material-selection').dataset.selectedMaterialValue);
-            considerMaterial = true;
-          };
-          if (currentTarget.parentElement.querySelector('fieldset.fabric-selection')) {
-            fabricSelectedValue = parseInt(currentTarget.parentElement.querySelector('fieldset.fabric-selection').dataset.selectedFabricValue);
-            considerFabric = true;
-          };
-          if (currentTarget.parentElement.querySelector('fieldset.color-selection')) {
-            colorSelectedValue = parseInt(currentTarget.parentElement.querySelector('fieldset.color-selection').dataset.selectedColorValue);
-            considerColor = true;
-          };
-          // console.log(materialSelectedValue, fabricSelectedValue, colorSelectedValue);
-          if (considerMaterial ||
-              considerFabric ||
-              considerColor) {
-            if (Number.isNaN(materialSelectedValue) ||
-                Number.isNaN(fabricSelectedValue) ||
-                Number.isNaN(colorSelectedValue)) {
-              notification(
-                "لطفا یکی از گزینه‌های مورد نیاز را انتخاب نمایید.", 
-                "&cross;;", 
-                "#fbff13ff", 
-                "#000", 
-                "#ff391fff", 
-                "check-necessary-fieldset-error-01", 
-                "notif-danger"
-              );
-              return;
-            } else {
-              selectedProductObj = {
-                id: Number(id),
-                material: (considerMaterial && !isNaN(materialSelectedValue)) ? materialSelectedValue : null,
-                fabric: (considerFabric && !isNaN(fabricSelectedValue)) ? fabricSelectedValue : null,
-                color: (considerColor && !isNaN(colorSelectedValue)) ? colorSelectedValue : null,
-                quantity: 1,
-                date: orderTime,
-                price: 0,
-                benefit: 0,
-              };
-            };
-          };
-          if (typeof username !== undefined) {
-            // indexedDB database transactions 
-            let db;
-            let dbOpenRequest = window.indexedDB.open(`${username}`, 1);
-            // Check if product already in cart
-            function makeTX(storeName, mode) {
-              let tx = db.transaction(storeName, mode);
-              tx.onerror = (err) => {
-                console.warn(err);
-              };
-              return tx;
-            }
-            dbOpenRequest.addEventListener('success', (e) => {
-              db = e.target.result;
-              console.log('success opening db.');
-              let cartTX = makeTX('cart', 'readwrite');
-              cartTX.oncomplete = () => {
-                console.log('User cart exists.');
-              };
-              cartTX.onerror = (err) => {
-                console.warn(err);
-              };
-              let cartStore = cartTX.objectStore('cart');
-              let cartRequest = cartStore.count();
-              cartRequest.onsuccess = function(event) {
-                if (event.target.result === 0) {
-                  let req = cartStore.add(selectedProductObj);
-                  req.onsuccess = (ev) => {
-                    console.log('New product added to cart.');
-                  };
-                  req.onerror = (err) => {
-                    console.warn(err);
-                  };
-                } else {
-                  let cursorRequest = cartStore.openCursor();
-                  cursorRequest.onsuccess = (event) => {
-                    const result = event.target.result;
-                    if (result) {
-                      if (
-                        result.value.id === selectedProductObj.id &&
-                        result.value.material === selectedProductObj.material &&
-                        result.value.fabric === selectedProductObj.fabric &&
-                        result.value.color === selectedProductObj.color
-                        ) {
-                        let quantityAddedProduct = result.value;
-                        let cartQuantity = result.value.quantity;
-                        if (cartQuantity >= product.quantity) {
-                          quantityAddedProduct.quantity = product.quantity;
-                          notification(
-                              "شما در حال حاضر تمام موجودی انبار این محصول را در سبد خرید خود دارید.",
-                              "",
-                              "#ff3713",
-                              "#fff",
-                              "#030000",
-                              "out-of-stock-01",
-                              "notif-danger"
-                          );
-                          return;
-                        } else if (cartQuantity < product.quantity) {
-                          quantityAddedProduct.quantity = cartQuantity + 1;
-                        }
-                        let req = cartStore.put(quantityAddedProduct);
-                        req.onsuccess = (ev) => {
-                          console.log('Another number of the Product added to cart.');
-                        };
-                        req.onerror = (err) => {
-                          console.warn(err);
-                        };
-                      } else {
-                        result.continue();
-                      };
-                    } else {
-                      let req = cartStore.add(selectedProductObj);
-                      req.onsuccess = (ev) => {
-                        console.log('New product added to cart.');
-                      };
-                      req.onerror = (err) => {
-                        console.warn(err);
-                      };
-                    };
-                  };
-                  cursorRequest.onerror = (err) => {
-                    console.warn(err);
-                  };
-                };
-              };
-            });
-          };
-          cart();
-        });
-      });
-      // setting functionality of sold out products
-      carouselItems.querySelectorAll('.sold-out').forEach(button => {
-        button.addEventListener('click', function(e) {
-          window.location.href = window.location.origin + "/contactus.html";
-        })
-      });
-      // reset button functionality
-      carouselItems.querySelectorAll('.post-act-contents > .reset-btn').forEach( button => {
-        button.addEventListener('click', function (e) {
-          e.currentTarget.nextElementSibling.nextElementSibling.reset();
-          if (e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.material-selection')) {
-            e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.material-selection').removeAttribute('data-selected-material-value');
-          }
-          if (e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.fabric-selection')) {
-            e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.fabric-selection').removeAttribute('data-selected-fabric-value');
-          }
-          if (e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.color-selection')) {
-            e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.color-selection').removeAttribute('data-selected-color-value');
-          }
-        });
-      });
-      // separate numbers by three
-      const orderPrice = document.querySelector(".special-items").querySelectorAll(".order-price");
-      for (let i of orderPrice) {
-          i.textContent =
-            parseInt(i.textContent
-              .replace(/[^\d]+/gi, ''))
-                .toLocaleString('fa-IR')
-                  .replace(/[٬]/gi, ',')
-      };
-      return `Render Operation Processed: ${productsToRender}`;
+  // Special sell products extracting
+  document.addEventListener('productsDatabaseSuccessReady', async function () {
+    const filterParameters = {
+      category: 8,
+      sortField: 'idIDX',
+      sortDirection: 'asc',
+      page: 1,
+      pageSize: +Infinity,
     };
-    
-    try {
-      renderer(products);
-      carouselFunc('special-items-container');
-    } catch (e) {
-      throw e;
-    }
-  };
-
-  renderProducts(specialProducts);
-
-});
-
-// New Products extracting
-document.addEventListener('productsDatabaseSuccessReady', async function () {
-  const filterParameters = {
-    category: 7,
-    sortField: 'idIDX',
-    sortDirection: 'asc',
-    page: 1,
-    pageSize: +Infinity,
-  };
-  const specialProducts = await filteringWorkerObjectFunc(filterParameters);
-  if (specialProducts.length == 0) return;
-  const carouselItems = document.querySelector(".carousel-items.new-items");
-
-  const renderProducts = async function (products) {
-    // transaction to database - to get user favorites
-    async function favGetter() {
-      return new Promise((resolve, reject) => {
-        if (typeof username === "undefined") {
-          resolve(undefined);
-        } else {
-          const dbCurrentUserOpenRequest = window.indexedDB.open(`${username}`, 1);
-          dbCurrentUserOpenRequest.onerror = () => reject('Error opening database');
-          dbCurrentUserOpenRequest.onsuccess = (e) => {
-            const db = e.target.result; // Declare inside callback
-            if (!db.objectStoreNames.contains("favorite")) {
-              resolve(undefined);
-              return;
-            };
-            const transaction = db.transaction(['favorite'], 'readonly');
-            const store = transaction.objectStore('favorite');
-            const getRequest = store.getAll();
-            getRequest.onsuccess = () => {
-              const data = getRequest.result;
-              resolve(data);
-            };
-            getRequest.onerror = () => {
-              resolve(undefined)
-            };
-          };
-        }
-      });
-    }
-
-    let userFavArr;
-    if (typeof username !== undefined) {
-      userFavArr = await favGetter();
-    }
-
-    // transaction to database - to get categories name
-    async function catNameGetter() {
-      return new Promise((resolve, reject) => {
-        const dbOpenRequest = window.indexedDB.open(`db`, 1);
-        dbOpenRequest.onerror = () => reject('Error opening database');
-        dbOpenRequest.onsuccess = (e) => {
-          const db = e.target.result; // Declare inside callback
-          const transaction = db.transaction(['categories'], 'readonly');
-          const store = transaction.objectStore('categories');
-          const getRequest = store.getAll();
-          getRequest.onsuccess = () => {
-            const data = getRequest.result;
-            resolve(data);
-          };
-          getRequest.onerror = () => reject('Error fetching favorites');
-        };
-      });
-    }
-
-    let catName;
-    catName = await catNameGetter();
-
-    // renderer function
-    const renderer = function(productsToRender) {
-      {
-        if (productsToRender.length == 0) {
-          carouselItems.innerHTML = `<span class="no-match-found">متاسفانه کالایی با مشخصات مورد نظر یافت نشد.</span>`;
-        } else {
-          carouselItems.innerHTML = "";
-          for (let p of productsToRender) {
-            // p is a product object
-            const pId = p.id;
-            const pProId = p.proId;
-            const pName = p.name;
-            const pPrice = p.price;
-            const pDescription = p.description;
-            const pProductDetails = p.productDetails;
-            const pImage = p.image;
-            const pCategoriesId = p.categoriesId;
-            const pCategories = p.categoriesId.map(cat => {
-              return `${catName[cat-1].name}, `;
-            }).join('');
-            const pInStock = p.inStock;
-            const pColorId = p.colorId;
-            const pFabricId = p.fabricId;
-            const pDiscount = p.discount;
-            // const pQuantity = p.quantity;
-
-            if (pInStock === 1) {
-          
-              const materialQuest = (function () {
-                  let test;
-                  if ( p.categoriesId.indexOf( 9, 0) !== -1 && 
-                      p.categoriesId.indexOf( 10, 0) !== -1) {
-                    test = true;
-                  }
-                  if (test == true) {
-                    return `
-                      <fieldset class="material-selection">
-                        <legend class="select-material-title">انتخاب نوع جنس كالا:</legend>
-                        <ul class="select-material">
-                          <li>
-                            <label>چوبی
-                              <input type="radio" name="material" value="9">
-                            </label>
-                          </li>
-                          <li>
-                            <label>فلزی
-                              <input type="radio" name="material" value="10">
-                            </label>
-                          </li>
-                        </ul>
-                      </fieldset>
-                    `
-                  } else {
-                    return "";
-                  }
-              })();
-          
-              let fabricQuest;
-              const fabricTest = (function () {
-                let questArr = [];
-                if ( pFabricId[0] !== 0 ) {
-                  const fabOne = pFabricId.some(i => i === 1);
-                  const fabTwo = pFabricId.some(i => i === 2);
-                  const fabThree = pFabricId.some(i => i === 3);
-                  const fabFour = pFabricId.some(i => i === 4);
-                  const fabOneText = (fabOne) ? `
-                    <li>
-                      <label>چرم
-                        <input type="radio" name="fabric" value="1">
-                      </label>
-                    </li>` : "";
-                  const fabTwoText = (fabTwo) ? `
-                    <li>
-                      <label>پارچه مخمل
-                        <input type="radio" name="fabric" value="2">
-                      </label>
-                    </li>` : "";
-                  const fabThreeText = (fabThree) ? `
-                    <li>
-                      <label>پارچه کتان
-                        <input type="radio" name="fabric" value="3">
-                      </label>
-                    </li>` : "";
-                  const fabFourText = (fabFour) ? `
-                    <li>
-                      <label>پارچه شمعی
-                        <input type="radio" name="fabric" value="4">
-                      </label>
-                    </li>` : "";
-                  questArr.unshift(fabOneText, fabTwoText, fabThreeText, fabFourText);
-                  if (
-                    fabOne !== false || 
-                    fabTwo !== false || 
-                    fabThree !== false || 
-                    fabFour !== false 
-                  ) {
-                    fabricQuest = `
-                      <fieldset class="fabric-selection">
-                        <legend class="select-fabric-title">انتخاب نوع پارچه:</legend>
-                        <ul class="select-fabric">
-                          ${questArr.join('')}
-                        </ul>
-                      </fieldset>
-                    `;
-                  } else {
-                    return "";
-                  }
-                } else {
-                  fabricQuest = "";
-                }
-              })();
-          
-              let colorQuest;
-              const colorTest = (function () {
-                let questArr = [];
-                const colorOne = pColorId.some(i => i === 1);
-                const colorTwo = pColorId.some(i => i === 2);
-                const colorThree = pColorId.some(i => i === 3);
-                const colorFour = pColorId.some(i => i === 4);
-                const colorFive = pColorId.some(i => i === 5);
-                const colorSix = pColorId.some(i => i === 6);
-                const colorSeven = pColorId.some(i => i === 7);
-                const colorEight = pColorId.some(i => i === 8);
-                const colorOneText = (colorOne) ? `
-                  <li>
-                    <label>سفيد
-                      <input type="radio" name="color" value="1">
-                    </label>
-                  </li>
-                  ` : "";
-                const colorTwoText = (colorTwo) ? `
-                  <li>
-                    <label>سياه
-                      <input type="radio" name="color" value="2">
-                    </label>
-                  </li>
-                  ` : "";
-                const colorThreeText = (colorThree) ? `
-                  <li>
-                    <label>سبز
-                      <input type="radio" name="color" value="3">
-                    </label>
-                  </li>
-                  ` : "";
-                const colorFourText = (colorFour) ? `
-                  <li>
-                    <label>زرد
-                      <input type="radio" name="color" value="4">
-                    </label>
-                  </li>
-                  ` : "";
-                const colorFiveText = (colorFive) ? `
-                  <li>
-                    <label>آبی
-                      <input type="radio" name="color" value="5">
-                    </label>
-                  </li>
-                  ` : "";
-                const colorSixText = (colorSix) ? `
-                  <li>
-                    <label>قرمز
-                      <input type="radio" name="color" value="6">
-                    </label>
-                  </li>
-                  ` : "";
-                const colorSevenText = (colorSeven) ? `
-                  <li>
-                    <label>خاکستری
-                      <input type="radio" name="color" value="7">
-                    </label>
-                  </li>
-                  ` : "";
-                const colorEightText = (colorEight) ? `
-                  <li>
-                    <label>بنفش
-                      <input type="radio" name="color" value="8">
-                    </label>
-                  </li>
-                  ` : "";
-                questArr.unshift(
-                  colorOneText, 
-                  colorTwoText, 
-                  colorThreeText, 
-                  colorFourText, 
-                  colorFiveText, 
-                  colorSixText, 
-                  colorSevenText, 
-                  colorEightText
-                );
-                colorQuest = `
-                  <fieldset class="color-selection">
-                    <legend class="select-color-title">انتخاب نوع رنگ:</legend>
-                    <ul class="select-color">
-                      ${questArr.join('')}
-                    </ul>
-                  </fieldset>
-                `;
-              })();
-              
-              let tagText = (function () {
-                if (pInStock === 0) return `<span class="tag out-of-stock">ناموجود</span>`;
-                if (pCategoriesId.includes(7)) return `<span class="tag new-product">جدید</span>`;
-                if (p.discount !== 0) return `<span class="tag discount">${pDiscount.toFixed(0)}</span>`;
-                return "";
-              })();
-          
-              let grossPriceContent = (function () {
-                if (!pDiscount) return "";
-                return `
-                  <span class="price-gross" tabindex="-1">
-                    <strong class="order-price" tabindex="-1">${pPrice}</strong>
-                  </span>`;
-              })();
-          
-              let descriptionTxtContent = (function () {
-                if (pDiscount) {
-                  return `<span class="p-dscr" tabindex="-1">${pDescription}</span>`;
-                } else {
-                  return `<span class="p-dscr more-height" tabindex="-1">${pDescription}</span>`
-                }
-              })();
-    
-              let orderBtn = (function () {
-                if (pInStock === 0) return `<button class="sold-out" tabindex="-1">سفارش تولید</button>`;
-                return '<button class="add-to-cart" tabindex="-1"></button>';
-              })();
-    
-              let favBtn = (function () {
-                  if (typeof userFavArr === 'undefined') return `<input type="checkbox" tabindex="-1" disabled></input>`;
-                  if (userFavArr.length > 0) {
-                    const savedFavoriteTest = userFavArr.includes(pId);
-                    if (savedFavoriteTest) return `<input type="checkbox" tabindex="-1" checked="true"></input>`
-                    return `<input type="checkbox" tabindex="-1"></input>`
-                  } else {
-                    return `<input type="checkbox" tabindex="-1"></input>`
-                  }
-              })();
-          
-              const productEl = document.createElement('div');
-              productEl.className = "c-item rounded-6";
-              productEl.setAttribute('data-product-id', `${pId}`)
-              productEl.innerHTML = `
-                <div class="image-product" tabindex="-1">
-                  <img src="assets/images/p/${pImage}" alt="${pName} ${pProId} ${pId}" tabindex="-1">
-                  <div class="favorites-btn" tabindex="-1">
-                    <label class="favorite-checkbox" tabindex="-1">
-                      ${favBtn}
-                    </label>
-                  </div>
-                  <div class="favorites-tooltip rounded-4" tabindex="-1">
-                    <span tabindex="-1">افزودن به علاقه‌مندی</span>
-                  </div>
-                  ${tagText}
-                </div>
-                <div class="product-action" tabindex="-1">
-                  <div class="pre-act" tabindex="-1">
-                    <div class="p-details" tabindex="-1">
-                      <p class="p-name" tabindex="-1">${pName}</p>
-                      <span class="p-id" tabindex="-1">شناسه كالا : ${pProId}</span>
-                      <span class="p-cat" tabindex="-1">${pCategories}</span>
-                    </div>
-                    <div class="p-price" tabindex="-1">
-                      ${grossPriceContent}
-                      <span class="price-net" tabindex="-1">
-                        <strong class="order-price" tabindex="-1">${(pPrice * (1 - (pDiscount/100))).toFixed(0)}</strong>
-                      </span>
-                    </div>
-                    <div class="cart-btn" tabindex="-1">
-                      <button class="order-details rounded-4" onclick="this.parentElement.parentElement.nextElementSibling.style.transform='scaleY(1)';" tabindex="-1">
-                        جزييات سفارش
-                      </button>
-                      <a class="show-product" href="${'/product.html?productID=' + pId}" tabindex="-1">
-                        <i class="las la-search"></i>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="post-act" tabindex="-1">
-                    <div class="post-act-contents" tabindex="-1">
-                      <button class="close-btn" href="javascript:void(0);" title="بستن" onclick="this.parentElement.parentElement.style.transform='scaleY(0)';" tabindex="-1">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 128 128" xml:space="preserve">
-                          <g><path d="M101.682,32.206L69.887,64l31.795,31.794l-5.887,5.888L64,69.888l-31.794,31.794l-5.888-5.888L58.112,64 L26.318,32.206l5.888-5.888L64,58.112l31.794-31.794L101.682,32.206z"></path></g>
-                        </svg>
-                      </button>
-                      <button class="reset-btn" title="پاك كردن" tabindex="-1">
-                        <i class="las la-undo-alt"></i>
-                      </button>
-                      <h6>انتخاب متريال سفارشی:</h6>
-                      <form action="javascript:void(0)" tabindex="-1">
-                        ${materialQuest}
-                        ${fabricQuest}
-                        ${colorQuest}
-                        ${orderBtn}
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              `;
-              carouselItems.appendChild(productEl);
-            }
-          };
-        };
-      }
-      // go to product page by clicking on product image
-      carouselItems.querySelectorAll('.image-product img').forEach(elm => {
-        let mouseDownScrollS = 0;
-        elm.addEventListener('mousedown', (e) => {
-          e.preventDefault();
-          let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
-          mouseDownScrollS = rect.left;
-        });
-        elm.addEventListener('mouseup', (e) => {
-          e.preventDefault();
-          let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
-          if (mouseDownScrollS === rect.left) {
-            e.stopImmediatePropagation();
-            const ProductId = Number(e.currentTarget.closest('[data-product-id]').dataset.productId);
-            redirectToProduct(ProductId);
-          }
-        });
-      });
-      // go to product page by clicking on product name
-      carouselItems.querySelectorAll('.product-action .p-name').forEach(elm => {
-        let mouseDownScrollS = 0;
-        elm.addEventListener('mousedown', (e) => {
-          e.preventDefault();
-          let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
-          mouseDownScrollS = rect.left;
-        });
-        elm.addEventListener('mouseup', (e) => {
-          e.preventDefault();
-          let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
-          if (mouseDownScrollS === rect.left) {
-            e.stopImmediatePropagation();
-            const ProductId = Number(e.currentTarget.closest('[data-product-id]').dataset.productId);
-            redirectToProduct(ProductId);
-          }
-        });
-      });
-      // go to product page by clicking on show-product button
-      carouselItems.querySelectorAll('a.show-product').forEach(elm => {
-        elm.addEventListener('click', (e) => {
-          e.preventDefault();
-          const ProductId = Number(e.currentTarget.closest('[data-product-id]').dataset.productId);
-          redirectToProduct(ProductId);
-        
-        });
-      });
-      function redirectToProduct(pId, url) {
-        if (localStorage.getItem('productItemLink') && localStorage.getItem('productItemLink') !== undefined) {
-            localStorage.removeItem('productItemLink');
-        }
-        if (localStorage.getItem('productStorePageLink') && localStorage.getItem('productStorePageLink') !== undefined) {
-            localStorage.removeItem('productStorePageLink');
-        }
-        window.location.href = window.location.origin + '/product.html?productID=' + pId;
-      }
-      // collecting user post actions of selecting additional options
-      carouselItems.querySelectorAll('fieldset.material-selection').forEach(elm => {
-        elm.onchange = function (e) {
-          e.currentTarget.setAttribute('data-selected-material-value', e.currentTarget.querySelector('input:checked').getAttribute('value'))
-        };
-      });
-      carouselItems.querySelectorAll('fieldset.fabric-selection').forEach(elm => {
-        elm.onchange = function (e) {
-          e.currentTarget.setAttribute('data-selected-fabric-value', e.currentTarget.querySelector('input:checked').getAttribute('value'))
-        };
-      });
-      carouselItems.querySelectorAll('fieldset.color-selection').forEach(elm => {
-        elm.onchange = function (e) {
-          e.currentTarget.setAttribute('data-selected-color-value', e.currentTarget.querySelector('input:checked').getAttribute('value'))
-        };
-      });
-      // favorite button functionality
-      carouselItems.querySelectorAll('.favorites-btn').forEach(elm => {
-        const throttle = function (mainFunction, delay) {
-          let timerFlag = null;               
-          return (...args) => {               
-            if (timerFlag === null) {         
-              mainFunction(...args);          
-              timerFlag = setTimeout(() => {  
-                timerFlag = null;             
-              }, delay);
-            }
-          };
-        };
-        // Add to favorites
-        const favInputCheckedFunc = function (e) {
-          const thisProductId = Number(e.closest('div[data-product-id]').dataset.productId);
-          const dbCurrentUserOpenRequest = window.indexedDB.open(`${username}`, 1);
-          dbCurrentUserOpenRequest.onerror = () => reject('Error opening database');
-          dbCurrentUserOpenRequest.onsuccess = (e) => {
-            const db = e.target.result; // Declare inside callback
-            const transaction = db.transaction(['favorite'], 'readwrite');
-            const store = transaction.objectStore('favorite');
-            const getRequest = store.add(thisProductId);
-            getRequest.onsuccess = () => {
-              console.log('Added new favorite');
-              const countTransaction = db.transaction(['favorite'], 'readonly');
-              const countStore = countTransaction.objectStore('favorite');
-              const counter = countStore.count();
-              
-              counter.onsuccess = (e) => {
-                const quantityOfFavs = e.target.result;
-                console.log(quantityOfFavs);
-                
-                const updateTransaction = db.transaction(['profile'], 'readwrite');
-                const profileStore = updateTransaction.objectStore('profile');
-                const profileGetReq = profileStore.get(1);
-                
-                profileGetReq.onsuccess = (e) => {
-                  const profile = e.target.result;
-                  profile.favoritesCount = quantityOfFavs;
-                  const updateFavRequest = profileStore.put(profile, 1);
-                  updateFavRequest.onsuccess = () => console.log('Favorites counter updated');
-                  updateFavRequest.onerror = () => console.log('Error updating favorites counter!');
-                };
-                
-                profileGetReq.onerror = () => console.log('Error getting profile');
-              }
-            };
-            getRequest.onerror = () => console.log('Error adding favorites');
-          };
-        };
-        // Remove from favorites
-        const favInputNotCheckedFunc = function (e) {
-          const thisProductId = Number(e.closest('div[data-product-id]').dataset.productId);
-          const dbCurrentUserOpenRequest = window.indexedDB.open(`${username}`, 1);
-          dbCurrentUserOpenRequest.onerror = () => reject('Error opening database');
-          dbCurrentUserOpenRequest.onsuccess = (e) => {
-            const db = e.target.result; // Declare inside callback
-            const transaction = db.transaction(['favorite'], 'readwrite');
-            const store = transaction.objectStore('favorite');
-            const cursor = store.openCursor();
-            cursor.onsuccess = function(event) {
-              const result = event.target.result;                          
-              if (result) {                                                
-                if (result.value === thisProductId) {
-                  const removeReq = store.delete(result.key);
-                  removeReq.onsuccess = () => {
-                    console.log('Removed the favorite');
-                    const countTransaction = db.transaction(['favorite'], 'readonly');
-                    const countStore = countTransaction.objectStore('favorite');
-                    const counter = countStore.count();
-                    
-                    counter.onsuccess = (e) => {
-                      const quantityOfFavs = e.target.result;
-                      console.log(quantityOfFavs);
-                      
-                      const updateTransaction = db.transaction(['profile'], 'readwrite');
-                      const profileStore = updateTransaction.objectStore('profile');
-                      const profileGetReq = profileStore.get(1);
-                      
-                      profileGetReq.onsuccess = (e) => {
-                        const profile = e.target.result;
-                        profile.favoritesCount = quantityOfFavs;
-                        const updateFavRequest = profileStore.put(profile, 1);
-                        updateFavRequest.onsuccess = () => console.log('Favorites counter updated');
-                        updateFavRequest.onerror = () => console.log('Error updating favorites counter!');
-                      };
-                      
-                      profileGetReq.onerror = () => console.log('Error getting profile');
-                    }
-                  }
-                  removeReq.onerror = () => console.log('Error removing the favorite');
-                  result.continue();
-                } else {
-                  result.continue();
-                }
-              } else {                                                                    
-                console.log("No more entries!");
-              }
-            };
-            cursor.onerror = function(event) {
-              console.error("Cursor request failed:", event.target.error);
-            };
-          };
-        };
-        const throttledChecked = throttle(favInputCheckedFunc, 2000);
-        const throttledNotChecked = throttle(favInputNotCheckedFunc, 2000);
-
-        elm.onclick = function (e) {
-          if (typeof username !== undefined) {
-            if (e.currentTarget.querySelector('input[type="checkbox"]').checked === false) {
-              throttledChecked(e.currentTarget.querySelector('input[type="checkbox"]'));
-              e.currentTarget.querySelector('input[type="checkbox"]').checked = true;
-            } else {
-              throttledNotChecked(e.currentTarget.querySelector('input[type="checkbox"]'));
-              e.currentTarget.querySelector('input[type="checkbox"]').checked = false;
-            }
-          } else {
-            return;
-          }
-        };
-      });
-      // setting event listener on add to cart buttons
-      carouselItems.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', async function(e) {
-          const id = Number(e.target.closest('[data-product-id]').dataset.productId);
-          const currentTarget = e.currentTarget;
-          let product;
-          const productObject = () => {
-            let db = null;
-            const dbPromise = new Promise((resolve, reject) => {
-                const request = indexedDB.open('db', 1);
-                request.onsuccess = (event) => resolve(event.target.result);
-                request.onerror = (event) => reject(event.target.error);
-            });
-            return async function getProductItems(id) {
-              try {
-                db = await dbPromise;
-                const productTX = db.transaction('products', 'readonly');
-                const productStore = productTX.objectStore('products');
-                const productRequest = productStore.get(id);
-                product = await new Promise((resolve, reject) => {
-                    productRequest.onsuccess = (event) => resolve(event.target.result);
-                    productRequest.onerror = (event) => reject(event.target.error);
-                });
-              } catch (error) {
-                console.error('Error loading product:', error);
-              }
-            }
-          }
-          let loadProducts = productObject();
-          await loadProducts(id);
-          //
-          const orderTime = Date.now();
-          
-          let materialSelectedValue, 
-              fabricSelectedValue, 
-              colorSelectedValue,
-              considerMaterial = false,
-              considerFabric = false,
-              considerColor = false,
-              selectedProductObj;
-          if (currentTarget.parentElement.querySelector('fieldset.material-selection')) {
-            materialSelectedValue = parseInt(currentTarget.parentElement.querySelector('fieldset.material-selection').dataset.selectedMaterialValue);
-            considerMaterial = true;
-          };
-          if (currentTarget.parentElement.querySelector('fieldset.fabric-selection')) {
-            fabricSelectedValue = parseInt(currentTarget.parentElement.querySelector('fieldset.fabric-selection').dataset.selectedFabricValue);
-            considerFabric = true;
-          };
-          if (currentTarget.parentElement.querySelector('fieldset.color-selection')) {
-            colorSelectedValue = parseInt(currentTarget.parentElement.querySelector('fieldset.color-selection').dataset.selectedColorValue);
-            considerColor = true;
-          };
-          if (considerMaterial ||
-              considerFabric ||
-              considerColor) {
-            if (Number.isNaN(materialSelectedValue) ||
-                Number.isNaN(fabricSelectedValue) ||
-                Number.isNaN(colorSelectedValue)) {
-              notification(
-                "لطفا یکی از گزینه‌های مورد نیاز را انتخاب نمایید.", 
-                "&cross;;", 
-                "#fbff13ff", 
-                "#000", 
-                "#ff391fff", 
-                "check-necessary-fieldset-error-01", 
-                "notif-danger"
-              );
-              return;
-            } else {
-              selectedProductObj = {
-                id: Number(id),
-                material: (considerMaterial && !isNaN(materialSelectedValue)) ? materialSelectedValue : null,
-                fabric: (considerFabric && !isNaN(fabricSelectedValue)) ? fabricSelectedValue : null,
-                color: (considerColor && !isNaN(colorSelectedValue)) ? colorSelectedValue : null,
-                quantity: 1,
-                date: orderTime,
-                price: 0,
-                benefit: 0,
-              };
-            };
-          };
-          if (typeof username !== undefined) {
-            // indexedDB database transactions 
-            let db;
-            let dbOpenRequest = window.indexedDB.open(`${username}`, 1);
-            // Check if product already in cart
-            function makeTX(storeName, mode) {
-              let tx = db.transaction(storeName, mode);
-              tx.onerror = (err) => {
-                console.warn(err);
-              };
-              return tx;
-            }
-            dbOpenRequest.addEventListener('success', (e) => {
-              db = e.target.result;
-              console.log('success opening db.');
-              let cartTX = makeTX('cart', 'readwrite');
-              cartTX.oncomplete = () => {
-                console.log('User cart exists.');
-              };
-              cartTX.onerror = (err) => {
-                console.warn(err);
-              };
-              let cartStore = cartTX.objectStore('cart');
-              let cartRequest = cartStore.count();
-              cartRequest.onsuccess = function(event) {
-                if (event.target.result === 0) {
-                  let req = cartStore.add(selectedProductObj);
-                  req.onsuccess = (ev) => {
-                    console.log('New product added to cart.');
-                  };
-                  req.onerror = (err) => {
-                    console.warn(err);
-                  };
-                } else {
-                  let cursorRequest = cartStore.openCursor();
-                  cursorRequest.onsuccess = (event) => {
-                    const result = event.target.result;
-                    if (result) {
-                      if (
-                        result.value.id === selectedProductObj.id &&
-                        result.value.material === selectedProductObj.material &&
-                        result.value.fabric === selectedProductObj.fabric &&
-                        result.value.color === selectedProductObj.color
-                        ) {
-                        let quantityAddedProduct = result.value;
-                        let cartQuantity = result.value.quantity;
-                        if (cartQuantity >= product.quantity) {
-                          quantityAddedProduct.quantity = product.quantity;
-                          notification(
-                              "شما در حال حاضر تمام موجودی انبار این محصول را در سبد خرید خود دارید.",
-                              "",
-                              "#ff3713",
-                              "#fff",
-                              "#030000",
-                              "out-of-stock-01",
-                              "notif-danger"
-                          );
-                          return;
-                        } else if (cartQuantity < product.quantity) {
-                          quantityAddedProduct.quantity = cartQuantity + 1;
-                        }
-                        let req = cartStore.put(quantityAddedProduct);
-                        req.onsuccess = (ev) => {
-                          console.log('Another number of the Product added to cart.');
-                        };
-                        req.onerror = (err) => {
-                          console.warn(err);
-                        };
-                      } else {
-                        result.continue();
-                      };
-                    } else {
-                      let req = cartStore.add(selectedProductObj);
-                      req.onsuccess = (ev) => {
-                        console.log('New product added to cart.');
-                      };
-                      req.onerror = (err) => {
-                        console.warn(err);
-                      };
-                    };
-                  };
-                  cursorRequest.onerror = (err) => {
-                    console.warn(err);
-                  };
-                };
-              };
-            });
-          };
-          cart();
-        });
-      });
-      // setting functionality of sold out products
-      carouselItems.querySelectorAll('.sold-out').forEach(button => {
-        button.addEventListener('click', function(e) {
-          window.location.href = window.location.origin + "/contactus.html";
-        })
-      });
-      // reset button functionality
-      carouselItems.querySelectorAll('.post-act-contents > .reset-btn').forEach( button => {
-        button.addEventListener('click', function (e) {
-          e.currentTarget.nextElementSibling.nextElementSibling.reset();
-          if (e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.material-selection')) {
-            e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.material-selection').removeAttribute('data-selected-material-value');
-          }
-          if (e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.fabric-selection')) {
-            e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.fabric-selection').removeAttribute('data-selected-fabric-value');
-          }
-          if (e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.color-selection')) {
-            e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.color-selection').removeAttribute('data-selected-color-value');
-          }
-        });
-      });
-      // separate numbers by three
-      const orderPrice = document.querySelector(".new-items").querySelectorAll(".order-price");
-      for (let i of orderPrice) {
-          i.textContent =
-            parseInt(i.textContent
-              .replace(/[^\d]+/gi, ''))
-                .toLocaleString('fa-IR')
-                  .replace(/[٬]/gi, ',')
-      };
-      return `Render Operation Processed: ${productsToRender}`;
-    };
-    
-    try {
-      renderer(products);
-      carouselFunc('new-items-container');
-    } catch (e) {
-      throw e;
-    }
-  };
-
-  renderProducts(specialProducts);
+    const specialProducts = await filteringWorkerObjectFunc(filterParameters);
+    if (specialProducts.length == 0) return;
+    const carouselItems = document.querySelector(".carousel-items.special-items");
   
+    const renderProducts = async function (products) {
+      // transaction to database - to get user favorites
+      async function favGetter() {
+        return new Promise((resolve, reject) => {
+          if (typeof username === "undefined") {
+            resolve(undefined);
+          } else {
+            const dbCurrentUserOpenRequest = window.indexedDB.open(`${username}`, 1);
+            dbCurrentUserOpenRequest.onerror = () => reject('Error opening database');
+            dbCurrentUserOpenRequest.onsuccess = (e) => {
+              const db = e.target.result; // Declare inside callback
+              if (!db.objectStoreNames.contains("favorite")) {
+                resolve(undefined);
+                return;
+              };
+              const transaction = db.transaction(['favorite'], 'readonly');
+              const store = transaction.objectStore('favorite');
+              const getRequest = store.getAll();
+              getRequest.onsuccess = () => {
+                const data = getRequest.result;
+                resolve(data);
+              };
+              getRequest.onerror = () => {
+                resolve(undefined);
+              };
+            };
+          };
+        });
+      }
+  
+      let userFavArr;
+      if (typeof username !== undefined) {
+        userFavArr = await favGetter();
+      }
+  
+      // Internal Products renderer function
+      const renderer = function(productsToRender) {
+        {
+          if (productsToRender.length == 0) {
+            carouselItems.innerHTML = `<span class="no-match-found">متاسفانه کالایی با مشخصات مورد نظر یافت نشد.</span>`;
+          } else {
+            carouselItems.innerHTML = "";
+            for (let p of productsToRender) {
+              // p is a product object
+              const pId = p.id;
+              const pProId = p.proId;
+              const pName = p.name;
+              const pPrice = p.price;
+              const pDescription = p.description;
+              const pProductDetails = p.productDetails;
+              const pImage = p.image;
+              const pCategoriesId = p.categoriesId;
+              const pInStock = p.inStock;
+              const pColorId = p.colorId;
+              const pFabricId = p.fabricId;
+              const pDiscount = p.discount;
+  
+              if (pInStock === 1) {
+            
+                const materialQuest = (function () {
+                    let test;
+                    if ( p.categoriesId.indexOf( 9, 0) !== -1 && 
+                        p.categoriesId.indexOf( 10, 0) !== -1) {
+                      test = true;
+                    }
+                    if (test == true) {
+                      return `
+                        <fieldset class="material-selection">
+                          <legend class="select-material-title">انتخاب نوع جنس كالا:</legend>
+                          <ul class="select-material">
+                            <li>
+                              <label>چوبی
+                                <input type="radio" name="material" value="9">
+                              </label>
+                            </li>
+                            <li>
+                              <label>فلزی
+                                <input type="radio" name="material" value="10">
+                              </label>
+                            </li>
+                          </ul>
+                        </fieldset>
+                      `
+                    } else {
+                      return "";
+                    }
+                })();
+            
+                let fabricQuest;
+                const fabricTest = (function () {
+                  let questArr = [];
+                  if ( pFabricId[0] !== 0 ) {
+                    const fabOne = pFabricId.some(i => i === 1);
+                    const fabTwo = pFabricId.some(i => i === 2);
+                    const fabThree = pFabricId.some(i => i === 3);
+                    const fabFour = pFabricId.some(i => i === 4);
+                    const fabOneText = (fabOne) ? `
+                      <li>
+                        <label>چرم
+                          <input type="radio" name="fabric" value="1">
+                        </label>
+                      </li>` : "";
+                    const fabTwoText = (fabTwo) ? `
+                      <li>
+                        <label>پارچه مخمل
+                          <input type="radio" name="fabric" value="2">
+                        </label>
+                      </li>` : "";
+                    const fabThreeText = (fabThree) ? `
+                      <li>
+                        <label>پارچه کتان
+                          <input type="radio" name="fabric" value="3">
+                        </label>
+                      </li>` : "";
+                    const fabFourText = (fabFour) ? `
+                      <li>
+                        <label>پارچه شمعی
+                          <input type="radio" name="fabric" value="4">
+                        </label>
+                      </li>` : "";
+                    questArr.unshift(fabOneText, fabTwoText, fabThreeText, fabFourText);
+                    if (
+                      fabOne !== false || 
+                      fabTwo !== false || 
+                      fabThree !== false || 
+                      fabFour !== false 
+                    ) {
+                      fabricQuest = `
+                        <fieldset class="fabric-selection">
+                          <legend class="select-fabric-title">انتخاب نوع پارچه:</legend>
+                          <ul class="select-fabric">
+                            ${questArr.join('')}
+                          </ul>
+                        </fieldset>
+                      `;
+                    } else {
+                      return "";
+                    }
+                  } else {
+                    fabricQuest = "";
+                  }
+                })();
+            
+                let colorQuest;
+                const colorTest = (function () {
+                  let questArr = [];
+                  const colorOne = pColorId.some(i => i === 1);
+                  const colorTwo = pColorId.some(i => i === 2);
+                  const colorThree = pColorId.some(i => i === 3);
+                  const colorFour = pColorId.some(i => i === 4);
+                  const colorFive = pColorId.some(i => i === 5);
+                  const colorSix = pColorId.some(i => i === 6);
+                  const colorSeven = pColorId.some(i => i === 7);
+                  const colorEight = pColorId.some(i => i === 8);
+                  const colorOneText = (colorOne) ? `
+                    <li>
+                      <label>سفيد
+                        <input type="radio" name="color" value="1">
+                      </label>
+                    </li>
+                    ` : "";
+                  const colorTwoText = (colorTwo) ? `
+                    <li>
+                      <label>سياه
+                        <input type="radio" name="color" value="2">
+                      </label>
+                    </li>
+                    ` : "";
+                  const colorThreeText = (colorThree) ? `
+                    <li>
+                      <label>سبز
+                        <input type="radio" name="color" value="3">
+                      </label>
+                    </li>
+                    ` : "";
+                  const colorFourText = (colorFour) ? `
+                    <li>
+                      <label>زرد
+                        <input type="radio" name="color" value="4">
+                      </label>
+                    </li>
+                    ` : "";
+                  const colorFiveText = (colorFive) ? `
+                    <li>
+                      <label>آبی
+                        <input type="radio" name="color" value="5">
+                      </label>
+                    </li>
+                    ` : "";
+                  const colorSixText = (colorSix) ? `
+                    <li>
+                      <label>قرمز
+                        <input type="radio" name="color" value="6">
+                      </label>
+                    </li>
+                    ` : "";
+                  const colorSevenText = (colorSeven) ? `
+                    <li>
+                      <label>خاکستری
+                        <input type="radio" name="color" value="7">
+                      </label>
+                    </li>
+                    ` : "";
+                  const colorEightText = (colorEight) ? `
+                    <li>
+                      <label>بنفش
+                        <input type="radio" name="color" value="8">
+                      </label>
+                    </li>
+                    ` : "";
+                  questArr.unshift(
+                    colorOneText, 
+                    colorTwoText, 
+                    colorThreeText, 
+                    colorFourText, 
+                    colorFiveText, 
+                    colorSixText, 
+                    colorSevenText, 
+                    colorEightText
+                  );
+                  colorQuest = `
+                    <fieldset class="color-selection">
+                      <legend class="select-color-title">انتخاب نوع رنگ:</legend>
+                      <ul class="select-color">
+                        ${questArr.join('')}
+                      </ul>
+                    </fieldset>
+                  `;
+                })();
+                
+                let tagText = (function () {
+                  if (pInStock === 0) return `<span class="tag out-of-stock">ناموجود</span>`;
+                  if (pCategoriesId.includes(7)) return `<span class="tag new-product">جدید</span>`;
+                  if (p.discount !== 0) return `<span class="tag discount">${pDiscount.toFixed(0)}</span>`;
+                  return "";
+                })();
+            
+                let grossPriceContent = (function () {
+                  if (!pDiscount) return "";
+                  return `
+                    <span class="price-gross" tabindex="-1">
+                      <strong class="order-price" tabindex="-1">${pPrice}</strong>
+                    </span>`;
+                })();
+            
+                let descriptionTxtContent = (function () {
+                  if (pDiscount) {
+                    return `<span class="p-dscr" tabindex="-1">${pDescription}</span>`;
+                  } else {
+                    return `<span class="p-dscr more-height" tabindex="-1">${pDescription}</span>`
+                  }
+                })();
+      
+                let orderBtn = (function () {
+                  if (pInStock === 0) return `<button class="sold-out" tabindex="-1">سفارش تولید</button>`;
+                  return '<button class="add-to-cart" tabindex="-1"></button>';
+                })();
+      
+                let favBtn = (function () {
+                    if (typeof userFavArr === 'undefined') return `<input type="checkbox" tabindex="-1" disabled></input>`;
+                    if (userFavArr.length > 0) {
+                      const savedFavoriteTest = userFavArr.includes(pId);
+                      if (savedFavoriteTest) return `<input type="checkbox" tabindex="-1" checked="true"></input>`
+                      return `<input type="checkbox" tabindex="-1"></input>`
+                    } else {
+                      return `<input type="checkbox" tabindex="-1"></input>`
+                    }
+                })();
+            
+                const productEl = document.createElement('div');
+                productEl.className = "c-item rounded-6";
+                productEl.setAttribute('data-product-id', `${pId}`)
+                productEl.innerHTML = `
+                  <div class="image-product" tabindex="-1">
+                    <img src="assets/images/p/${pImage}" alt="${pName} ${pProId} ${pId}" tabindex="-1">
+                    <div class="favorites-btn" tabindex="-1">
+                      <label class="favorite-checkbox" tabindex="-1">
+                        ${favBtn}
+                      </label>
+                    </div>
+                    <div class="favorites-tooltip rounded-4" tabindex="-1">
+                      <span tabindex="-1">افزودن به علاقه‌مندی</span>
+                    </div>
+                    ${tagText}
+                  </div>
+                  <div class="product-action" tabindex="-1">
+                    <div class="pre-act" tabindex="-1">
+                      <div class="p-details" tabindex="-1">
+                        <p class="p-name" tabindex="-1">${pName}</p>
+                        ${descriptionTxtContent}
+                      </div>
+                      <div class="p-price" tabindex="-1">
+                        ${grossPriceContent}
+                        <span class="price-net" tabindex="-1">
+                          <strong class="order-price" tabindex="-1">${(pPrice * (1 - (pDiscount/100))).toFixed(0)}</strong>
+                        </span>
+                      </div>
+                      <div class="cart-btn" tabindex="-1">
+                        <button class="order-details rounded-4" onclick="this.parentElement.parentElement.nextElementSibling.style.transform='scaleY(1)';" tabindex="-1">
+                          جزييات سفارش
+                        </button>
+                        <a class="show-product" href="${'/product.html?productID=' + pId}" tabindex="-1">
+                          <i class="las la-search"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="post-act" tabindex="-1">
+                      <div class="post-act-contents" tabindex="-1">
+                        <button class="close-btn" href="javascript:void(0);" title="بستن" onclick="this.parentElement.parentElement.style.transform='scaleY(0)';" tabindex="-1">
+                          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 128 128" xml:space="preserve">
+                            <g><path d="M101.682,32.206L69.887,64l31.795,31.794l-5.887,5.888L64,69.888l-31.794,31.794l-5.888-5.888L58.112,64 L26.318,32.206l5.888-5.888L64,58.112l31.794-31.794L101.682,32.206z"></path></g>
+                          </svg>
+                        </button>
+                        <button class="reset-btn" title="پاك كردن" tabindex="-1">
+                          <i class="las la-undo-alt"></i>
+                        </button>
+                        <h6>انتخاب متريال سفارشی:</h6>
+                        <form action="javascript:void(0)" tabindex="-1">
+                          ${materialQuest}
+                          ${fabricQuest}
+                          ${colorQuest}
+                          ${orderBtn}
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                `;
+                carouselItems.appendChild(productEl);
+              }
+            };
+          };
+        }
+        // go to product page by clicking on product image
+        carouselItems.querySelectorAll('.image-product img').forEach(elm => {
+          let mouseDownScrollS = 0;
+          elm.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
+            mouseDownScrollS = rect.left;
+          });
+          elm.addEventListener('mouseup', (e) => {
+            e.preventDefault();
+            let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
+            if (mouseDownScrollS === rect.left) {
+              e.stopImmediatePropagation();
+              const ProductId = Number(e.currentTarget.closest('[data-product-id]').dataset.productId);
+              redirectToProduct(ProductId);
+            }
+          });
+        });
+        // go to product page by clicking on product name
+        carouselItems.querySelectorAll('.product-action .p-name').forEach(elm => {
+          let mouseDownScrollS = 0;
+          elm.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
+            mouseDownScrollS = rect.left;
+          });
+          elm.addEventListener('mouseup', (e) => {
+            e.preventDefault();
+            let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
+            if (mouseDownScrollS === rect.left) {
+              e.stopImmediatePropagation();
+              const ProductId = Number(e.currentTarget.closest('[data-product-id]').dataset.productId);
+              redirectToProduct(ProductId);
+            }
+          });
+        });
+        // go to product page by clicking on show-product button
+        carouselItems.querySelectorAll('a.show-product').forEach(elm => {
+          let mouseDownScrollS = 0;
+          elm.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
+            mouseDownScrollS = rect.left;
+          });
+          elm.addEventListener('mouseup', (e) => {
+            e.preventDefault();
+            let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
+            if (mouseDownScrollS === rect.left) {
+              e.stopImmediatePropagation();
+              const ProductId = Number(e.currentTarget.closest('[data-product-id]').dataset.productId);
+              redirectToProduct(ProductId);
+            }
+          
+          });
+        });
+        function redirectToProduct(pId, url) {
+          if (localStorage.getItem('productItemLink') && localStorage.getItem('productItemLink') !== undefined) {
+              localStorage.removeItem('productItemLink');
+          }
+          if (localStorage.getItem('productStorePageLink') && localStorage.getItem('productStorePageLink') !== undefined) {
+              localStorage.removeItem('productStorePageLink');
+          }
+          window.location.href = window.location.origin + '/product.html?productID=' + pId;
+        }
+        // collecting user post actions of selecting additional options
+        carouselItems.querySelectorAll('fieldset.material-selection').forEach(elm => {
+          elm.onchange = function (e) {
+            e.currentTarget.setAttribute('data-selected-material-value', e.currentTarget.querySelector('input:checked').getAttribute('value'))
+          };
+        });
+        carouselItems.querySelectorAll('fieldset.fabric-selection').forEach(elm => {
+          elm.onchange = function (e) {
+            e.currentTarget.setAttribute('data-selected-fabric-value', e.currentTarget.querySelector('input:checked').getAttribute('value'))
+          };
+        });
+        carouselItems.querySelectorAll('fieldset.color-selection').forEach(elm => {
+          elm.onchange = function (e) {
+            e.currentTarget.setAttribute('data-selected-color-value', e.currentTarget.querySelector('input:checked').getAttribute('value'))
+          };
+        });
+        // favorite button functionality
+        carouselItems.querySelectorAll('.favorites-btn').forEach(elm => {
+          const throttle = function (mainFunction, delay) {
+            let timerFlag = null;               
+            return (...args) => {               
+              if (timerFlag === null) {         
+                mainFunction(...args);          
+                timerFlag = setTimeout(() => {  
+                  timerFlag = null;             
+                }, delay);
+              }
+            };
+          };
+          // Add to favorites
+          const favInputCheckedFunc = function (e) {
+            const thisProductId = Number(e.closest('div[data-product-id]').dataset.productId);
+            const dbCurrentUserOpenRequest = window.indexedDB.open(`${username}`, 1);
+            dbCurrentUserOpenRequest.onerror = () => reject('Error opening database');
+            dbCurrentUserOpenRequest.onsuccess = (e) => {
+              const db = e.target.result; // Declare inside callback
+              const transaction = db.transaction(['favorite'], 'readwrite');
+              const store = transaction.objectStore('favorite');
+              const getRequest = store.add(thisProductId);
+              getRequest.onsuccess = () => {
+                console.log('Added new favorite');
+                const countTransaction = db.transaction(['favorite'], 'readonly');
+                const countStore = countTransaction.objectStore('favorite');
+                const counter = countStore.count();
+                
+                counter.onsuccess = (e) => {
+                  const quantityOfFavs = e.target.result;
+                  console.log(quantityOfFavs);
+                  
+                  const updateTransaction = db.transaction(['profile'], 'readwrite');
+                  const profileStore = updateTransaction.objectStore('profile');
+                  const profileGetReq = profileStore.get(1);
+                  
+                  profileGetReq.onsuccess = (e) => {
+                    const profile = e.target.result;
+                    profile.favoritesCount = quantityOfFavs;
+                    const updateFavRequest = profileStore.put(profile, 1);
+                    updateFavRequest.onsuccess = () => console.log('Favorites counter updated');
+                    updateFavRequest.onerror = () => console.log('Error updating favorites counter!');
+                  };
+                  
+                  profileGetReq.onerror = () => console.log('Error getting profile');
+                }
+              };
+              getRequest.onerror = () => console.log('Error adding favorites');
+            };
+          };
+          // Remove from favorites
+          const favInputNotCheckedFunc = function (e) {
+            const thisProductId = Number(e.closest('div[data-product-id]').dataset.productId);
+            const dbCurrentUserOpenRequest = window.indexedDB.open(`${username}`, 1);
+            dbCurrentUserOpenRequest.onerror = () => reject('Error opening database');
+            dbCurrentUserOpenRequest.onsuccess = (e) => {
+              const db = e.target.result; // Declare inside callback
+              const transaction = db.transaction(['favorite'], 'readwrite');
+              const store = transaction.objectStore('favorite');
+              const cursor = store.openCursor();
+              cursor.onsuccess = function(event) {
+                const result = event.target.result;                          
+                if (result) {                                                
+                  if (result.value === thisProductId) {
+                    const removeReq = store.delete(result.key);
+                    removeReq.onsuccess = () => {
+                      console.log('Removed the favorite');
+                      const countTransaction = db.transaction(['favorite'], 'readonly');
+                      const countStore = countTransaction.objectStore('favorite');
+                      const counter = countStore.count();
+                      
+                      counter.onsuccess = (e) => {
+                        const quantityOfFavs = e.target.result;
+                        console.log(quantityOfFavs);
+                        
+                        const updateTransaction = db.transaction(['profile'], 'readwrite');
+                        const profileStore = updateTransaction.objectStore('profile');
+                        const profileGetReq = profileStore.get(1);
+                        
+                        profileGetReq.onsuccess = (e) => {
+                          const profile = e.target.result;
+                          profile.favoritesCount = quantityOfFavs;
+                          const updateFavRequest = profileStore.put(profile, 1);
+                          updateFavRequest.onsuccess = () => console.log('Favorites counter updated');
+                          updateFavRequest.onerror = () => console.log('Error updating favorites counter!');
+                        };
+                        
+                        profileGetReq.onerror = () => console.log('Error getting profile');
+                      }
+                    }
+                    removeReq.onerror = () => console.log('Error removing the favorite');
+                    result.continue();
+                  } else {
+                    result.continue();
+                  }
+                } else {                                                                    
+                  console.log("No more entries!");
+                }
+              };
+              cursor.onerror = function(event) {
+                console.error("Cursor request failed:", event.target.error);
+              };
+            };
+          };
+          const throttledChecked = throttle(favInputCheckedFunc, 2000);
+          const throttledNotChecked = throttle(favInputNotCheckedFunc, 2000);
+  
+          elm.addEventListener('click', function (e) {
+            
+            if (typeof username !== undefined) {
+              if (e.currentTarget.querySelector('input[type="checkbox"]').checked === false) {
+                e.currentTarget.querySelector('input[type="checkbox"]').checked = true;
+                throttledChecked(e.currentTarget.querySelector('input[type="checkbox"]'));
+              } else {
+                e.currentTarget.querySelector('input[type="checkbox"]').checked = false;
+                throttledNotChecked(e.currentTarget.querySelector('input[type="checkbox"]'));
+              }
+            } else {
+              return;
+            }
+          });
+        });
+        // setting event listener on add to cart buttons
+        carouselItems.querySelectorAll('.add-to-cart').forEach(button => {
+          button.addEventListener('click', async function(e) {
+            const id = Number(e.target.closest('[data-product-id]').dataset.productId);
+            const currentTarget = e.currentTarget;
+            let product;
+            const productObject = () => {
+              let db = null;
+              const dbPromise = new Promise((resolve, reject) => {
+                  const request = indexedDB.open('db', 1);
+                  request.onsuccess = (event) => resolve(event.target.result);
+                  request.onerror = (event) => reject(event.target.error);
+              });
+              return async function getProductItems(id) {
+                try {
+                  db = await dbPromise;
+                  const productTX = db.transaction('products', 'readonly');
+                  const productStore = productTX.objectStore('products');
+                  const productRequest = productStore.get(id);
+                  product = await new Promise((resolve, reject) => {
+                      productRequest.onsuccess = (event) => resolve(event.target.result);
+                      productRequest.onerror = (event) => reject(event.target.error);
+                  });
+                } catch (error) {
+                  console.error('Error loading product:', error);
+                }
+              }
+            }
+            let loadProducts = productObject();
+            await loadProducts(id);
+            const orderTime = Date.now();
+            
+            let materialSelectedValue, 
+                fabricSelectedValue, 
+                colorSelectedValue,
+                considerMaterial = false,
+                considerFabric = false,
+                considerColor = false,
+                selectedProductObj;
+            if (currentTarget.parentElement.querySelector('fieldset.material-selection')) {
+              materialSelectedValue = parseInt(currentTarget.parentElement.querySelector('fieldset.material-selection').dataset.selectedMaterialValue);
+              considerMaterial = true;
+            };
+            if (currentTarget.parentElement.querySelector('fieldset.fabric-selection')) {
+              fabricSelectedValue = parseInt(currentTarget.parentElement.querySelector('fieldset.fabric-selection').dataset.selectedFabricValue);
+              considerFabric = true;
+            };
+            if (currentTarget.parentElement.querySelector('fieldset.color-selection')) {
+              colorSelectedValue = parseInt(currentTarget.parentElement.querySelector('fieldset.color-selection').dataset.selectedColorValue);
+              considerColor = true;
+            };
+            // console.log(materialSelectedValue, fabricSelectedValue, colorSelectedValue);
+            if (considerMaterial ||
+                considerFabric ||
+                considerColor) {
+              if (Number.isNaN(materialSelectedValue) ||
+                  Number.isNaN(fabricSelectedValue) ||
+                  Number.isNaN(colorSelectedValue)) {
+                notification(
+                  "لطفا یکی از گزینه‌های مورد نیاز را انتخاب نمایید.", 
+                  "&cross;;", 
+                  "#fbff13ff", 
+                  "#000", 
+                  "#ff391fff", 
+                  "check-necessary-fieldset-error-01", 
+                  "notif-danger"
+                );
+                return;
+              } else {
+                selectedProductObj = {
+                  id: Number(id),
+                  material: (considerMaterial && !isNaN(materialSelectedValue)) ? materialSelectedValue : null,
+                  fabric: (considerFabric && !isNaN(fabricSelectedValue)) ? fabricSelectedValue : null,
+                  color: (considerColor && !isNaN(colorSelectedValue)) ? colorSelectedValue : null,
+                  quantity: 1,
+                  date: orderTime,
+                  price: 0,
+                  benefit: 0,
+                };
+              };
+            };
+            if (typeof username !== undefined) {
+              // indexedDB database transactions 
+              let db;
+              let dbOpenRequest = window.indexedDB.open(`${username}`, 1);
+              // Check if product already in cart
+              function makeTX(storeName, mode) {
+                let tx = db.transaction(storeName, mode);
+                tx.onerror = (err) => {
+                  console.warn(err);
+                };
+                return tx;
+              }
+              dbOpenRequest.addEventListener('success', (e) => {
+                db = e.target.result;
+                console.log('success opening db.');
+                let cartTX = makeTX('cart', 'readwrite');
+                cartTX.oncomplete = () => {
+                  console.log('User cart exists.');
+                };
+                cartTX.onerror = (err) => {
+                  console.warn(err);
+                };
+                let cartStore = cartTX.objectStore('cart');
+                let cartRequest = cartStore.count();
+                cartRequest.onsuccess = function(event) {
+                  if (event.target.result === 0) {
+                    let req = cartStore.add(selectedProductObj);
+                    req.onsuccess = (ev) => {
+                      console.log('New product added to cart.');
+                    };
+                    req.onerror = (err) => {
+                      console.warn(err);
+                    };
+                  } else {
+                    let cursorRequest = cartStore.openCursor();
+                    cursorRequest.onsuccess = (event) => {
+                      const result = event.target.result;
+                      if (result) {
+                        if (
+                          result.value.id === selectedProductObj.id &&
+                          result.value.material === selectedProductObj.material &&
+                          result.value.fabric === selectedProductObj.fabric &&
+                          result.value.color === selectedProductObj.color
+                          ) {
+                          let quantityAddedProduct = result.value;
+                          let cartQuantity = result.value.quantity;
+                          if (cartQuantity >= product.quantity) {
+                            quantityAddedProduct.quantity = product.quantity;
+                            notification(
+                                "شما در حال حاضر تمام موجودی انبار این محصول را در سبد خرید خود دارید.",
+                                "",
+                                "#ff3713",
+                                "#fff",
+                                "#030000",
+                                "out-of-stock-01",
+                                "notif-danger"
+                            );
+                            return;
+                          } else if (cartQuantity < product.quantity) {
+                            quantityAddedProduct.quantity = cartQuantity + 1;
+                          }
+                          let req = cartStore.put(quantityAddedProduct);
+                          req.onsuccess = (ev) => {
+                            console.log('Another number of the Product added to cart.');
+                          };
+                          req.onerror = (err) => {
+                            console.warn(err);
+                          };
+                        } else {
+                          result.continue();
+                        };
+                      } else {
+                        let req = cartStore.add(selectedProductObj);
+                        req.onsuccess = (ev) => {
+                          console.log('New product added to cart.');
+                        };
+                        req.onerror = (err) => {
+                          console.warn(err);
+                        };
+                      };
+                    };
+                    cursorRequest.onerror = (err) => {
+                      console.warn(err);
+                    };
+                  };
+                };
+              });
+            };
+            cart();
+          });
+        });
+        // setting functionality of sold out products
+        carouselItems.querySelectorAll('.sold-out').forEach(button => {
+          button.addEventListener('click', function(e) {
+            window.location.href = window.location.origin + "/contactus.html";
+          })
+        });
+        // reset button functionality
+        carouselItems.querySelectorAll('.post-act-contents > .reset-btn').forEach( button => {
+          button.addEventListener('click', function (e) {
+            e.currentTarget.nextElementSibling.nextElementSibling.reset();
+            if (e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.material-selection')) {
+              e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.material-selection').removeAttribute('data-selected-material-value');
+            }
+            if (e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.fabric-selection')) {
+              e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.fabric-selection').removeAttribute('data-selected-fabric-value');
+            }
+            if (e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.color-selection')) {
+              e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.color-selection').removeAttribute('data-selected-color-value');
+            }
+          });
+        });
+        // separate numbers by three
+        const orderPrice = document.querySelector(".special-items").querySelectorAll(".order-price");
+        for (let i of orderPrice) {
+            i.textContent =
+              parseInt(i.textContent
+                .replace(/[^\d]+/gi, ''))
+                  .toLocaleString('fa-IR')
+                    .replace(/[٬]/gi, ',')
+        };
+        return `Render Operation Processed: ${productsToRender}`;
+      };
+      
+      try {
+        renderer(products);
+        carouselFunc('special-items-container');
+      } catch (e) {
+        throw e;
+      }
+    };
+  
+    renderProducts(specialProducts);
+  
+  });
+  
+  // New Products extracting
+  document.addEventListener('productsDatabaseSuccessReady', async function () {
+    const filterParameters = {
+      category: 7,
+      sortField: 'idIDX',
+      sortDirection: 'asc',
+      page: 1,
+      pageSize: +Infinity,
+    };
+    const specialProducts = await filteringWorkerObjectFunc(filterParameters);
+    if (specialProducts.length == 0) return;
+    const carouselItems = document.querySelector(".carousel-items.new-items");
+  
+    const renderProducts = async function (products) {
+      // transaction to database - to get user favorites
+      async function favGetter() {
+        return new Promise((resolve, reject) => {
+          if (typeof username === "undefined") {
+            resolve(undefined);
+          } else {
+            const dbCurrentUserOpenRequest = window.indexedDB.open(`${username}`, 1);
+            dbCurrentUserOpenRequest.onerror = () => reject('Error opening database');
+            dbCurrentUserOpenRequest.onsuccess = (e) => {
+              const db = e.target.result; // Declare inside callback
+              if (!db.objectStoreNames.contains("favorite")) {
+                resolve(undefined);
+                return;
+              };
+              const transaction = db.transaction(['favorite'], 'readonly');
+              const store = transaction.objectStore('favorite');
+              const getRequest = store.getAll();
+              getRequest.onsuccess = () => {
+                const data = getRequest.result;
+                resolve(data);
+              };
+              getRequest.onerror = () => {
+                resolve(undefined)
+              };
+            };
+          }
+        });
+      }
+  
+      let userFavArr;
+      if (typeof username !== undefined) {
+        userFavArr = await favGetter();
+      }
+  
+      // transaction to database - to get categories name
+      async function catNameGetter() {
+        return new Promise((resolve, reject) => {
+          const dbOpenRequest = window.indexedDB.open(`db`, 1);
+          dbOpenRequest.onerror = () => reject('Error opening database');
+          dbOpenRequest.onsuccess = (e) => {
+            const db = e.target.result; // Declare inside callback
+            const transaction = db.transaction(['categories'], 'readonly');
+            const store = transaction.objectStore('categories');
+            const getRequest = store.getAll();
+            getRequest.onsuccess = () => {
+              const data = getRequest.result;
+              resolve(data);
+            };
+            getRequest.onerror = () => reject('Error fetching favorites');
+          };
+        });
+      }
+  
+      let catName;
+      catName = await catNameGetter();
+  
+      // renderer function
+      const renderer = function(productsToRender) {
+        {
+          if (productsToRender.length == 0) {
+            carouselItems.innerHTML = `<span class="no-match-found">متاسفانه کالایی با مشخصات مورد نظر یافت نشد.</span>`;
+          } else {
+            carouselItems.innerHTML = "";
+            for (let p of productsToRender) {
+              // p is a product object
+              const pId = p.id;
+              const pProId = p.proId;
+              const pName = p.name;
+              const pPrice = p.price;
+              const pDescription = p.description;
+              const pProductDetails = p.productDetails;
+              const pImage = p.image;
+              const pCategoriesId = p.categoriesId;
+              const pCategories = p.categoriesId.map(cat => {
+                return `${catName[cat-1].name}, `;
+              }).join('');
+              const pInStock = p.inStock;
+              const pColorId = p.colorId;
+              const pFabricId = p.fabricId;
+              const pDiscount = p.discount;
+              // const pQuantity = p.quantity;
+  
+              if (pInStock === 1) {
+            
+                const materialQuest = (function () {
+                    let test;
+                    if ( p.categoriesId.indexOf( 9, 0) !== -1 && 
+                        p.categoriesId.indexOf( 10, 0) !== -1) {
+                      test = true;
+                    }
+                    if (test == true) {
+                      return `
+                        <fieldset class="material-selection">
+                          <legend class="select-material-title">انتخاب نوع جنس كالا:</legend>
+                          <ul class="select-material">
+                            <li>
+                              <label>چوبی
+                                <input type="radio" name="material" value="9">
+                              </label>
+                            </li>
+                            <li>
+                              <label>فلزی
+                                <input type="radio" name="material" value="10">
+                              </label>
+                            </li>
+                          </ul>
+                        </fieldset>
+                      `
+                    } else {
+                      return "";
+                    }
+                })();
+            
+                let fabricQuest;
+                const fabricTest = (function () {
+                  let questArr = [];
+                  if ( pFabricId[0] !== 0 ) {
+                    const fabOne = pFabricId.some(i => i === 1);
+                    const fabTwo = pFabricId.some(i => i === 2);
+                    const fabThree = pFabricId.some(i => i === 3);
+                    const fabFour = pFabricId.some(i => i === 4);
+                    const fabOneText = (fabOne) ? `
+                      <li>
+                        <label>چرم
+                          <input type="radio" name="fabric" value="1">
+                        </label>
+                      </li>` : "";
+                    const fabTwoText = (fabTwo) ? `
+                      <li>
+                        <label>پارچه مخمل
+                          <input type="radio" name="fabric" value="2">
+                        </label>
+                      </li>` : "";
+                    const fabThreeText = (fabThree) ? `
+                      <li>
+                        <label>پارچه کتان
+                          <input type="radio" name="fabric" value="3">
+                        </label>
+                      </li>` : "";
+                    const fabFourText = (fabFour) ? `
+                      <li>
+                        <label>پارچه شمعی
+                          <input type="radio" name="fabric" value="4">
+                        </label>
+                      </li>` : "";
+                    questArr.unshift(fabOneText, fabTwoText, fabThreeText, fabFourText);
+                    if (
+                      fabOne !== false || 
+                      fabTwo !== false || 
+                      fabThree !== false || 
+                      fabFour !== false 
+                    ) {
+                      fabricQuest = `
+                        <fieldset class="fabric-selection">
+                          <legend class="select-fabric-title">انتخاب نوع پارچه:</legend>
+                          <ul class="select-fabric">
+                            ${questArr.join('')}
+                          </ul>
+                        </fieldset>
+                      `;
+                    } else {
+                      return "";
+                    }
+                  } else {
+                    fabricQuest = "";
+                  }
+                })();
+            
+                let colorQuest;
+                const colorTest = (function () {
+                  let questArr = [];
+                  const colorOne = pColorId.some(i => i === 1);
+                  const colorTwo = pColorId.some(i => i === 2);
+                  const colorThree = pColorId.some(i => i === 3);
+                  const colorFour = pColorId.some(i => i === 4);
+                  const colorFive = pColorId.some(i => i === 5);
+                  const colorSix = pColorId.some(i => i === 6);
+                  const colorSeven = pColorId.some(i => i === 7);
+                  const colorEight = pColorId.some(i => i === 8);
+                  const colorOneText = (colorOne) ? `
+                    <li>
+                      <label>سفيد
+                        <input type="radio" name="color" value="1">
+                      </label>
+                    </li>
+                    ` : "";
+                  const colorTwoText = (colorTwo) ? `
+                    <li>
+                      <label>سياه
+                        <input type="radio" name="color" value="2">
+                      </label>
+                    </li>
+                    ` : "";
+                  const colorThreeText = (colorThree) ? `
+                    <li>
+                      <label>سبز
+                        <input type="radio" name="color" value="3">
+                      </label>
+                    </li>
+                    ` : "";
+                  const colorFourText = (colorFour) ? `
+                    <li>
+                      <label>زرد
+                        <input type="radio" name="color" value="4">
+                      </label>
+                    </li>
+                    ` : "";
+                  const colorFiveText = (colorFive) ? `
+                    <li>
+                      <label>آبی
+                        <input type="radio" name="color" value="5">
+                      </label>
+                    </li>
+                    ` : "";
+                  const colorSixText = (colorSix) ? `
+                    <li>
+                      <label>قرمز
+                        <input type="radio" name="color" value="6">
+                      </label>
+                    </li>
+                    ` : "";
+                  const colorSevenText = (colorSeven) ? `
+                    <li>
+                      <label>خاکستری
+                        <input type="radio" name="color" value="7">
+                      </label>
+                    </li>
+                    ` : "";
+                  const colorEightText = (colorEight) ? `
+                    <li>
+                      <label>بنفش
+                        <input type="radio" name="color" value="8">
+                      </label>
+                    </li>
+                    ` : "";
+                  questArr.unshift(
+                    colorOneText, 
+                    colorTwoText, 
+                    colorThreeText, 
+                    colorFourText, 
+                    colorFiveText, 
+                    colorSixText, 
+                    colorSevenText, 
+                    colorEightText
+                  );
+                  colorQuest = `
+                    <fieldset class="color-selection">
+                      <legend class="select-color-title">انتخاب نوع رنگ:</legend>
+                      <ul class="select-color">
+                        ${questArr.join('')}
+                      </ul>
+                    </fieldset>
+                  `;
+                })();
+                
+                let tagText = (function () {
+                  if (pInStock === 0) return `<span class="tag out-of-stock">ناموجود</span>`;
+                  if (pCategoriesId.includes(7)) return `<span class="tag new-product">جدید</span>`;
+                  if (p.discount !== 0) return `<span class="tag discount">${pDiscount.toFixed(0)}</span>`;
+                  return "";
+                })();
+            
+                let grossPriceContent = (function () {
+                  if (!pDiscount) return "";
+                  return `
+                    <span class="price-gross" tabindex="-1">
+                      <strong class="order-price" tabindex="-1">${pPrice}</strong>
+                    </span>`;
+                })();
+            
+                let descriptionTxtContent = (function () {
+                  if (pDiscount) {
+                    return `<span class="p-dscr" tabindex="-1">${pDescription}</span>`;
+                  } else {
+                    return `<span class="p-dscr more-height" tabindex="-1">${pDescription}</span>`
+                  }
+                })();
+      
+                let orderBtn = (function () {
+                  if (pInStock === 0) return `<button class="sold-out" tabindex="-1">سفارش تولید</button>`;
+                  return '<button class="add-to-cart" tabindex="-1"></button>';
+                })();
+      
+                let favBtn = (function () {
+                    if (typeof userFavArr === 'undefined') return `<input type="checkbox" tabindex="-1" disabled></input>`;
+                    if (userFavArr.length > 0) {
+                      const savedFavoriteTest = userFavArr.includes(pId);
+                      if (savedFavoriteTest) return `<input type="checkbox" tabindex="-1" checked="true"></input>`
+                      return `<input type="checkbox" tabindex="-1"></input>`
+                    } else {
+                      return `<input type="checkbox" tabindex="-1"></input>`
+                    }
+                })();
+            
+                const productEl = document.createElement('div');
+                productEl.className = "c-item rounded-6";
+                productEl.setAttribute('data-product-id', `${pId}`)
+                productEl.innerHTML = `
+                  <div class="image-product" tabindex="-1">
+                    <img src="assets/images/p/${pImage}" alt="${pName} ${pProId} ${pId}" tabindex="-1">
+                    <div class="favorites-btn" tabindex="-1">
+                      <label class="favorite-checkbox" tabindex="-1">
+                        ${favBtn}
+                      </label>
+                    </div>
+                    <div class="favorites-tooltip rounded-4" tabindex="-1">
+                      <span tabindex="-1">افزودن به علاقه‌مندی</span>
+                    </div>
+                    ${tagText}
+                  </div>
+                  <div class="product-action" tabindex="-1">
+                    <div class="pre-act" tabindex="-1">
+                      <div class="p-details" tabindex="-1">
+                        <p class="p-name" tabindex="-1">${pName}</p>
+                        <span class="p-id" tabindex="-1">شناسه كالا : ${pProId}</span>
+                        <span class="p-cat" tabindex="-1">${pCategories}</span>
+                      </div>
+                      <div class="p-price" tabindex="-1">
+                        ${grossPriceContent}
+                        <span class="price-net" tabindex="-1">
+                          <strong class="order-price" tabindex="-1">${(pPrice * (1 - (pDiscount/100))).toFixed(0)}</strong>
+                        </span>
+                      </div>
+                      <div class="cart-btn" tabindex="-1">
+                        <button class="order-details rounded-4" onclick="this.parentElement.parentElement.nextElementSibling.style.transform='scaleY(1)';" tabindex="-1">
+                          جزييات سفارش
+                        </button>
+                        <a class="show-product" href="${'/product.html?productID=' + pId}" tabindex="-1">
+                          <i class="las la-search"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="post-act" tabindex="-1">
+                      <div class="post-act-contents" tabindex="-1">
+                        <button class="close-btn" href="javascript:void(0);" title="بستن" onclick="this.parentElement.parentElement.style.transform='scaleY(0)';" tabindex="-1">
+                          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 128 128" xml:space="preserve">
+                            <g><path d="M101.682,32.206L69.887,64l31.795,31.794l-5.887,5.888L64,69.888l-31.794,31.794l-5.888-5.888L58.112,64 L26.318,32.206l5.888-5.888L64,58.112l31.794-31.794L101.682,32.206z"></path></g>
+                          </svg>
+                        </button>
+                        <button class="reset-btn" title="پاك كردن" tabindex="-1">
+                          <i class="las la-undo-alt"></i>
+                        </button>
+                        <h6>انتخاب متريال سفارشی:</h6>
+                        <form action="javascript:void(0)" tabindex="-1">
+                          ${materialQuest}
+                          ${fabricQuest}
+                          ${colorQuest}
+                          ${orderBtn}
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                `;
+                carouselItems.appendChild(productEl);
+              }
+            };
+          };
+        }
+        // go to product page by clicking on product image
+        carouselItems.querySelectorAll('.image-product img').forEach(elm => {
+          let mouseDownScrollS = 0;
+          elm.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
+            mouseDownScrollS = rect.left;
+          });
+          elm.addEventListener('mouseup', (e) => {
+            e.preventDefault();
+            let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
+            if (mouseDownScrollS === rect.left) {
+              e.stopImmediatePropagation();
+              const ProductId = Number(e.currentTarget.closest('[data-product-id]').dataset.productId);
+              redirectToProduct(ProductId);
+            }
+          });
+        });
+        // go to product page by clicking on product name
+        carouselItems.querySelectorAll('.product-action .p-name').forEach(elm => {
+          let mouseDownScrollS = 0;
+          elm.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
+            mouseDownScrollS = rect.left;
+          });
+          elm.addEventListener('mouseup', (e) => {
+            e.preventDefault();
+            let rect = e.currentTarget.closest('.c-item').getBoundingClientRect();
+            if (mouseDownScrollS === rect.left) {
+              e.stopImmediatePropagation();
+              const ProductId = Number(e.currentTarget.closest('[data-product-id]').dataset.productId);
+              redirectToProduct(ProductId);
+            }
+          });
+        });
+        // go to product page by clicking on show-product button
+        carouselItems.querySelectorAll('a.show-product').forEach(elm => {
+          elm.addEventListener('click', (e) => {
+            e.preventDefault();
+            const ProductId = Number(e.currentTarget.closest('[data-product-id]').dataset.productId);
+            redirectToProduct(ProductId);
+          
+          });
+        });
+        function redirectToProduct(pId, url) {
+          if (localStorage.getItem('productItemLink') && localStorage.getItem('productItemLink') !== undefined) {
+              localStorage.removeItem('productItemLink');
+          }
+          if (localStorage.getItem('productStorePageLink') && localStorage.getItem('productStorePageLink') !== undefined) {
+              localStorage.removeItem('productStorePageLink');
+          }
+          window.location.href = window.location.origin + '/product.html?productID=' + pId;
+        }
+        // collecting user post actions of selecting additional options
+        carouselItems.querySelectorAll('fieldset.material-selection').forEach(elm => {
+          elm.onchange = function (e) {
+            e.currentTarget.setAttribute('data-selected-material-value', e.currentTarget.querySelector('input:checked').getAttribute('value'))
+          };
+        });
+        carouselItems.querySelectorAll('fieldset.fabric-selection').forEach(elm => {
+          elm.onchange = function (e) {
+            e.currentTarget.setAttribute('data-selected-fabric-value', e.currentTarget.querySelector('input:checked').getAttribute('value'))
+          };
+        });
+        carouselItems.querySelectorAll('fieldset.color-selection').forEach(elm => {
+          elm.onchange = function (e) {
+            e.currentTarget.setAttribute('data-selected-color-value', e.currentTarget.querySelector('input:checked').getAttribute('value'))
+          };
+        });
+        // favorite button functionality
+        carouselItems.querySelectorAll('.favorites-btn').forEach(elm => {
+          const throttle = function (mainFunction, delay) {
+            let timerFlag = null;               
+            return (...args) => {               
+              if (timerFlag === null) {         
+                mainFunction(...args);          
+                timerFlag = setTimeout(() => {  
+                  timerFlag = null;             
+                }, delay);
+              }
+            };
+          };
+          // Add to favorites
+          const favInputCheckedFunc = function (e) {
+            const thisProductId = Number(e.closest('div[data-product-id]').dataset.productId);
+            const dbCurrentUserOpenRequest = window.indexedDB.open(`${username}`, 1);
+            dbCurrentUserOpenRequest.onerror = () => reject('Error opening database');
+            dbCurrentUserOpenRequest.onsuccess = (e) => {
+              const db = e.target.result; // Declare inside callback
+              const transaction = db.transaction(['favorite'], 'readwrite');
+              const store = transaction.objectStore('favorite');
+              const getRequest = store.add(thisProductId);
+              getRequest.onsuccess = () => {
+                console.log('Added new favorite');
+                const countTransaction = db.transaction(['favorite'], 'readonly');
+                const countStore = countTransaction.objectStore('favorite');
+                const counter = countStore.count();
+                
+                counter.onsuccess = (e) => {
+                  const quantityOfFavs = e.target.result;
+                  console.log(quantityOfFavs);
+                  
+                  const updateTransaction = db.transaction(['profile'], 'readwrite');
+                  const profileStore = updateTransaction.objectStore('profile');
+                  const profileGetReq = profileStore.get(1);
+                  
+                  profileGetReq.onsuccess = (e) => {
+                    const profile = e.target.result;
+                    profile.favoritesCount = quantityOfFavs;
+                    const updateFavRequest = profileStore.put(profile, 1);
+                    updateFavRequest.onsuccess = () => console.log('Favorites counter updated');
+                    updateFavRequest.onerror = () => console.log('Error updating favorites counter!');
+                  };
+                  
+                  profileGetReq.onerror = () => console.log('Error getting profile');
+                }
+              };
+              getRequest.onerror = () => console.log('Error adding favorites');
+            };
+          };
+          // Remove from favorites
+          const favInputNotCheckedFunc = function (e) {
+            const thisProductId = Number(e.closest('div[data-product-id]').dataset.productId);
+            const dbCurrentUserOpenRequest = window.indexedDB.open(`${username}`, 1);
+            dbCurrentUserOpenRequest.onerror = () => reject('Error opening database');
+            dbCurrentUserOpenRequest.onsuccess = (e) => {
+              const db = e.target.result; // Declare inside callback
+              const transaction = db.transaction(['favorite'], 'readwrite');
+              const store = transaction.objectStore('favorite');
+              const cursor = store.openCursor();
+              cursor.onsuccess = function(event) {
+                const result = event.target.result;                          
+                if (result) {                                                
+                  if (result.value === thisProductId) {
+                    const removeReq = store.delete(result.key);
+                    removeReq.onsuccess = () => {
+                      console.log('Removed the favorite');
+                      const countTransaction = db.transaction(['favorite'], 'readonly');
+                      const countStore = countTransaction.objectStore('favorite');
+                      const counter = countStore.count();
+                      
+                      counter.onsuccess = (e) => {
+                        const quantityOfFavs = e.target.result;
+                        console.log(quantityOfFavs);
+                        
+                        const updateTransaction = db.transaction(['profile'], 'readwrite');
+                        const profileStore = updateTransaction.objectStore('profile');
+                        const profileGetReq = profileStore.get(1);
+                        
+                        profileGetReq.onsuccess = (e) => {
+                          const profile = e.target.result;
+                          profile.favoritesCount = quantityOfFavs;
+                          const updateFavRequest = profileStore.put(profile, 1);
+                          updateFavRequest.onsuccess = () => console.log('Favorites counter updated');
+                          updateFavRequest.onerror = () => console.log('Error updating favorites counter!');
+                        };
+                        
+                        profileGetReq.onerror = () => console.log('Error getting profile');
+                      }
+                    }
+                    removeReq.onerror = () => console.log('Error removing the favorite');
+                    result.continue();
+                  } else {
+                    result.continue();
+                  }
+                } else {                                                                    
+                  console.log("No more entries!");
+                }
+              };
+              cursor.onerror = function(event) {
+                console.error("Cursor request failed:", event.target.error);
+              };
+            };
+          };
+          const throttledChecked = throttle(favInputCheckedFunc, 2000);
+          const throttledNotChecked = throttle(favInputNotCheckedFunc, 2000);
+  
+          elm.onclick = function (e) {
+            if (typeof username !== undefined) {
+              if (e.currentTarget.querySelector('input[type="checkbox"]').checked === false) {
+                throttledChecked(e.currentTarget.querySelector('input[type="checkbox"]'));
+                e.currentTarget.querySelector('input[type="checkbox"]').checked = true;
+              } else {
+                throttledNotChecked(e.currentTarget.querySelector('input[type="checkbox"]'));
+                e.currentTarget.querySelector('input[type="checkbox"]').checked = false;
+              }
+            } else {
+              return;
+            }
+          };
+        });
+        // setting event listener on add to cart buttons
+        carouselItems.querySelectorAll('.add-to-cart').forEach(button => {
+          button.addEventListener('click', async function(e) {
+            const id = Number(e.target.closest('[data-product-id]').dataset.productId);
+            const currentTarget = e.currentTarget;
+            let product;
+            const productObject = () => {
+              let db = null;
+              const dbPromise = new Promise((resolve, reject) => {
+                  const request = indexedDB.open('db', 1);
+                  request.onsuccess = (event) => resolve(event.target.result);
+                  request.onerror = (event) => reject(event.target.error);
+              });
+              return async function getProductItems(id) {
+                try {
+                  db = await dbPromise;
+                  const productTX = db.transaction('products', 'readonly');
+                  const productStore = productTX.objectStore('products');
+                  const productRequest = productStore.get(id);
+                  product = await new Promise((resolve, reject) => {
+                      productRequest.onsuccess = (event) => resolve(event.target.result);
+                      productRequest.onerror = (event) => reject(event.target.error);
+                  });
+                } catch (error) {
+                  console.error('Error loading product:', error);
+                }
+              }
+            }
+            let loadProducts = productObject();
+            await loadProducts(id);
+            //
+            const orderTime = Date.now();
+            
+            let materialSelectedValue, 
+                fabricSelectedValue, 
+                colorSelectedValue,
+                considerMaterial = false,
+                considerFabric = false,
+                considerColor = false,
+                selectedProductObj;
+            if (currentTarget.parentElement.querySelector('fieldset.material-selection')) {
+              materialSelectedValue = parseInt(currentTarget.parentElement.querySelector('fieldset.material-selection').dataset.selectedMaterialValue);
+              considerMaterial = true;
+            };
+            if (currentTarget.parentElement.querySelector('fieldset.fabric-selection')) {
+              fabricSelectedValue = parseInt(currentTarget.parentElement.querySelector('fieldset.fabric-selection').dataset.selectedFabricValue);
+              considerFabric = true;
+            };
+            if (currentTarget.parentElement.querySelector('fieldset.color-selection')) {
+              colorSelectedValue = parseInt(currentTarget.parentElement.querySelector('fieldset.color-selection').dataset.selectedColorValue);
+              considerColor = true;
+            };
+            if (considerMaterial ||
+                considerFabric ||
+                considerColor) {
+              if (Number.isNaN(materialSelectedValue) ||
+                  Number.isNaN(fabricSelectedValue) ||
+                  Number.isNaN(colorSelectedValue)) {
+                notification(
+                  "لطفا یکی از گزینه‌های مورد نیاز را انتخاب نمایید.", 
+                  "&cross;;", 
+                  "#fbff13ff", 
+                  "#000", 
+                  "#ff391fff", 
+                  "check-necessary-fieldset-error-01", 
+                  "notif-danger"
+                );
+                return;
+              } else {
+                selectedProductObj = {
+                  id: Number(id),
+                  material: (considerMaterial && !isNaN(materialSelectedValue)) ? materialSelectedValue : null,
+                  fabric: (considerFabric && !isNaN(fabricSelectedValue)) ? fabricSelectedValue : null,
+                  color: (considerColor && !isNaN(colorSelectedValue)) ? colorSelectedValue : null,
+                  quantity: 1,
+                  date: orderTime,
+                  price: 0,
+                  benefit: 0,
+                };
+              };
+            };
+            if (typeof username !== undefined) {
+              // indexedDB database transactions 
+              let db;
+              let dbOpenRequest = window.indexedDB.open(`${username}`, 1);
+              // Check if product already in cart
+              function makeTX(storeName, mode) {
+                let tx = db.transaction(storeName, mode);
+                tx.onerror = (err) => {
+                  console.warn(err);
+                };
+                return tx;
+              }
+              dbOpenRequest.addEventListener('success', (e) => {
+                db = e.target.result;
+                console.log('success opening db.');
+                let cartTX = makeTX('cart', 'readwrite');
+                cartTX.oncomplete = () => {
+                  console.log('User cart exists.');
+                };
+                cartTX.onerror = (err) => {
+                  console.warn(err);
+                };
+                let cartStore = cartTX.objectStore('cart');
+                let cartRequest = cartStore.count();
+                cartRequest.onsuccess = function(event) {
+                  if (event.target.result === 0) {
+                    let req = cartStore.add(selectedProductObj);
+                    req.onsuccess = (ev) => {
+                      console.log('New product added to cart.');
+                    };
+                    req.onerror = (err) => {
+                      console.warn(err);
+                    };
+                  } else {
+                    let cursorRequest = cartStore.openCursor();
+                    cursorRequest.onsuccess = (event) => {
+                      const result = event.target.result;
+                      if (result) {
+                        if (
+                          result.value.id === selectedProductObj.id &&
+                          result.value.material === selectedProductObj.material &&
+                          result.value.fabric === selectedProductObj.fabric &&
+                          result.value.color === selectedProductObj.color
+                          ) {
+                          let quantityAddedProduct = result.value;
+                          let cartQuantity = result.value.quantity;
+                          if (cartQuantity >= product.quantity) {
+                            quantityAddedProduct.quantity = product.quantity;
+                            notification(
+                                "شما در حال حاضر تمام موجودی انبار این محصول را در سبد خرید خود دارید.",
+                                "",
+                                "#ff3713",
+                                "#fff",
+                                "#030000",
+                                "out-of-stock-01",
+                                "notif-danger"
+                            );
+                            return;
+                          } else if (cartQuantity < product.quantity) {
+                            quantityAddedProduct.quantity = cartQuantity + 1;
+                          }
+                          let req = cartStore.put(quantityAddedProduct);
+                          req.onsuccess = (ev) => {
+                            console.log('Another number of the Product added to cart.');
+  
+                          };
+                          req.onerror = (err) => {
+                            console.warn(err);
+                          };
+                        } else {
+                          result.continue();
+                        };
+                      } else {
+                        let req = cartStore.add(selectedProductObj);
+                        req.onsuccess = (ev) => {
+                          console.log('New product added to cart.');
+                        };
+                        req.onerror = (err) => {
+                          console.warn(err);
+                        };
+                      };
+                    };
+                    cursorRequest.onerror = (err) => {
+                      console.warn(err);
+                    };
+                  };
+                };
+              });
+            };
+            cart();
+          });
+        });
+        // setting functionality of sold out products
+        carouselItems.querySelectorAll('.sold-out').forEach(button => {
+          button.addEventListener('click', function(e) {
+            window.location.href = window.location.origin + "/contactus.html";
+          })
+        });
+        // reset button functionality
+        carouselItems.querySelectorAll('.post-act-contents > .reset-btn').forEach( button => {
+          button.addEventListener('click', function (e) {
+            e.currentTarget.nextElementSibling.nextElementSibling.reset();
+            if (e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.material-selection')) {
+              e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.material-selection').removeAttribute('data-selected-material-value');
+            }
+            if (e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.fabric-selection')) {
+              e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.fabric-selection').removeAttribute('data-selected-fabric-value');
+            }
+            if (e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.color-selection')) {
+              e.currentTarget.nextElementSibling.nextElementSibling.querySelector('fieldset.color-selection').removeAttribute('data-selected-color-value');
+            }
+          });
+        });
+        // separate numbers by three
+        const orderPrice = document.querySelector(".new-items").querySelectorAll(".order-price");
+        for (let i of orderPrice) {
+            i.textContent =
+              parseInt(i.textContent
+                .replace(/[^\d]+/gi, ''))
+                  .toLocaleString('fa-IR')
+                    .replace(/[٬]/gi, ',')
+        };
+        return `Render Operation Processed: ${productsToRender}`;
+      };
+      
+      try {
+        renderer(products);
+        carouselFunc('new-items-container');
+      } catch (e) {
+        throw e;
+      }
+    };
+  
+    renderProducts(specialProducts);
+    
+  });
 });
 
 // slideshow initialization
