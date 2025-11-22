@@ -178,8 +178,9 @@ pageLoad.then((database) => {
                     console.warn('Object stores missing, attempting recovery...');
                     new Promise((res,rej) => {
                       db.close(); // Close current connection
-                      res(window.indexedDB.deleteDatabase('db'));
-                    }).then(() => setTimeout(() => indexdb(), 100));
+                      let deleteDB = window.indexedDB.deleteDatabase('db');
+                      res(deleteDB);
+                    }).then((i) => indexdb());
                     return;
                 };
                 console.log('success opening db.');
@@ -342,13 +343,15 @@ pageLoad.then((database) => {
 
             dbOpenRequest.addEventListener('error', (err) => {
                 console.error('Error occurred while trying to open db:', err);
-                if (!recoveryAttempted) {
-                    console.log('Attempting recovery after error...');
-                    recoveryAttempted = true;
-                    window.indexedDB.deleteDatabase('db').onsuccess = () => {
-                        setTimeout(() => indexdb(), 100);
-                    };
-                }
+                if (!db.objectStoreNames.contains("products")) {
+                    console.warn('Object stores missing, attempting recovery...');
+                    new Promise((res,rej) => {
+                      db.close(); // Close current connection
+                      let deleteDB = window.indexedDB.deleteDatabase('db');
+                      res(deleteDB);
+                    }).then((i) => indexdb());
+                    return;
+                };
             });
 
             function makeTX(storeName, mode) {
