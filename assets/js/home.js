@@ -1,5 +1,3 @@
-// Dispatch event when productsDB is ready
-const productsDBReadySuccessEvent = new CustomEvent('productsDatabaseSuccessReady');
 
 // load the database.json
 const pageLoad = new Promise((resolve, reject) => {
@@ -341,6 +339,7 @@ pageLoad.then((database) => {
                         });
                     };
                     document.dispatchEvent(productsDBReadySuccessEvent);
+                    productsDBReadySuccessEventDispatched = true;
                     console.log('productsDBReadySuccessEvent dispatched.');
                     resolve(storeDatabase);
                 };

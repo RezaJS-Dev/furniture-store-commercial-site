@@ -678,6 +678,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Cart contents functionality
 async function cart() {
+  if (productsDBReadySuccessEventDispatched !== true) {
+    setTimeout(() => cart(), 100);
+    return;
+  }; 
   // Cart element recently added to the 'navbar1'
   const cartEl = document.querySelector("div.cart");
   const cartOrdersEl = document.querySelector('.cart-orders > div.orders-wrapper > ul.orders-list');

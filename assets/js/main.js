@@ -1,5 +1,9 @@
 let username;
 
+// Dispatch event when productsDB is ready
+const productsDBReadySuccessEvent = new CustomEvent('productsDatabaseSuccessReady');
+let productsDBReadySuccessEventDispatched = null;
+
 // Display numbers in persian
 
 function toPersianNumbers(input) {
