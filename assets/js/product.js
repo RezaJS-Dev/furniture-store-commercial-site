@@ -1076,13 +1076,17 @@ pageLoad.finally(async () => {
     localStorage.removeItem('productItemLink');
   } else {
     if ((new URL(window.location)).searchParams.get('productID')) {
-      const newUrl = new URL(window.location);
-      productId = Number(newUrl.searchParams.get('productID'));
-      product = await getProductData(productId);
-      if (typeof product === 'undefined') {
-        window.location.href = window.location.origin + '/404.html';
+      if (/^[?productID=]+(?:[0-9])+$/.test(window.location.search)) {
+        const newUrl = new URL(window.location);
+        productId = Number(newUrl.searchParams.get('productID'));
+        product = await getProductData(productId);
+        if (typeof product === 'undefined') {
+          window.location.href = window.location.origin + '/404.html';
+        } else {
+          renderProducts();
+        }
       } else {
-        renderProducts();
+        window.location.href = window.location.origin + '/404.html';
       }
     } else {
       window.location.href = window.location.origin + '/store.html';
