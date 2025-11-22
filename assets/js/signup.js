@@ -877,7 +877,7 @@ async function sendData() {
     },
     body: JSON.stringify({ 
       name: nameField.value,
-      username: emailField.value,
+      username: emailField.value.toLowerCase(),
       password: passField.value,
       createdAt: Date.now()
     }),
@@ -915,6 +915,7 @@ const passFieldLogin = formLogin.querySelector('input[name="loginPassword"]');
   
 const handleEmailInputLogin = () => {
   emailFieldLogin.value = toEnglishDigits(emailFieldLogin.value);
+  emailFieldLogin.value = emailFieldLogin.value.toLowerCase();
   requiredInput(emailFieldLogin);
 };
 

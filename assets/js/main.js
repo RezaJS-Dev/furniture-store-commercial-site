@@ -567,6 +567,7 @@ const activateOverlay = function (event) {
     });
     emailFieldLogin.addEventListener("input", (e) => {
       emailFieldLogin.value = toEnglishDigits(emailFieldLogin.value);
+      emailFieldLogin.value = emailFieldLogin.value.toLowerCase();
     });
     passFieldLogin.addEventListener("keydown", preventEnterKey);
     passFieldLogin.addEventListener("input", (e) => {
