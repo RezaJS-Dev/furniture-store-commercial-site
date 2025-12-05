@@ -555,6 +555,18 @@ const activateOverlay = function (event) {
     // submit functionality
     modalEl.querySelector('button[name="sign-in-modal"]').addEventListener('click', function(ev) {
       ev.preventDefault();
+      if (this.form.querySelector('input[name="email"]').value.length === 0) {
+        notification(
+          "نام کاربری خود را وارد نمایید.",
+          "&crarr;",
+          "#fbff13ff",
+          "#000",
+          "#0f7918ff",
+          "user-registered-01",
+          "notif-success"
+        );
+        return;
+      };
       sendLoginData(this.form);
     });
     //
