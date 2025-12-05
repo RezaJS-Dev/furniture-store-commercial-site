@@ -556,7 +556,7 @@ const activateOverlay = function (event) {
     modalEl.querySelector('button[name="sign-in-modal"]').addEventListener('click', function(ev) {
       ev.preventDefault();
       sendLoginData(this.form);
-    }, {once: true});
+    });
     //
     const emailFieldLogin = modalEl.querySelector('input[name="email"]');
     const passFieldLogin = modalEl.querySelector('input[name="loginPassword"]');
