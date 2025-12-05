@@ -956,8 +956,8 @@ async function cartBill() {
                   material = item.material,
                   deliveryAddress = addressGetter(),
                   contractDate = new Date(`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`),
-                  prepareDate = new Date(`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()+6}`),
-                  transportDate = new Date(`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()+7}`),
+                  prepareDate = new Date(Date.now(`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`) + 86400000 * 6),
+                  transportDate = new Date(Date.now(`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`) + 86400000 * 7),
                   exactProductName = `${productsObject?.getName(item.id)} ${materialText(item)} ${fabricText(item)} ${colorText(item)} ${quantityNum}`;
 
             return {
