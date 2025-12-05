@@ -397,9 +397,9 @@ async function sendLoginData(form) {
           }
           const rememberMeChecked = userData.rememberme;
           if (rememberMeChecked === "on") {
-            sessionStorage.setItem('authenticated', JSON.stringify(authenticated));
-          } else {
             localStorage.setItem('authenticated', JSON.stringify(authenticated));
+          } else {
+            sessionStorage.setItem('authenticated', JSON.stringify(authenticated));
           }
           // Redirect
           window.location.href = window.location.origin + "/index.html";
