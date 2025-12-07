@@ -1826,6 +1826,7 @@ pageLoad.finally(async () => {
             });
           };
           cart();
+          cartChannel.postMessage("cart-updated");
         })
       });
       // setting functionality of sold out products

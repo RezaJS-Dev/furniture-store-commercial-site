@@ -709,6 +709,7 @@ async function cartBill() {
       };
       cartBill();
       cart();
+      cartChannel.postMessage("cart-updated");
     });
   });
   cartOrdersEl.querySelectorAll('button.quantity-btn.plus').forEach(button => {
@@ -782,6 +783,7 @@ async function cartBill() {
       };
       cartBill();
       cart();
+      cartChannel.postMessage("cart-updated");
     });
   });
   cartOrdersEl.querySelectorAll('a.delete-from-cart').forEach(button => {
@@ -810,6 +812,7 @@ async function cartBill() {
       };
       cartBill();
       cart();
+      cartChannel.postMessage("cart-updated");
     });
   });
   cartCounterBadge.innerHTML = `<span data-value='${count}'>${toPersianNumbers(count)}</span>`;

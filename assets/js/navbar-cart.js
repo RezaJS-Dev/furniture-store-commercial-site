@@ -621,6 +621,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearRequest.onerror = (event) => reject(event.target.error);
         cart();
         if (window.location.href.includes('checkout.html')) cartBill();
+        cartChannel.postMessage("cart-updated");
       };
     };
     request.onerror = (event) => reject(event.target.error);
@@ -676,12 +677,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+// Cart BroadcastChannel
+const cartChannel = new BroadcastChannel('cart-sync');
+cartChannel.onmessage = (e) => {
+  if (e.data === 'cart-updated') {
+    console.log('cart-update-in-progress')
+    cart();
+    if (window.location.href.includes('checkout.html')) cartBill();
+  }
+};
+cartChannel.onmessageerror = (e) => {
+    console.log('cart-update-error', e.data)
+};
+
 // Cart contents functionality
 async function cart() {
   if (productsDBReadySuccessEventDispatched !== true) {
     setTimeout(() => cart(), 100);
     return;
-  }; 
+  };
   // Cart element recently added to the 'navbar1'
   const cartEl = document.querySelector("div.cart");
   const cartOrdersEl = document.querySelector('.cart-orders > div.orders-wrapper > ul.orders-list');
@@ -1025,6 +1039,7 @@ async function cart() {
       }
       cart();
       if (window.location.href.includes('checkout.html')) cartBill();
+      cartChannel.postMessage("cart-updated");
     });
   });
   cartOrdersEl.querySelectorAll('button.quantity-btn.plus').forEach(button => {
@@ -1098,6 +1113,7 @@ async function cart() {
       };
       cart();
       if (window.location.href.includes('checkout.html')) cartBill();
+      cartChannel.postMessage("cart-updated");
     });
   });
   cartCounterBadge.innerHTML = `<span data-value='${count}'>${toPersianNumbers(count)}</span>`;

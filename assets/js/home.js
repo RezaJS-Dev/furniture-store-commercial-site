@@ -1418,6 +1418,7 @@ pageLoad.then((v) => {
               });
             };
             cart();
+            cartChannel.postMessage("cart-updated");
           });
         });
         // setting functionality of sold out products
@@ -2200,6 +2201,7 @@ pageLoad.then((v) => {
               });
             };
             cart();
+            cartChannel.postMessage("cart-updated");
           });
         });
         // setting functionality of sold out products
