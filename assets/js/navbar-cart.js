@@ -1499,7 +1499,7 @@ async function cart() {
                   cursorRequest.onsuccess = function(event) {                       
                       if (event.target.result) {                                                
                           let resultObj = event.target.result.value;
-                          if (resultObj.default) {
+                          if (resultObj.default === true) {
                             resolve(resultObj.exact);
                           }
                           event.target.result.continue();                                       
