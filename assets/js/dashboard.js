@@ -857,6 +857,7 @@ function processFinalTasks() {
                         walletSumEl.textContent = (transaction['balance_after']) ? transaction['balance_after'].toLocaleString('fa-IR').replace(/[٬]/gi, ',') : Number(0).toLocaleString('fa-IR').replace(/[٬]/gi, ',');
                         walletSummaryUpdate();
                         createDashboardLog();
+                        renderFavoriteProducts();
                         discardTransactionsTableFilter();
                         setTimeout(() => applyTransactionsTableFilter(), 1000);
                       }
